@@ -1,17 +1,29 @@
 export const lightMode = {
-  borderRadius: '5px',
-
+  dark: false,
   colors: {
-    main: 'cyan',
-    secondary: 'magenta',
+    primary: '#18A0FB',
+    secondary: '#1C3253',
+    lightblue: '#18A0FB',
+    darkblue: '#1C3253',
+    background: '#FFFFFF',
+    card: '#FFFFFF',
+    text: '#000000',
+    border: '#303030',
+    notification: '#18A0FB',
   },
 };
 
 export const darkMode = {
-  borderRadius: '5px',
-
+  dark: true,
   colors: {
-    main: 'magenta',
-    secondary: 'cyan',
+    primary: '#1C3253',
+    secondary: '#18A0FB',
+    lightblue: '#18A0FB',
+    darkblue: '#1C3253',
+    background: '#303030',
+    card: '#303030',
+    text: '#FFFFFF',
+    border: '#303030',
+    notification: '#1C3253',
   },
 };

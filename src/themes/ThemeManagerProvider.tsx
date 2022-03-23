@@ -1,3 +1,4 @@
+import {StatusBar} from 'expo-status-bar';
 import React, {
   createContext,
   useCallback,
@@ -34,6 +35,7 @@ const ThemeManagerProvider: React.FC = ({children}) => {
   return (
     <ThemeContext.Provider value={returnValues}>
       <ThemeProvider theme={themeState ? darkMode : lightMode}>
+        <StatusBar style={themeState ? 'light' : 'dark'} />
         {children}
       </ThemeProvider>
     </ThemeContext.Provider>
