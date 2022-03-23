@@ -1,13 +1,10 @@
 import React from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {Container, Text} from './styles';
 
-const Home: React.FC = () => {
-  return (
-    <View>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar />
-   </View>
-  )
-};
+const Home: React.FC = () => (
+  <Container>
+    <Text>Open up App.tsx to start working on your app!</Text>
+  </Container>
+);
 
 export default Home;

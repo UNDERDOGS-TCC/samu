@@ -41,7 +41,8 @@
               "tsx": "never"
             }
          ],
-         "object-curly-spacing": "off"
+         "object-curly-spacing": "off",
+         "@typescript-eslint/no-empty-interface": "off"
     },
     "settings": {
         "import/resolver": {
