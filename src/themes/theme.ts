@@ -11,7 +11,7 @@ export const darkMode = {
   borderRadius: '5px',
 
   colors: {
-    main: 'cyan',
-    secondary: 'magenta',
+    main: 'magenta',
+    secondary: 'cyan',
   },
 };

@@ -1,25 +1,15 @@
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {ThemeProvider} from 'styled-components/native';
 import Routes from './src/routes/Routes';
-import {lightMode, darkMode} from './src/themes/theme';
+import ThemeManagerProvider from './src/themes/ThemeManagerProvider';
 
-const App: React.FC = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-  useEffect(() => {
-    // GET THEME FROM STORAGE
-    setIsDarkTheme(false);
-  }, []);
-
-  return (
-    <NavigationContainer>
-      <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
-        <Routes />
-      </ThemeProvider>
-    </NavigationContainer>
-  );
-};
+const App: React.FC = () => (
+  <NavigationContainer>
+    <ThemeManagerProvider>
+      <Routes />
+    </ThemeManagerProvider>
+  </NavigationContainer>
+);
 
 export default App;

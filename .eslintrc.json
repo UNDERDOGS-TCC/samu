@@ -42,7 +42,9 @@
             }
          ],
          "object-curly-spacing": "off",
-         "@typescript-eslint/no-empty-interface": "off"
+         "@typescript-eslint/no-empty-interface": "off",
+         "no-console": "off",
+         "object-curly-newline": "off"
     },
     "settings": {
         "import/resolver": {
