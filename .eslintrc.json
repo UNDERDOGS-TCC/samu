@@ -45,7 +45,8 @@
          "@typescript-eslint/no-empty-interface": "off",
          "no-console": "off",
          "object-curly-newline": "off",
-         "camelcase": "off"
+         "camelcase": "off",
+         "@typescript-eslint/no-floating-promises": "off"
     },
     "settings": {
         "import/resolver": {
