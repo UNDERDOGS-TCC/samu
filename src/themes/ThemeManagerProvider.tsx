@@ -3,13 +3,15 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
 import {ThemeProvider} from 'styled-components/native';
+import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 import {darkMode, lightMode} from './theme';
 
-const isDarkMode = false; // TODO: GET FROM STORAGE
+const isDarkMode = false;
 
 const ThemeContext = createContext({
   isDarkMode,
@@ -23,6 +25,16 @@ const ThemeManagerProvider: React.FC = ({children}) => {
   const setIsDarkMode = useCallback(() => {
     setThemeState(!themeState);
   }, [themeState]);
+  const {getItem} = useAsyncStorage('@isDarkMode');
+
+  const getIsDarkModeFromStorage = useCallback(async () => {
+    const isDarkModeFromStorage = await getItem();
+    setThemeState(JSON.parse(isDarkModeFromStorage || 'false') as boolean);
+  }, [getItem]);
+
+  useEffect(() => {
+    getIsDarkModeFromStorage();
+  }, [getIsDarkModeFromStorage]);
 
   const returnValues = useMemo(
     () => ({
