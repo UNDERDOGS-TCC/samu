@@ -13,6 +13,10 @@ const Home: React.FC = () => {
         title="Configurações"
         onPress={() => navigation.navigate('Config' as never)}
       />
+      <Button
+        title="Signup"
+        onPress={() => navigation.navigate('Signup' as never)}
+      />
     </Container>
   );
 };

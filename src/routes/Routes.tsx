@@ -5,6 +5,7 @@ import Home from '../pages/Home/Home';
 import {useTheme} from '../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import Config from '../pages/Config/Config';
+import Signup from '../pages/Signup/Signup';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const Routes: React.FC = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Config" component={Config} />
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
   );

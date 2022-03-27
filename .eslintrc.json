@@ -46,7 +46,9 @@
          "no-console": "off",
          "object-curly-newline": "off",
          "camelcase": "off",
-         "@typescript-eslint/no-floating-promises": "off"
+         "@typescript-eslint/no-floating-promises": "off",
+         "no-confusing-arrow": "off",
+         "implicit-arrow-linebreak": "off"
     },
     "settings": {
         "import/resolver": {
