@@ -16,6 +16,8 @@ export const lightMode = {
       darkblue: '#1C3253',
       background: '#FFFFFF',
       text: '#000000',
+      gray: '#808080',
+      green: '#06992b',
     },
     font: {
       family: {
@@ -55,6 +57,8 @@ export const darkMode = {
       darkblue: '#1C3253',
       background: '#303030',
       text: '#FFFFFF',
+      gray: '#808080',
+      green: '#06992b',
     },
     font: {
       family: {

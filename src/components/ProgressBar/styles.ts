@@ -22,7 +22,7 @@ export const Ball = styled.View<BallProps>`
       : props.theme.main.colors.background};
 `;
 
-export const LeftWhiteBall = styled.View`
+export const LeftWhiteBall = styled.View<BallProps>`
   left: 10%;
   position: absolute;
   width: 20px;
@@ -30,10 +30,13 @@ export const LeftWhiteBall = styled.View`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  background-color: #06992b;
+  background-color: ${(props) =>
+    props.isActive
+      ? props.theme.main.colors.green
+      : props.theme.main.colors.gray};
 `;
 
-export const CenterWhiteBall = styled.View`
+export const CenterWhiteBall = styled.View<BallProps>`
   position: absolute;
   align-self: center;
   width: 20px;
@@ -41,10 +44,13 @@ export const CenterWhiteBall = styled.View`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: ${(props) =>
+    props.isActive
+      ? props.theme.main.colors.green
+      : props.theme.main.colors.gray};
 `;
 
-export const RightWhiteBall = styled.View`
+export const RightWhiteBall = styled.View<BallProps>`
   right: 10%;
   position: absolute;
   width: 20px;
@@ -52,7 +58,10 @@ export const RightWhiteBall = styled.View`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: ${(props) =>
+    props.isActive
+      ? props.theme.main.colors.green
+      : props.theme.main.colors.gray};
 `;
 
 export const MainLine = styled.View`
@@ -64,7 +73,7 @@ export const MainLine = styled.View`
 export const Line = styled(Animated.View)`
   height: 5px;
   width: 100%;
-  background-color: #06992b;
+  background-color: ${(props) => props.theme.main.colors.green};
   position: absolute;
   left: 0;
   top: 0;

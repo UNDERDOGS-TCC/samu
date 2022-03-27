@@ -19,6 +19,13 @@ const ProgressBar: React.FC<ProgressBarProps> = ({step, steps}) => {
   const [width, setWidth] = useState(0);
   const animatedValue = useRef(new Animated.Value(-1000)).current;
   const reactive = useRef(new Animated.Value(-1000)).current;
+  const [isActive, setIsActive] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsActive(step);
+    }, 500);
+  }, [step]);
 
   useEffect(() => {
     Animated.timing(animatedValue, {
@@ -43,14 +50,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({step, steps}) => {
       >
         <Line style={{transform: [{translateX: animatedValue}]}} />
       </MainLine>
-      <LeftWhiteBall>
-        <Ball isActive />
+      <LeftWhiteBall isActive={isActive >= 0}>
+        <Ball isActive={isActive >= 0} />
       </LeftWhiteBall>
-      <CenterWhiteBall>
-        <Ball isActive={false} />
+      <CenterWhiteBall isActive={isActive >= 1}>
+        <Ball isActive={isActive >= 1} />
       </CenterWhiteBall>
-      <RightWhiteBall>
-        <Ball isActive={false} />
+      <RightWhiteBall isActive={isActive >= 2}>
+        <Ball isActive={isActive >= 2} />
       </RightWhiteBall>
     </Container>
   );
