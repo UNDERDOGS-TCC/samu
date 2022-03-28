@@ -27,7 +27,12 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": "error",
+        "prettier/prettier": [
+            "error",
+            {
+              "endOfLine": "auto"
+            }
+        ],
         "react/react-in-jsx-scope": "off",
         "react/function-component-definition": "off",
         "react/jsx-filename-extension": "off",
@@ -48,7 +53,8 @@
          "camelcase": "off",
          "@typescript-eslint/no-floating-promises": "off",
          "no-confusing-arrow": "off",
-         "implicit-arrow-linebreak": "off"
+         "implicit-arrow-linebreak": "off",
+         "linebreak-style": "off"
     },
     "settings": {
         "import/resolver": {
