@@ -10,6 +10,7 @@ const Signup: React.FC = () => {
     <Container>
       <ProgressBar step={step} steps={2} />
       <FormContainer>
+        <Button title="Voltar" onPress={() => setStep(step - 1)} />
         <Button title="Avançar" onPress={() => setStep(step + 1)} />
       </FormContainer>
     </Container>

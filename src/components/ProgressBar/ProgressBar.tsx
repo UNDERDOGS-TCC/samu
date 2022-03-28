@@ -1,5 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Animated} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  runOnJS,
+} from 'react-native-reanimated';
 import {
   Container,
   MainLine,
@@ -17,26 +22,33 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = ({step, steps}) => {
   const [width, setWidth] = useState(0);
-  const animatedValue = useRef(new Animated.Value(-1000)).current;
-  const reactive = useRef(new Animated.Value(-1000)).current;
   const [isActive, setIsActive] = useState(0);
+  const reactive = useSharedValue(-1000);
+
+  const updateIsActive = () => {
+    setIsActive(step);
+  };
+
+  const style = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX: withTiming(
+          reactive.value,
+          {
+            duration: 500,
+          },
+          (finished) => {
+            if (finished) {
+              runOnJS(updateIsActive)();
+            }
+          },
+        ),
+      },
+    ],
+  }));
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsActive(step);
-    }, 500);
-  }, [step]);
-
-  useEffect(() => {
-    Animated.timing(animatedValue, {
-      toValue: reactive,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  }, [animatedValue, reactive]);
-
-  useEffect(() => {
-    reactive.setValue(-width + (width * step) / steps);
+    reactive.value = -width + (width * step) / steps;
   }, [reactive, step, steps, width]);
 
   return (
@@ -48,7 +60,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({step, steps}) => {
           setWidth(newWidth);
         }}
       >
-        <Line style={{transform: [{translateX: animatedValue}]}} />
+        <Line style={[style]} />
       </MainLine>
       <LeftWhiteBall isActive={isActive >= 0}>
         <Ball isActive={isActive >= 0} />
