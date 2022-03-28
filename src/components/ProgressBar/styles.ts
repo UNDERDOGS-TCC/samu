@@ -71,7 +71,7 @@ export const MainLine = styled.View`
 `;
 
 export const Line = styled(Animated.View)`
-  height: 5px;
+  height: 20px;
   width: 100%;
   background-color: ${(props) => props.theme.main.colors.green};
   position: absolute;
