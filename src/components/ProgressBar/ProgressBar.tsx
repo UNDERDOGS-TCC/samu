@@ -5,15 +5,7 @@ import {
   withTiming,
   runOnJS,
 } from 'react-native-reanimated';
-import {
-  Container,
-  MainLine,
-  Line,
-  RightWhiteBall,
-  Ball,
-  LeftWhiteBall,
-  CenterWhiteBall,
-} from './styles';
+import {Container, MainLine, Line, Ball} from './styles';
 
 interface ProgressBarProps {
   step: number;
@@ -66,15 +58,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({step, steps, action}) => {
       >
         <Line style={[style]} />
       </MainLine>
-      <LeftWhiteBall isActive={isActive >= 0}>
-        <Ball isActive={isActive >= 0} />
-      </LeftWhiteBall>
-      <CenterWhiteBall isActive={isActive >= 1}>
-        <Ball isActive={isActive >= 1} />
-      </CenterWhiteBall>
-      <RightWhiteBall isActive={isActive >= 2}>
-        <Ball isActive={isActive >= 2} />
-      </RightWhiteBall>
+      <Ball side="left" isActive={isActive >= 0} />
+      <Ball side="middle" isActive={isActive >= 1} />
+      <Ball side="right" isActive={isActive >= 2} />
     </Container>
   );
 };

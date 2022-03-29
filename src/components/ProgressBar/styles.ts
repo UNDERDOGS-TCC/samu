@@ -10,58 +10,33 @@ export const Container = styled.View`
 
 interface BallProps {
   isActive: boolean;
+  side: 'left' | 'middle' | 'right';
 }
 
 export const Ball = styled.View<BallProps>`
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.darkblue
-      : props.theme.main.colors.background};
-`;
-
-export const LeftWhiteBall = styled.View<BallProps>`
-  left: 10%;
-  position: absolute;
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
   background-color: ${(props) =>
     props.isActive
       ? props.theme.main.colors.green
       : props.theme.main.colors.gray};
-`;
+  ${(props) => {
+    if (props.side === 'left') {
+      return 'left: 10%';
+    }
 
-export const CenterWhiteBall = styled.View<BallProps>`
-  position: absolute;
-  align-self: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.green
-      : props.theme.main.colors.gray};
-`;
+    if (props.side === 'right') {
+      return 'right: 10%';
+    }
 
-export const RightWhiteBall = styled.View<BallProps>`
-  right: 10%;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.green
-      : props.theme.main.colors.gray};
+    if (props.side === 'middle') {
+      return 'align-self: center';
+    }
+
+    return '';
+  }}
 `;
 
 export const MainLine = styled.View`
