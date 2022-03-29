@@ -5,14 +5,23 @@ interface ButtonProps {
   title: string;
   secondary?: boolean;
   danger?: boolean;
+  active: boolean;
   onPress: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({title, secondary, danger, onPress}) => {
+const Button: React.FC<ButtonProps> = ({
+  title,
+  secondary,
+  danger,
+  onPress,
+  active,
+}) => {
   console.log('aa');
 
   return (
     <Container
+      active={active}
+      disabled={!active}
       onPress={onPress}
       activeOpacity={0.7}
       secondary={secondary}

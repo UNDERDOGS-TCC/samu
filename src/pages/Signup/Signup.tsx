@@ -82,7 +82,16 @@ const Signup: React.FC = () => {
             value={passwordConfirmation}
             onChangeText={(text) => setPasswordConfirmation(text)}
           />
-          <CustomButton onPress={handlePressNext} secondary title="Próximo" />
+          <CustomButton
+            active={
+              name !== '' &&
+              password !== '' &&
+              password === passwordConfirmation
+            }
+            onPress={handlePressNext}
+            secondary
+            title="Próximo"
+          />
         </PageContainer>
 
         <PageContainer
@@ -90,8 +99,18 @@ const Signup: React.FC = () => {
           paddingBottom={insets.bottom}
           key="2"
         >
-          <CustomButton onPress={handlePressNext} secondary title="Próximo" />
-          <CustomButton onPress={handlePressBack} danger title="Voltar" />
+          <CustomButton
+            active
+            onPress={handlePressNext}
+            secondary
+            title="Próximo"
+          />
+          <CustomButton
+            active
+            onPress={handlePressBack}
+            danger
+            title="Voltar"
+          />
         </PageContainer>
 
         <PageContainer
@@ -100,11 +119,17 @@ const Signup: React.FC = () => {
           key="3"
         >
           <CustomButton
+            active
             onPress={handlePressNext}
             secondary
             title="Criar Conta"
           />
-          <CustomButton onPress={handlePressBack} danger title="Voltar" />
+          <CustomButton
+            active
+            onPress={handlePressBack}
+            danger
+            title="Voltar"
+          />
         </PageContainer>
       </FormContainer>
     </Container>

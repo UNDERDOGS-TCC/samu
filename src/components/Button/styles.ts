@@ -4,6 +4,7 @@ interface ContainerProps {
   primary?: boolean;
   secondary?: boolean;
   danger?: boolean;
+  active: boolean;
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
@@ -15,6 +16,10 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
   border-radius: 8px;
 
   ${(props) => {
+    if (!props.active) {
+      return `background-color: ${props.theme.main.colors.gray}`;
+    }
+
     if (props.secondary) {
       return `background-color: ${props.theme.main.colors.secondary}`;
     }

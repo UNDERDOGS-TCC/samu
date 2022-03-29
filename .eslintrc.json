@@ -57,7 +57,8 @@
          "linebreak-style": "off",
          "import/no-extraneous-dependencies": "off",
          "@typescript-eslint/no-misused-promises": "off",
-         "react/require-default-props": "off"
+         "react/require-default-props": "off",
+         "operator-linebreak": "off"
     },
     "settings": {
         "import/resolver": {
