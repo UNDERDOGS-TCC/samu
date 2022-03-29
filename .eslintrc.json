@@ -58,7 +58,9 @@
          "import/no-extraneous-dependencies": "off",
          "@typescript-eslint/no-misused-promises": "off",
          "react/require-default-props": "off",
-         "operator-linebreak": "off"
+         "operator-linebreak": "off",
+         "semi": "off",
+         "@typescript-eslint/no-non-null-assertion": "off"
     },
     "settings": {
         "import/resolver": {

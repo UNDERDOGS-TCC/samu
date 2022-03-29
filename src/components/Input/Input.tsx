@@ -7,7 +7,7 @@ import {darkMode, lightMode} from '../../themes/theme';
 
 interface InputProps {
   title: string;
-  isPassword: boolean;
+  isPassword?: boolean;
   placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    setShowPassword(isPassword);
+    setShowPassword(isPassword || false);
   }, [isPassword]);
 
   return (
