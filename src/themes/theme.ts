@@ -21,6 +21,8 @@ export const lightMode = {
       green: '#06992b',
       border: '#686868',
       placeholder: 'rgba(0, 0, 0, 0.5)',
+      white: '#FFFFFF',
+      danger: '#a03c3c',
     },
     font: {
       family: {
@@ -67,6 +69,8 @@ export const darkMode = {
       green: '#06992b',
       border: '#FFFFFF',
       placeholder: '#C6C6C6',
+      white: '#FFFFFF',
+      danger: '#a03c3c',
     },
     font: {
       family: {

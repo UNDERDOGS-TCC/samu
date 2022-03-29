@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import {Avatar, Container} from './styles';
+import {useTheme} from '../../themes/ThemeManagerProvider';
+import {darkMode, lightMode} from '../../themes/theme';
 
 const ChangeAvatarButton: React.FC = () => {
+  const {isDarkMode} = useTheme();
   const [imageUri, setImageUri] = useState('');
 
   const handleImagePicker = async () => {
@@ -23,7 +26,15 @@ const ChangeAvatarButton: React.FC = () => {
       {imageUri ? (
         <Avatar source={{uri: imageUri}} />
       ) : (
-        <Feather name="camera" size={48} color="black" />
+        <Feather
+          name="camera"
+          size={48}
+          color={
+            isDarkMode
+              ? darkMode.main.colors.placeholder
+              : lightMode.main.colors.placeholder
+          }
+        />
       )}
     </Container>
   );
