@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Button} from 'react-native';
 import {
@@ -10,9 +11,16 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import {Container, FormContainer} from './styles';
 
 const Signup: React.FC = () => {
+  const navigation = useNavigation();
   const [step, setStep] = useState(0);
   const [isInit, setIsInit] = useState(true);
   const [action, setAction] = useState<'back' | 'next' | undefined>();
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'Cadastro',
+    });
+  }, [navigation]);
 
   const handleFirstFormAnimation = () => {
     if (isInit) {
