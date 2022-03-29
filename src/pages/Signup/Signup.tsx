@@ -1,19 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Button} from 'react-native';
-import {
-  LightSpeedInLeft,
-  LightSpeedInRight,
-  LightSpeedOutLeft,
-  LightSpeedOutRight,
-} from 'react-native-reanimated';
+import {Button, Text} from 'react-native';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
-import {Container, FormContainer} from './styles';
+import {
+  Container,
+  FormContainer,
+  ImageContainer,
+  PageContainer,
+} from './styles';
+import ChangeAvatarButton from '../../components/ChangeAvatarButton/ChangeAvatarButton';
+import Input from '../../components/Input/Input';
 
 const Signup: React.FC = () => {
   const navigation = useNavigation();
   const [step, setStep] = useState(0);
-  const [isInit, setIsInit] = useState(true);
   const [action, setAction] = useState<'back' | 'next' | undefined>();
 
   useEffect(() => {
@@ -21,14 +21,6 @@ const Signup: React.FC = () => {
       title: 'Cadastro',
     });
   }, [navigation]);
-
-  const handleFirstFormAnimation = () => {
-    if (isInit) {
-      setIsInit(false);
-      return undefined;
-    }
-    return LightSpeedInLeft;
-  };
 
   const handlePressBack = () => {
     setAction('back');
@@ -44,29 +36,32 @@ const Signup: React.FC = () => {
     <Container>
       <ProgressBar step={step} steps={2} action={action} />
 
-      {step === 0 && (
-        <FormContainer
-          entering={handleFirstFormAnimation()}
-          exiting={LightSpeedOutLeft}
-        >
-          <Button title="first" onPress={() => console.log('aa')} />
-        </FormContainer>
-      )}
+      <FormContainer initialPage={0} scrollEnabled={false}>
+        <PageContainer key="1">
+          <ImageContainer>
+            <ChangeAvatarButton />
+          </ImageContainer>
+          <Input
+            title="Nome"
+            placeholder="Digite seu nome completo"
+            isPassword={false}
+          />
+          <Input title="Senha" placeholder="Crie uma senha" isPassword />
+          <Input
+            title="Confirmar senha"
+            placeholder="Confirme a sua senha"
+            isPassword
+          />
+        </PageContainer>
 
-      {step === 1 && (
-        <FormContainer entering={LightSpeedInLeft} exiting={LightSpeedOutLeft}>
-          <Button title="second" onPress={() => console.log('aa')} />
-        </FormContainer>
-      )}
+        <PageContainer key="2">
+          <Text>Pagina 2</Text>
+        </PageContainer>
 
-      {step === 2 && (
-        <FormContainer
-          entering={LightSpeedInRight}
-          exiting={LightSpeedOutRight}
-        >
-          <Button title="third" onPress={() => console.log('aa')} />
-        </FormContainer>
-      )}
+        <PageContainer key="3">
+          <Text>Pagina 3</Text>
+        </PageContainer>
+      </FormContainer>
 
       <Button title="Voltar" onPress={handlePressBack} />
       <Button title="Avançar" onPress={handlePressNext} />

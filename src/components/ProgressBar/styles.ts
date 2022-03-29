@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  padding: 10px 50px;
+  padding: 30px 50px;
 `;
 
 interface BallProps {

@@ -17,7 +17,10 @@ export const lightMode = {
       background: '#FFFFFF',
       text: '#000000',
       gray: '#808080',
+      lightgray: '#d8d8d8',
       green: '#06992b',
+      border: '#686868',
+      placeholder: 'rgba(0, 0, 0, 0.5)',
     },
     font: {
       family: {
@@ -60,7 +63,10 @@ export const darkMode = {
       background: '#303030',
       text: '#FFFFFF',
       gray: '#808080',
+      lightgray: '#7a7a7a',
       green: '#06992b',
+      border: '#FFFFFF',
+      placeholder: '#C6C6C6',
     },
     font: {
       family: {
