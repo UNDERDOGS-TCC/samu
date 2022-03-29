@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
 import PagerView from 'react-native-pager-view';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import {
   Container,
@@ -13,10 +14,15 @@ import Input from '../../components/Input/Input';
 import CustomButton from '../../components/Button/Button';
 
 const Signup: React.FC = () => {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [step, setStep] = useState(0);
   const [action, setAction] = useState<'back' | 'next' | undefined>();
   const pagerRef = useRef<PagerView>(null);
+
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   useEffect(() => {
     navigation.setOptions({
@@ -28,7 +34,7 @@ const Signup: React.FC = () => {
     setAction('back');
     setStep((lastValue) => {
       const newValue = lastValue - 1;
-      pagerRef?.current?.setPage(newValue);
+      pagerRef.current?.setPage(newValue);
       return newValue;
     });
   };
@@ -37,7 +43,7 @@ const Signup: React.FC = () => {
     setAction('next');
     setStep((lastValue) => {
       const newValue = lastValue + 1;
-      pagerRef?.current?.setPage(newValue);
+      pagerRef.current?.setPage(newValue);
       return newValue;
     });
   };
@@ -47,7 +53,11 @@ const Signup: React.FC = () => {
       <ProgressBar step={step} steps={2} action={action} />
 
       <FormContainer ref={pagerRef} initialPage={0} scrollEnabled={false}>
-        <PageContainer key="1">
+        <PageContainer
+          showsVerticalScrollIndicator={false}
+          paddingBottom={insets.bottom}
+          key="1"
+        >
           <ImageContainer>
             <ChangeAvatarButton />
           </ImageContainer>
@@ -55,23 +65,40 @@ const Signup: React.FC = () => {
             title="Nome"
             placeholder="Digite seu nome completo"
             isPassword={false}
+            value={name}
+            onChangeText={(text) => setName(text)}
           />
-          <Input title="Senha" placeholder="Crie uma senha" isPassword />
+          <Input
+            title="Senha"
+            placeholder="Crie uma senha"
+            isPassword
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
           <Input
             title="Confirmar senha"
             placeholder="Confirme a sua senha"
             isPassword
+            value={passwordConfirmation}
+            onChangeText={(text) => setPasswordConfirmation(text)}
           />
           <CustomButton onPress={handlePressNext} secondary title="Próximo" />
-          <CustomButton onPress={handlePressBack} danger title="Voltar" />
         </PageContainer>
 
-        <PageContainer key="2">
+        <PageContainer
+          showsVerticalScrollIndicator={false}
+          paddingBottom={insets.bottom}
+          key="2"
+        >
           <CustomButton onPress={handlePressNext} secondary title="Próximo" />
           <CustomButton onPress={handlePressBack} danger title="Voltar" />
         </PageContainer>
 
-        <PageContainer key="3">
+        <PageContainer
+          showsVerticalScrollIndicator={false}
+          paddingBottom={insets.bottom}
+          key="3"
+        >
           <CustomButton
             onPress={handlePressNext}
             secondary

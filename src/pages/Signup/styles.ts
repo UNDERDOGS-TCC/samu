@@ -10,7 +10,17 @@ export const FormContainer = styled(PagerView)`
   flex: 1;
 `;
 
-export const PageContainer = styled.ScrollView`
+interface PageContainerProps {
+  paddingBottom?: number;
+}
+
+export const PageContainer = styled.ScrollView.attrs<PageContainerProps>(
+  (props) => ({
+    contentContainerStyle: {
+      paddingBottom: props.paddingBottom || 0,
+    },
+  }),
+)<PageContainerProps>`
   flex: 1;
   padding: 0px 25px;
 `;

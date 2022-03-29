@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import {TouchableOpacity} from 'react-native';
 import {Container, Title, TextInput, InputContainer} from './styles';
@@ -9,17 +9,34 @@ interface InputProps {
   title: string;
   isPassword: boolean;
   placeholder: string;
+  value: string;
+  onChangeText: (text: string) => void;
 }
 
-const Input: React.FC<InputProps> = ({isPassword, title, placeholder}) => {
+const Input: React.FC<InputProps> = ({
+  isPassword,
+  title,
+  placeholder,
+  value,
+  onChangeText,
+}) => {
   const {isDarkMode} = useTheme();
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    setShowPassword(isPassword);
+  }, [isPassword]);
 
   return (
     <Container>
       <Title>{title}</Title>
       <InputContainer>
-        <TextInput secureTextEntry={!showPassword} placeholder={placeholder} />
+        <TextInput
+          value={value}
+          onChangeText={(text) => onChangeText(text)}
+          secureTextEntry={showPassword}
+          placeholder={placeholder}
+        />
         {isPassword && !showPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Feather
