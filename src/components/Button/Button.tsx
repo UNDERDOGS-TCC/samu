@@ -15,21 +15,17 @@ const Button: React.FC<ButtonProps> = ({
   danger,
   onPress,
   active,
-}) => {
-  console.log('aa');
-
-  return (
-    <Container
-      active={active}
-      disabled={!active}
-      onPress={onPress}
-      activeOpacity={0.7}
-      secondary={secondary}
-      danger={danger}
-    >
-      <Title>{title}</Title>
-    </Container>
-  );
-};
+}) => (
+  <Container
+    active={active}
+    disabled={!active}
+    onPress={onPress}
+    activeOpacity={0.7}
+    secondary={secondary}
+    danger={danger}
+  >
+    <Title>{title}</Title>
+  </Container>
+);
 
 export default Button;
