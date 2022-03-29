@@ -15,6 +15,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
 
   return (
     <PageContainer
+      keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
       paddingBottom={paddingBottom}
       key="1"
@@ -28,6 +29,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
         isPassword={false}
         value={name}
         onChangeText={(text) => setName(text)}
+        textContentType="name"
       />
       <Input
         title="Senha"
@@ -35,6 +37,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
         isPassword
         value={password}
         onChangeText={(text) => setPassword(text)}
+        textContentType="oneTimeCode"
       />
       <Input
         title="Confirmar senha"
@@ -42,6 +45,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
         isPassword
         value={passwordConfirmation}
         onChangeText={(text) => setPasswordConfirmation(text)}
+        textContentType="oneTimeCode"
       />
       <Button
         active={

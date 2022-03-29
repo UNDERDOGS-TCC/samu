@@ -16,6 +16,7 @@ const SecondForm: React.FC<SignupFormProps> = ({
 
   return (
     <PageContainer
+      keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
       paddingBottom={paddingBottom}
       key="2"
@@ -25,24 +26,31 @@ const SecondForm: React.FC<SignupFormProps> = ({
         placeholder="Digite seu CPF"
         value={cpf}
         onChangeText={(text) => setCpf(text)}
+        keyboardType="numeric"
       />
       <Input
         title="Data de nascimento"
         placeholder="DD/MM/AAAA"
         value={birthday}
         onChangeText={(text) => setBirthday(text)}
+        textContentType="none"
+        keyboardType="numeric"
       />
       <Input
         title="Celular"
         placeholder="Digite DDD + Celular"
         value={cellphone}
         onChangeText={(text) => setCellphone(text)}
+        textContentType="telephoneNumber"
+        keyboardType="phone-pad"
       />
       <Input
         title="E-mail"
         placeholder="Digite seu e-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
+        textContentType="emailAddress"
+        keyboardType="email-address"
       />
       <Button
         active={

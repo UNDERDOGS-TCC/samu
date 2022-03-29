@@ -31,3 +31,12 @@ export const ImageContainer = styled.View`
   justify-content: center;
   height: 250px;
 `;
+
+export const DoubleInputContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const InputContainer = styled.View`
+  width: 48%;
+`;

@@ -11,6 +11,39 @@ interface InputProps {
   placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
+  textContentType?:
+    | 'none'
+    | 'URL'
+    | 'addressCity'
+    | 'addressCityAndState'
+    | 'addressState'
+    | 'countryName'
+    | 'creditCardNumber'
+    | 'emailAddress'
+    | 'familyName'
+    | 'fullStreetAddress'
+    | 'givenName'
+    | 'jobTitle'
+    | 'location'
+    | 'middleName'
+    | 'name'
+    | 'namePrefix'
+    | 'nameSuffix'
+    | 'nickname'
+    | 'organizationName'
+    | 'postalCode'
+    | 'streetAddressLine1'
+    | 'streetAddressLine2'
+    | 'sublocality'
+    | 'telephoneNumber'
+    | 'username'
+    | 'password'
+    | 'newPassword'
+    | 'oneTimeCode'
+    | undefined;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  returnKeyType?: 'done' | 'next';
+  maxLength?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +52,10 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   onChangeText,
+  textContentType,
+  keyboardType,
+  returnKeyType,
+  maxLength,
 }) => {
   const {isDarkMode} = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +72,11 @@ const Input: React.FC<InputProps> = ({
           value={value}
           onChangeText={(text) => onChangeText(text)}
           secureTextEntry={showPassword}
+          textContentType={textContentType}
           placeholder={placeholder}
+          keyboardType={keyboardType}
+          returnKeyType={returnKeyType}
+          maxLength={maxLength}
         />
         {isPassword && !showPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
