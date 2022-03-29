@@ -14,6 +14,6 @@ export const OptionContainer = styled.View`
 
 export const OptionText = styled.Text`
   color: ${(props) => props.theme.main.colors.text};
-  font-family: ${(props) => props.theme.main.font.family.ubuntu.regular};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
   font-size: ${(props) => props.theme.main.font.size.regular};
 `;

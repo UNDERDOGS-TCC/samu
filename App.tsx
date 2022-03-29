@@ -2,29 +2,33 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {
   useFonts,
-  Ubuntu_300Light,
-  Ubuntu_300Light_Italic,
-  Ubuntu_400Regular,
-  Ubuntu_400Regular_Italic,
-  Ubuntu_500Medium,
-  Ubuntu_500Medium_Italic,
-  Ubuntu_700Bold,
-  Ubuntu_700Bold_Italic,
-} from '@expo-google-fonts/ubuntu';
+  Rubik_300Light,
+  Rubik_300Light_Italic,
+  Rubik_400Regular,
+  Rubik_400Regular_Italic,
+  Rubik_500Medium,
+  Rubik_500Medium_Italic,
+  Rubik_700Bold,
+  Rubik_700Bold_Italic,
+  Rubik_900Black,
+  Rubik_900Black_Italic,
+} from '@expo-google-fonts/rubik';
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
 import ThemeManagerProvider from './src/themes/ThemeManagerProvider';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
-    Ubuntu_300Light,
-    Ubuntu_300Light_Italic,
-    Ubuntu_400Regular,
-    Ubuntu_400Regular_Italic,
-    Ubuntu_500Medium,
-    Ubuntu_500Medium_Italic,
-    Ubuntu_700Bold,
-    Ubuntu_700Bold_Italic,
+    Rubik_300Light,
+    Rubik_300Light_Italic,
+    Rubik_400Regular,
+    Rubik_400Regular_Italic,
+    Rubik_500Medium,
+    Rubik_500Medium_Italic,
+    Rubik_700Bold,
+    Rubik_700Bold_Italic,
+    Rubik_900Black,
+    Rubik_900Black_Italic,
   });
 
   if (!fontsLoaded) {

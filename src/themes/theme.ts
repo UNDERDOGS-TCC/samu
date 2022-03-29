@@ -21,10 +21,11 @@ export const lightMode = {
     },
     font: {
       family: {
-        ubuntu: {
-          regular: 'Ubuntu_400Regular',
-          medium: 'Ubuntu_500Medium',
-          bold: 'Ubuntu_700Bold',
+        rubik: {
+          light: 'Rubik_300Light',
+          regular: 'Rubik_400Regular',
+          medium: 'Rubik_500Medium',
+          bold: 'Rubik_700Bold',
         },
       },
       size: {
@@ -62,10 +63,11 @@ export const darkMode = {
     },
     font: {
       family: {
-        ubuntu: {
-          regular: 'Ubuntu_400Regular',
-          medium: 'Ubuntu_500Medium',
-          bold: 'Ubuntu_700Bold',
+        rubik: {
+          light: 'Rubik_300Light',
+          regular: 'Rubik_400Regular',
+          medium: 'Rubik_500Medium',
+          bold: 'Rubik_700Bold',
         },
       },
       size: {
