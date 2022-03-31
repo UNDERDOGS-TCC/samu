@@ -6,31 +6,32 @@ import {useTheme} from '../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import Config from '../pages/Config/Config';
 import Login from '../pages/Login/Login';
+import Signup from '../pages/Signup/Signup';
 
 const Stack = createStackNavigator();
 
 const Routes: React.FC = () => {
-  const theme = useTheme();
+  const {isDarkMode} = useTheme();
 
   return (
-    <NavigationContainer theme={theme.isDarkMode ? darkMode : lightMode}>
+    <NavigationContainer theme={isDarkMode ? darkMode : lightMode}>
       <Stack.Navigator
-      screenOptions={{
-        headerTitleAlign: 'center',
-        headerStyle: {
-          backgroundColor: 'FFFFFF',
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-        },
-        headerTintColor: '#FFFFFF',
-        headerShadowVisible: false,
-        
-      }}
-    >
-      <Stack.Screen name="Login" component={Login} />
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: isDarkMode
+              ? darkMode.main.font.family.rubik.medium
+              : lightMode.main.font.family.rubik.medium,
+            fontSize: isDarkMode
+              ? darkMode.main.font.size.header
+              : lightMode.main.font.size.header,
+          },
+        }}
+      >
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Config" component={Config} />
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
