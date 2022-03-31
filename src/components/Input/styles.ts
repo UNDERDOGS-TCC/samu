@@ -1,3 +1,4 @@
+import {MaskedTextInput} from 'react-native-mask-text';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -26,12 +27,28 @@ export const InputContainer = styled.View`
   align-items: center;
 `;
 
-export const TextInput = styled.TextInput.attrs((props) => ({
+interface InputProps {
+  uppercase?: boolean;
+}
+
+export const MaskTextInput = styled(MaskedTextInput).attrs((props) => ({
   placeholderTextColor: props.theme.main.colors.placeholder,
-}))`
+}))<InputProps>`
   flex: 1;
   padding: 10px;
   border-color: ${(props) => props.theme.main.colors.border};
   font-family: ${(props) => props.theme.main.font.family.rubik.regular};
   color: ${(props) => props.theme.main.colors.text};
+  text-transform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};
+`;
+
+export const TextInput = styled.TextInput.attrs((props) => ({
+  placeholderTextColor: props.theme.main.colors.placeholder,
+}))<InputProps>`
+  flex: 1;
+  padding: 10px;
+  border-color: ${(props) => props.theme.main.colors.border};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
+  color: ${(props) => props.theme.main.colors.text};
+  text-transform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};
 `;

@@ -1,7 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import {TouchableOpacity} from 'react-native';
-import {Container, Title, TextInput, InputContainer} from './styles';
+import {
+  Container,
+  Title,
+  MaskTextInput,
+  InputContainer,
+  TextInput,
+} from './styles';
 import {useTheme} from '../../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
@@ -10,7 +16,7 @@ interface InputProps {
   isPassword?: boolean;
   placeholder: string;
   value: string;
-  onChangeText: (text: string) => void;
+  onChangeText: (text: string, rawText?: string) => void;
   textContentType?:
     | 'none'
     | 'URL'
@@ -44,6 +50,8 @@ interface InputProps {
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   returnKeyType?: 'done' | 'next';
   maxLength?: number;
+  mask?: string;
+  uppercase?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -56,6 +64,8 @@ const Input: React.FC<InputProps> = ({
   keyboardType,
   returnKeyType,
   maxLength,
+  mask,
+  uppercase,
 }) => {
   const {isDarkMode} = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -68,16 +78,32 @@ const Input: React.FC<InputProps> = ({
     <Container>
       <Title>{title}</Title>
       <InputContainer>
-        <TextInput
-          value={value}
-          onChangeText={(text) => onChangeText(text)}
-          secureTextEntry={showPassword}
-          textContentType={textContentType}
-          placeholder={placeholder}
-          keyboardType={keyboardType}
-          returnKeyType={returnKeyType}
-          maxLength={maxLength}
-        />
+        {mask ? (
+          <MaskTextInput
+            value={value}
+            onChangeText={(text, rawText) => onChangeText(text, rawText)}
+            secureTextEntry={showPassword}
+            textContentType={textContentType}
+            placeholder={placeholder}
+            keyboardType={keyboardType}
+            returnKeyType={returnKeyType}
+            maxLength={maxLength}
+            mask={mask}
+            uppercase={uppercase}
+          />
+        ) : (
+          <TextInput
+            value={value}
+            onChangeText={(text) => onChangeText(text)}
+            secureTextEntry={showPassword}
+            textContentType={textContentType}
+            placeholder={placeholder}
+            keyboardType={keyboardType}
+            returnKeyType={returnKeyType}
+            maxLength={maxLength}
+            uppercase={uppercase}
+          />
+        )}
         {isPassword && !showPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Feather

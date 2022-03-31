@@ -42,9 +42,10 @@ const ThirdForm: React.FC<SignupFormProps> = ({
             title="Cep"
             placeholder="01234-567"
             value={zipCode}
-            onChangeText={(text) => setZipCode(text)}
+            onChangeText={(_text, rawText) => setZipCode(rawText!)}
             textContentType="postalCode"
             keyboardType="numeric"
+            mask="99999-999"
           />
         </InputContainer>
         <InputContainer>
@@ -52,8 +53,10 @@ const ThirdForm: React.FC<SignupFormProps> = ({
             title="UF"
             placeholder="SP"
             value={state}
-            onChangeText={(text) => setState(text)}
+            onChangeText={(_text, rawText) => setState(rawText!)}
             textContentType="addressState"
+            mask="AA"
+            uppercase
           />
         </InputContainer>
       </DoubleInputContainer>

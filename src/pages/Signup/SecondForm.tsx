@@ -25,24 +25,27 @@ const SecondForm: React.FC<SignupFormProps> = ({
         title="CPF"
         placeholder="Digite seu CPF"
         value={cpf}
-        onChangeText={(text) => setCpf(text)}
+        onChangeText={(_text, rawText) => setCpf(rawText!)}
         keyboardType="numeric"
+        mask="999.999.999-99"
       />
       <Input
         title="Data de nascimento"
         placeholder="DD/MM/AAAA"
         value={birthday}
-        onChangeText={(text) => setBirthday(text)}
+        onChangeText={(_text, rawText) => setBirthday(rawText!)}
         textContentType="none"
         keyboardType="numeric"
+        mask="99/99/9999"
       />
       <Input
         title="Celular"
         placeholder="Digite DDD + Celular"
         value={cellphone}
-        onChangeText={(text) => setCellphone(text)}
+        onChangeText={(_text, rawText) => setCellphone(rawText!)}
         textContentType="telephoneNumber"
         keyboardType="phone-pad"
+        mask="(99) 99999-9999"
       />
       <Input
         title="E-mail"
