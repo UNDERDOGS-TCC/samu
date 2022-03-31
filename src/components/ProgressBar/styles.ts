@@ -5,63 +5,38 @@ export const Container = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  padding: 10px 50px;
+  padding: 30px 50px;
 `;
 
 interface BallProps {
   isActive: boolean;
+  side: 'left' | 'middle' | 'right';
 }
 
 export const Ball = styled.View<BallProps>`
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.darkblue
-      : props.theme.main.colors.background};
-`;
-
-export const LeftWhiteBall = styled.View<BallProps>`
-  left: 10%;
-  position: absolute;
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.green
-      : props.theme.main.colors.gray};
-`;
-
-export const CenterWhiteBall = styled.View<BallProps>`
   position: absolute;
-  align-self: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
   background-color: ${(props) =>
     props.isActive
-      ? props.theme.main.colors.green
+      ? props.theme.main.colors.lightblue
       : props.theme.main.colors.gray};
-`;
+  ${(props) => {
+    if (props.side === 'left') {
+      return 'left: 10%';
+    }
 
-export const RightWhiteBall = styled.View<BallProps>`
-  right: 10%;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) =>
-    props.isActive
-      ? props.theme.main.colors.green
-      : props.theme.main.colors.gray};
+    if (props.side === 'right') {
+      return 'right: 10%';
+    }
+
+    if (props.side === 'middle') {
+      return 'align-self: center';
+    }
+
+    return '';
+  }}
 `;
 
 export const MainLine = styled.View`
@@ -71,9 +46,9 @@ export const MainLine = styled.View`
 `;
 
 export const Line = styled(Animated.View)`
-  height: 5px;
+  height: 20px;
   width: 100%;
-  background-color: ${(props) => props.theme.main.colors.green};
+  background-color: ${(props) => props.theme.main.colors.lightblue};
   position: absolute;
   left: 0;
   top: 0;
