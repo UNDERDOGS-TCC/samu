@@ -20,7 +20,7 @@ export const Ball = styled.View<BallProps>`
   position: absolute;
   background-color: ${(props) =>
     props.isActive
-      ? props.theme.main.colors.green
+      ? props.theme.main.colors.lightblue
       : props.theme.main.colors.gray};
   ${(props) => {
     if (props.side === 'left') {
@@ -48,7 +48,7 @@ export const MainLine = styled.View`
 export const Line = styled(Animated.View)`
   height: 20px;
   width: 100%;
-  background-color: ${(props) => props.theme.main.colors.green};
+  background-color: ${(props) => props.theme.main.colors.lightblue};
   position: absolute;
   left: 0;
   top: 0;
