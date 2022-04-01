@@ -38,6 +38,7 @@ export const lightMode = {
         regular: '18px',
         big: '22px',
         header: 24,
+        drawer: 18,
       },
       weight: {
         bold: 'bold',
@@ -86,6 +87,7 @@ export const darkMode = {
         regular: '18px',
         big: '22px',
         header: 24,
+        drawer: 18,
       },
       weight: {
         bold: 'bold',

@@ -60,7 +60,9 @@
          "react/require-default-props": "off",
          "operator-linebreak": "off",
          "semi": "off",
-         "@typescript-eslint/no-non-null-assertion": "off"
+         "@typescript-eslint/no-non-null-assertion": "off",
+         "react/jsx-props-no-spreading": "off",
+         "react/no-unstable-nested-components": "off"
     },
     "settings": {
         "import/resolver": {
