@@ -10,10 +10,6 @@ const Home: React.FC = () => {
     <Container>
       <Text>Open up App.tsx to start working on your app!</Text>
       <Button
-        title="Configurações"
-        onPress={() => navigation.navigate('Config' as never)}
-      />
-      <Button
         title="Signup"
         onPress={() => navigation.navigate('Signup' as never)}
       />

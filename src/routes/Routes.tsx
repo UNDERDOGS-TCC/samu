@@ -1,10 +1,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from '../pages/Home/Home';
 import {useTheme} from '../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
-import Config from '../pages/Config/Config';
 import Signup from '../pages/Signup/Signup';
 import Sidebar from './Sidebar';
 
@@ -33,8 +31,6 @@ const Routes: React.FC = () => {
           component={Sidebar}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Config" component={Config} />
         <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
