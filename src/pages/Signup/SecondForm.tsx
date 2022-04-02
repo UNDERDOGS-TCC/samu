@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
+import {TextInput} from 'react-native';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import {PageContainer} from './styles';
@@ -14,6 +15,10 @@ const SecondForm: React.FC<SignupFormProps> = ({
   const [cellphone, setCellphone] = useState('');
   const [email, setEmail] = useState('');
 
+  const birthdayRef = useRef<TextInput>(null);
+  const cellphoneRef = useRef<TextInput>(null);
+  const emailRef = useRef<TextInput>(null);
+
   return (
     <PageContainer
       keyboardShouldPersistTaps="handled"
@@ -28,6 +33,9 @@ const SecondForm: React.FC<SignupFormProps> = ({
         onChangeText={(_text, rawText) => setCpf(rawText!)}
         keyboardType="numeric"
         mask="999.999.999-99"
+        returnKeyType="next"
+        onSubmitEditing={() => birthdayRef.current?.focus()}
+        blurOnSubmit={false}
       />
       <Input
         title="Data de nascimento"
@@ -37,6 +45,10 @@ const SecondForm: React.FC<SignupFormProps> = ({
         textContentType="none"
         keyboardType="numeric"
         mask="99/99/9999"
+        nextRef={birthdayRef}
+        returnKeyType="next"
+        onSubmitEditing={() => cellphoneRef.current?.focus()}
+        blurOnSubmit={false}
       />
       <Input
         title="Celular"
@@ -46,6 +58,10 @@ const SecondForm: React.FC<SignupFormProps> = ({
         textContentType="telephoneNumber"
         keyboardType="phone-pad"
         mask="(99) 99999-9999"
+        nextRef={cellphoneRef}
+        returnKeyType="next"
+        onSubmitEditing={() => emailRef.current?.focus()}
+        blurOnSubmit={false}
       />
       <Input
         title="E-mail"
@@ -54,6 +70,7 @@ const SecondForm: React.FC<SignupFormProps> = ({
         onChangeText={(text) => setEmail(text)}
         textContentType="emailAddress"
         keyboardType="email-address"
+        nextRef={emailRef}
       />
       <Button
         active={

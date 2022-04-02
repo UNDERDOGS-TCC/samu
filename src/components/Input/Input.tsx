@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {RefObject, useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
-import {TouchableOpacity} from 'react-native';
+import {TextInput as TextInputRN, TouchableOpacity} from 'react-native';
 import {
   Container,
   Title,
@@ -52,6 +52,9 @@ interface InputProps {
   maxLength?: number;
   mask?: string;
   uppercase?: boolean;
+  blurOnSubmit?: boolean;
+  nextRef?: RefObject<TextInputRN>;
+  onSubmitEditing?: () => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -66,6 +69,9 @@ const Input: React.FC<InputProps> = ({
   maxLength,
   mask,
   uppercase,
+  blurOnSubmit,
+  nextRef,
+  onSubmitEditing,
 }) => {
   const {isDarkMode} = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -90,6 +96,9 @@ const Input: React.FC<InputProps> = ({
             maxLength={maxLength}
             mask={mask}
             uppercase={uppercase}
+            blurOnSubmit={blurOnSubmit}
+            ref={nextRef}
+            onSubmitEditing={onSubmitEditing}
           />
         ) : (
           <TextInput
@@ -102,6 +111,9 @@ const Input: React.FC<InputProps> = ({
             returnKeyType={returnKeyType}
             maxLength={maxLength}
             uppercase={uppercase}
+            blurOnSubmit={blurOnSubmit}
+            ref={nextRef}
+            onSubmitEditing={onSubmitEditing}
           />
         )}
         {isPassword && !showPassword && (
