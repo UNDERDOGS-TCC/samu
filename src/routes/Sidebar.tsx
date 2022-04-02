@@ -1,5 +1,7 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Feather} from '@expo/vector-icons';
+import {View} from 'react-native';
 import Home from '../pages/Home/Home';
 import Config from '../pages/Config/Config';
 import {useTheme} from '../themes/ThemeManagerProvider';
@@ -15,7 +17,11 @@ const Sidebar: React.FC = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
-      screenOptions={{
+      screenOptions={({
+        navigation,
+      }: {
+        navigation: {openDrawer: () => void};
+      }) => ({
         drawerLabelStyle: {
           fontFamily: isDarkMode
             ? darkMode.main.font.family.rubik.regular
@@ -36,7 +42,17 @@ const Sidebar: React.FC = () => {
         headerTintColor: isDarkMode
           ? darkMode.main.colors.text
           : lightMode.main.colors.text,
-      }}
+        headerLeft: (data) => (
+          <View style={{paddingLeft: 20}}>
+            <Feather
+              onPress={() => navigation.openDrawer()}
+              name="menu"
+              size={24}
+              color={data.tintColor}
+            />
+          </View>
+        ),
+      })}
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Perfil" component={Profile} />
