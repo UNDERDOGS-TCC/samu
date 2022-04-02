@@ -5,6 +5,7 @@ import {useTheme} from '../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import Signup from '../pages/Signup/Signup';
 import Sidebar from './Sidebar';
+import ResetPassword from '../pages/ResetPassword/ResetPassword';
 
 const Stack = createStackNavigator();
 
@@ -27,11 +28,12 @@ const Routes: React.FC = () => {
         }}
       >
         <Stack.Screen
-          name="Sidebar"
+          name="Home"
           component={Sidebar}
           options={{headerShown: false}}
         />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );

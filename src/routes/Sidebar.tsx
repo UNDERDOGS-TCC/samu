@@ -54,7 +54,7 @@ const Sidebar: React.FC = () => {
         ),
       })}
     >
-      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Menu" component={Home} />
       <Drawer.Screen name="Perfil" component={Profile} />
       <Drawer.Screen name="Configurações" component={Config} />
     </Drawer.Navigator>
