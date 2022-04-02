@@ -10,16 +10,23 @@ import {
   TextServicos,
   BotaoAmbulancia,
   Samu,
-  ChamarserviçodeemergenciaText,
+  Text,
   ImageAmbulance,
   View,
   Quadrado,
   BotaoOutrosServicos,
+  Rolagem,
+  Icon,
 } from './styles';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const images = {
+    formularioBranco:
+      require('../../../assets/formularioBranco.png') as ImageSourcePropType,
+    seguranca: require('../../../assets/seguranca.png') as ImageSourcePropType,
+    saude: require('../../../assets/saude.png') as ImageSourcePropType,
+    chat: require('../../../assets/chat.png') as ImageSourcePropType,
     usuario: require('../../../assets/usuario.png') as ImageSourcePropType,
     carroambulancia:
       require('../../../assets/carro-ambulancia.png') as ImageSourcePropType,
@@ -49,9 +56,7 @@ const Home: React.FC = () => {
               Samu
               {'\n'}
             </Samu>
-            <ChamarserviçodeemergenciaText>
-              Chamar serviço de emergencia
-            </ChamarserviçodeemergenciaText>
+            <Text>Chamar serviço de emergencia</Text>
           </Quadrado>
           <ImageAmbulance source={images.carroambulancia} />
         </View>
@@ -59,13 +64,44 @@ const Home: React.FC = () => {
 
       <TextServicos>Outros Serviços</TextServicos>
 
-      <View>
-        <BotaoOutrosServicos />
-        <BotaoOutrosServicos />
-        <BotaoOutrosServicos />
-        <BotaoOutrosServicos />
-        <BotaoOutrosServicos />
-      </View>
+      <Rolagem horizontal>
+        <BotaoOutrosServicos
+          onPress={() => navigation.navigate('Config' as never)}
+        >
+          <Icon source={images.formularioBranco} />
+          <Text>
+            {'\n'}
+            Formulario de emergência
+          </Text>
+        </BotaoOutrosServicos>
+        <BotaoOutrosServicos
+          onPress={() => navigation.navigate('Config' as never)}
+        >
+          <Icon source={images.seguranca} />
+          <Text>
+            {'\n'}
+            Orientações de segurança
+          </Text>
+        </BotaoOutrosServicos>
+        <BotaoOutrosServicos
+          onPress={() => navigation.navigate('Config' as never)}
+        >
+          <Icon source={images.saude} />
+          <Text>
+            {'\n'}
+            Detalhes de saúde
+          </Text>
+        </BotaoOutrosServicos>
+        <BotaoOutrosServicos
+          onPress={() => navigation.navigate('Config' as never)}
+        >
+          <Icon source={images.chat} />
+          <Text>
+            {'\n'}
+            Inicie uma conversa
+          </Text>
+        </BotaoOutrosServicos>
+      </Rolagem>
     </Container>
   );
 };

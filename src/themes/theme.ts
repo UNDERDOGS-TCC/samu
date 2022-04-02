@@ -18,12 +18,10 @@ export const lightMode = {
       white: '#FFFFFF',
       background: '#FFFFFF',
       text: '#000000',
-      gray: '#808080',
       lightgray: '#d8d8d8',
       green: '#06992b',
       border: '#686868',
       placeholder: 'rgba(0, 0, 0, 0.5)',
-      white: '#FFFFFF',
       danger: '#a03c3c',
     },
     font: {

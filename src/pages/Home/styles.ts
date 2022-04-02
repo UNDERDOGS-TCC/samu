@@ -3,87 +3,92 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  alignItems: center;
-  justifyContent: center;
+  align-items: center;
+  justify-content: center;
 `;
 export const View = styled.View`
   flex: 1;
-  flexDirection: row;
-  alignItems: center;
+  flex-direction: row;
+  align-items: center;
 `;
 export const User = styled.View`
-  alignItems: center;
-  padding: 15px;
-  marginRight: 25px;
-  flexDirection: row;
+  align-items: center;
+  padding: 80px;
+  margin: 15px 0 10px -10px;
+  flex-direction: row;
 `;
 export const TextGoodMorning = styled.Text`
-  paddingHorizontal: 30px;
+  padding-horizontal: 10px;
   color: ${(props) => props.theme.main.colors.text};
 `;
 export const TextNome = styled.Text`
-  fontSize: ${(props) => props.theme.main.font.size.big};
-  fontWeight: ${(props) => props.theme.main.font.weight.bold};
+  font-size: 26px;
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
 `;
 export const Image = styled.Image`
   width: 80px;
   height: 80px;
-  marginLeft: 20px;
+  margin-left: 50px;
 `;
 export const TextServicos = styled.Text`
-  marginRight: 150px;
+  margin: 5px 160px 0px 0;
   padding: 25px;
-  fontSize: ${(props) => props.theme.main.font.size.big};
-  fontWeight: ${(props) => props.theme.main.font.weight.bold}; 
+  font-size: ${(props) => props.theme.main.font.size.big};
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
 `;
-export const ChamarserviçodeemergenciaText = styled.Text`
-  fontSize: 16px;
-  marginVertical: -20px;
+export const Text = styled.Text`
+  font-size: 16px;
+  margin-vertical: -20px;
   text-align: center;
   font-weight: normal;
-  color: ${(props) => props.theme.main.colors.text};
+  color: ${(props) => props.theme.main.colors.white};
 `;
 export const BotaoAmbulancia = styled.TouchableOpacity`
   border-radius: 8px;
-  marginTop: 30px;
+  margin: -50px 0 0 0;
   height: 166px;
-  width: 342px;
+  width: 360px;
   background-color: ${(props) => props.theme.main.colors.primary};
 `;
 export const Samu = styled.Text`
-  text-align: center; 
-  fontSize: 30px;
-  marginTop: 10px;
-  color: ${(props) => props.theme.main.colors.text};
-  fontWeight: ${(props) => props.theme.main.font.weight.bold};
+  text-align: center;
+  font-size: 30px;
+  margin-top: 10px;
+  color: ${(props) => props.theme.main.colors.white};
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
 `;
 export const ImageAmbulance = styled.Image`
   padding: 60px;
   width: 20px;
   height: 20px;
-  marginTop: 5px;
-  marginLeft: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
 `;
 export const Quadrado = styled.View`
   border-radius: 8px;
-  marginLeft: 20px;
-  marginTop: 5px;
+  margin-left: 20px;
+  margin-top: 5px;
   padding: 10px;
   height: 140px;
   width: 150px;
-  background-color: ${(props) => props.theme.main.colors.primary};
 `;
 export const BotaoOutrosServicos = styled.TouchableOpacity`
-  marginHorizontal: 8px;
-  marginTop: -50px;
+  margin: 0 10px 80px;
   border-radius: 8px;
   height: 154px;
   width: 123px;
   background-color: ${(props) => props.theme.main.colors.secondary};
 `;
-
+export const Rolagem = styled.ScrollView`
+  padding: 10px 220px 10px 10px;
+`;
+export const Icon = styled.Image`
+  width: 60px;
+  height: 60px;
+  margin: 20px 20px 20px 30px;
+`;
 export const style = StyleSheet.create({
   container: {
     flex: 1,

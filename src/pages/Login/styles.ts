@@ -15,8 +15,8 @@ export const InputUser = styled.TextInput.attrs((props) => ({
   placeholderTextColor: props.theme.main.colors.text,
 }))`
   border-radius: 8px;
-  height: 60px;
-  width: 332px;
+  height: 70px;
+  width: 335px;
   border-width: 0.5px;
   margin-top: 10px;
   padding: 15px;
@@ -28,7 +28,7 @@ export const InputUser = styled.TextInput.attrs((props) => ({
 
 export const RedefinirSenha = styled.Text`
   text-decoration-line: underline;
-  margin: 5px 0 20px 200px;
+  margin: 5px 0 40px 200px;
   font-size: ${(props) => props.theme.main.font.size.regular};
   color: ${(props) => props.theme.main.colors.text};
 `;
@@ -52,7 +52,7 @@ export const ButtonContainer = styled.View`
 export const Image = styled.Image`
   width: 200px;
   height: 100px;
-  margin: 50px 0;
+  margin: 60px 0;
 `;
 export const ImageIcon = styled.Image`
   width: 10px;
