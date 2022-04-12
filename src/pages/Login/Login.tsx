@@ -14,14 +14,12 @@ import {
   ButtonContainer,
 } from './styles';
 
+import logopreto from '../../../assets/LogoPreto.png';
+import logobranco from '../../../assets/LogoBranco.png';
+
 const Login: React.FC = () => {
   const navigation = useNavigation();
   const {isDarkMode} = useTheme();
-  const images = {
-    LogoPreto: require('../../../assets/LogoPreto.png') as ImageSourcePropType,
-    LogoBranco:
-      require('../../../assets/LogoBranco.png') as ImageSourcePropType,
-  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -31,7 +29,13 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Image source={isDarkMode ? images.LogoBranco : images.LogoPreto} />
+      <Image
+        source={
+          isDarkMode
+            ? (logobranco as ImageSourcePropType)
+            : (logopreto as ImageSourcePropType)
+        }
+      />
       <InputUser placeholder="Username" />
       <InputUser secureTextEntry placeholder="Password" />
       <TouchableOpacity>

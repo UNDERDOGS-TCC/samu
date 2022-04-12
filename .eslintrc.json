@@ -60,7 +60,8 @@
          "react/require-default-props": "off",
          "operator-linebreak": "off",
          "semi": "off",
-         "@typescript-eslint/no-non-null-assertion": "off"
+         "@typescript-eslint/no-non-null-assertion": "off",
+         "@typescript-eslint/no-explicit-any": "off"
     },
     "settings": {
         "import/resolver": {

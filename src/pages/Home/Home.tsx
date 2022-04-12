@@ -19,18 +19,15 @@ import {
   Icon,
 } from './styles';
 
+import formularioBranco from '../../../assets/formularioBranco.png';
+import seguranca from '../../../assets/seguranca.png';
+import saude from '../../../assets/saude.png';
+import chat from '../../../assets/chat.png';
+import usuario from '../../../assets/usuario.png';
+import carroambulancia from '../../../assets/carro-ambulancia.png';
+
 const Home: React.FC = () => {
   const navigation = useNavigation();
-  const images = {
-    formularioBranco:
-      require('../../../assets/formularioBranco.png') as ImageSourcePropType,
-    seguranca: require('../../../assets/seguranca.png') as ImageSourcePropType,
-    saude: require('../../../assets/saude.png') as ImageSourcePropType,
-    chat: require('../../../assets/chat.png') as ImageSourcePropType,
-    usuario: require('../../../assets/usuario.png') as ImageSourcePropType,
-    carroambulancia:
-      require('../../../assets/carro-ambulancia.png') as ImageSourcePropType,
-  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -46,7 +43,7 @@ const Home: React.FC = () => {
           {'\n'}
           <TextNome>Igor Ferráz</TextNome>
         </TextGoodMorning>
-        <Image source={images.usuario} />
+        <Image source={usuario as ImageSourcePropType} />
       </User>
 
       <BotaoAmbulancia onPress={() => navigation.navigate('Config' as never)}>
@@ -58,7 +55,7 @@ const Home: React.FC = () => {
             </Samu>
             <Text>Chamar serviço de emergencia</Text>
           </Quadrado>
-          <ImageAmbulance source={images.carroambulancia} />
+          <ImageAmbulance source={carroambulancia as ImageSourcePropType} />
         </View>
       </BotaoAmbulancia>
 
@@ -68,7 +65,7 @@ const Home: React.FC = () => {
         <BotaoOutrosServicos
           onPress={() => navigation.navigate('Config' as never)}
         >
-          <Icon source={images.formularioBranco} />
+          <Icon source={formularioBranco as ImageSourcePropType} />
           <Text>
             {'\n'}
             Formulario de emergência
@@ -77,7 +74,7 @@ const Home: React.FC = () => {
         <BotaoOutrosServicos
           onPress={() => navigation.navigate('Config' as never)}
         >
-          <Icon source={images.seguranca} />
+          <Icon source={seguranca as ImageSourcePropType} />
           <Text>
             {'\n'}
             Orientações de segurança
@@ -86,7 +83,7 @@ const Home: React.FC = () => {
         <BotaoOutrosServicos
           onPress={() => navigation.navigate('Config' as never)}
         >
-          <Icon source={images.saude} />
+          <Icon source={saude as ImageSourcePropType} />
           <Text>
             {'\n'}
             Detalhes de saúde
@@ -95,7 +92,7 @@ const Home: React.FC = () => {
         <BotaoOutrosServicos
           onPress={() => navigation.navigate('Config' as never)}
         >
-          <Icon source={images.chat} />
+          <Icon source={chat as ImageSourcePropType} />
           <Text>
             {'\n'}
             Inicie uma conversa

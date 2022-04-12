@@ -18,7 +18,7 @@ export const User = styled.View`
   flex-direction: row;
 `;
 export const TextGoodMorning = styled.Text`
-  padding-horizontal: 10px;
+  padding: 0 10px;
   color: ${(props) => props.theme.main.colors.text};
 `;
 export const TextNome = styled.Text`
@@ -40,7 +40,7 @@ export const TextServicos = styled.Text`
 `;
 export const Text = styled.Text`
   font-size: 16px;
-  margin-vertical: -20px;
+  margin: -20px 0;
   text-align: center;
   font-weight: normal;
   color: ${(props) => props.theme.main.colors.white};
