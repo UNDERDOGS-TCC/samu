@@ -4,7 +4,7 @@ import {Feather} from '@expo/vector-icons';
 export const HeaderContainer = styled.View`
   width: 100%;
   height: 100px;
-  padding: 20px;
+  padding: 0 0 0 10px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
