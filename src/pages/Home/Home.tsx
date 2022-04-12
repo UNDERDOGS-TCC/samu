@@ -25,6 +25,8 @@ import saude from '../../../assets/saude.png';
 import chat from '../../../assets/chat.png';
 import usuario from '../../../assets/usuario.png';
 import carroambulancia from '../../../assets/carro-ambulancia.png';
+import {Button} from 'react-native';
+import {Container, Text} from './styles';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
@@ -32,6 +34,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      headerTitle: 'Home',
     });
   }, [navigation]);
 
@@ -99,6 +102,15 @@ const Home: React.FC = () => {
           </Text>
         </BotaoOutrosServicos>
       </Rolagem>
+      <Text>Open up App.tsx to start working on your app!</Text>
+      <Button
+        title="Signup"
+        onPress={() => navigation.navigate('Signup' as never)}
+      />
+      <Button
+        title="Reset password"
+        onPress={() => navigation.navigate('ResetPassword' as never)}
+      />
     </Container>
   );
 };
