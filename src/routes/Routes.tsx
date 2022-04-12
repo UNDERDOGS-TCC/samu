@@ -28,7 +28,7 @@ const Routes: React.FC = () => {
         }}
       >
         <Stack.Screen
-          name="Home"
+          name="Sidebar"
           component={Sidebar}
           options={{headerShown: false}}
         />
