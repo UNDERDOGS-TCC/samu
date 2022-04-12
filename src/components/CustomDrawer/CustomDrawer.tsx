@@ -33,7 +33,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props) => {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       <FooterContainer>
-        <LogoutButton>
+        <LogoutButton onPress={() => console.log('eu sou o logout')}>
           <LogoutIcon />
           <LogoutButtonText>Sair</LogoutButtonText>
         </LogoutButton>
