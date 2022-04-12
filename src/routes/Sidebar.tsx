@@ -29,6 +29,7 @@ const Sidebar: React.FC = () => {
           fontSize: isDarkMode
             ? darkMode.main.font.size.drawer
             : lightMode.main.font.size.drawer,
+          marginLeft: -20,
         },
         headerTitleAlign: 'center',
         headerTitleStyle: {
@@ -54,9 +55,33 @@ const Sidebar: React.FC = () => {
         ),
       })}
     >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Perfil" component={Profile} />
-      <Drawer.Screen name="Configurações" component={Config} />
+      <Drawer.Screen
+        name="Home"
+        component={Home}
+        options={{
+          drawerIcon: ({color}) => (
+            <Feather name="home" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Perfil"
+        component={Profile}
+        options={{
+          drawerIcon: ({color}) => (
+            <Feather name="user" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Configurações"
+        component={Config}
+        options={{
+          drawerIcon: ({color}) => (
+            <Feather name="settings" size={24} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };
