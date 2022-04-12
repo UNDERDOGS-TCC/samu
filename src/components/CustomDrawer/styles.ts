@@ -27,7 +27,7 @@ export const HeaderButton = styled.TouchableOpacity.attrs({
 `;
 
 export const HeaderIcon = styled(Feather).attrs((props) => ({
-  name: 'menu',
+  name: 'x',
   size: 24,
   color: props.theme.main.colors.text,
 }))``;
