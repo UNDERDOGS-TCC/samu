@@ -4,7 +4,17 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import {HeaderButton, HeaderContainer, HeaderIcon, HeaderTitle} from './styles';
+import {View} from 'react-native';
+import {
+  FooterContainer,
+  HeaderButton,
+  HeaderContainer,
+  HeaderIcon,
+  HeaderTitle,
+  LogoutButton,
+  LogoutButtonText,
+  LogoutIcon,
+} from './styles';
 
 interface CustomDrawerProps extends DrawerContentComponentProps {}
 
@@ -12,15 +22,23 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props) => {
   const {navigation} = props;
 
   return (
-    <DrawerContentScrollView {...props}>
-      <HeaderContainer>
-        <HeaderTitle>Menu</HeaderTitle>
-        <HeaderButton onPress={() => navigation.closeDrawer()}>
-          <HeaderIcon />
-        </HeaderButton>
-      </HeaderContainer>
-      <DrawerItemList {...props} />
-    </DrawerContentScrollView>
+    <View style={{flex: 1}}>
+      <DrawerContentScrollView {...props}>
+        <HeaderContainer>
+          <HeaderTitle>Menu</HeaderTitle>
+          <HeaderButton onPress={() => navigation.closeDrawer()}>
+            <HeaderIcon />
+          </HeaderButton>
+        </HeaderContainer>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+      <FooterContainer>
+        <LogoutButton>
+          <LogoutIcon />
+          <LogoutButtonText>Sair</LogoutButtonText>
+        </LogoutButton>
+      </FooterContainer>
+    </View>
   );
 };
 
