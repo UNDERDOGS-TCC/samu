@@ -27,7 +27,6 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
     if (props.danger) {
       return `background-color: ${props.theme.main.colors.danger}`;
     }
-
     return `background-color: ${props.theme.main.colors.primary}`;
   }}
 `;
