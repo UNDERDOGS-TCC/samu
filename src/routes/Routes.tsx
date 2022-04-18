@@ -7,6 +7,7 @@ import {darkMode, lightMode} from '../themes/theme';
 import Config from '../pages/Config/Config';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
+import Mapa from '../pages/Mapa/Mapa';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const Routes: React.FC = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Config" component={Config} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Mapa" component={Mapa} />
       </Stack.Navigator>
     </NavigationContainer>
   );

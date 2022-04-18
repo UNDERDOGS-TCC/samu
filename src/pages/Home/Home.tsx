@@ -49,7 +49,7 @@ const Home: React.FC = () => {
         <Image source={images.usuario} />
       </User>
 
-      <BotaoAmbulancia onPress={() => navigation.navigate('Config' as never)}>
+      <BotaoAmbulancia onPress={() => navigation.navigate('Mapa' as never)}>
         <View>
           <Quadrado>
             <Samu>

@@ -18,7 +18,7 @@ export const User = styled.View`
   flex-direction: row;
 `;
 export const TextGoodMorning = styled.Text`
-  padding-horizontal: 10px;
+  padding: 10px;
   color: ${(props) => props.theme.main.colors.text};
 `;
 export const TextNome = styled.Text`
@@ -29,7 +29,7 @@ export const TextNome = styled.Text`
 export const Image = styled.Image`
   width: 80px;
   height: 80px;
-  margin-left: 50px;
+  margin: 0px 0px 0px 50px;
 `;
 export const TextServicos = styled.Text`
   margin: 5px 160px 0px 0;
@@ -40,7 +40,7 @@ export const TextServicos = styled.Text`
 `;
 export const Text = styled.Text`
   font-size: 16px;
-  margin-vertical: -20px;
+  margin: -20px 0px 0px 0px;
   text-align: center;
   font-weight: normal;
   color: ${(props) => props.theme.main.colors.white};
@@ -63,13 +63,9 @@ export const ImageAmbulance = styled.Image`
   padding: 60px;
   width: 20px;
   height: 20px;
-  margin-top: 5px;
-  margin-left: 10px;
 `;
 export const Quadrado = styled.View`
-  border-radius: 8px;
-  margin-left: 20px;
-  margin-top: 5px;
+  margin: 10px 20px 10px 20px;
   padding: 10px;
   height: 140px;
   width: 150px;
@@ -81,9 +77,8 @@ export const BotaoOutrosServicos = styled.TouchableOpacity`
   width: 123px;
   background-color: ${(props) => props.theme.main.colors.secondary};
 `;
-export const Rolagem = styled.ScrollView`
-  padding: 10px 220px 10px 10px;
-`;
+export const Rolagem = styled.ScrollView``;
+
 export const Icon = styled.Image`
   width: 60px;
   height: 60px;

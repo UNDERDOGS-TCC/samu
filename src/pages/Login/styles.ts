@@ -11,26 +11,17 @@ export const Text = styled.Text`
   font-size: ${(props) => props.theme.main.font.size.big};
   color: ${(props) => props.theme.main.colors.text};
 `;
-export const InputUser = styled.TextInput.attrs((props) => ({
-  placeholderTextColor: props.theme.main.colors.text,
-}))`
-  border-radius: 8px;
-  height: 70px;
-  width: 335px;
-  border-width: 0.5px;
-  margin-top: 10px;
-  padding: 15px;
-  font-size: ${(props) => props.theme.main.font.size.regular};
-  background-color: ${(props) => props.theme.main.colors.background};
-  border-color: ${(props) => props.theme.colors.border};
-  color: ${(props) => props.theme.main.colors.white};
-`;
 
-export const RedefinirSenha = styled.Text`
+export const RedefinirSenhaText = styled.Text`
   text-decoration-line: underline;
-  margin: 5px 0 40px 200px;
   font-size: ${(props) => props.theme.main.font.size.regular};
   color: ${(props) => props.theme.main.colors.text};
+`;
+
+export const RedefinirSenhaButton = styled.TouchableOpacity`
+  height: 30px;
+  width: 125px;
+  margin: 2px 0 10px 200px;
 `;
 
 export const Linha = styled.View`
@@ -49,12 +40,13 @@ export const ButtonContainer = styled.View`
   width: 90%;
 `;
 
+export const InputContainer = styled.View`
+  width: 90%;
+  margin: -5px;
+`;
+
 export const Image = styled.Image`
   width: 200px;
   height: 100px;
-  margin: 60px 0;
-`;
-export const ImageIcon = styled.Image`
-  width: 10px;
-  height: 10px;
+  margin: 50px 0 15px;
 `;
