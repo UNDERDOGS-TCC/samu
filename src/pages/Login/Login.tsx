@@ -16,6 +16,9 @@ import {
   RedefinirSenhaButton,
 } from './styles';
 
+import logopreto from '../../../assets/LogoPreto.png';
+import logobranco from '../../../assets/LogoBranco.png';
+
 const Login: React.FC = () => {
   const navigation = useNavigation();
   const {isDarkMode} = useTheme();
