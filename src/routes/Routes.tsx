@@ -6,6 +6,7 @@ import {darkMode, lightMode} from '../themes/theme';
 import Config from '../pages/Config/Config';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
+import Mapa from '../pages/Mapa/Mapa';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 
@@ -30,7 +31,6 @@ const Routes: React.FC = () => {
         }}
       >
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Config" component={Config} />
         <Stack.Screen
           name="Sidebar"
@@ -38,6 +38,7 @@ const Routes: React.FC = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Mapa" component={Mapa} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
       </Stack.Navigator>
     </NavigationContainer>
