@@ -64,7 +64,7 @@ const Login: React.FC = () => {
         <Button
           title="Entrar"
           active
-          onPress={() => navigation.navigate('Home' as never)}
+          onPress={() => navigation.navigate('Sidebar' as never)}
         />
       </ButtonContainer>
       <LadoALado>
@@ -78,7 +78,7 @@ const Login: React.FC = () => {
           title="Criar Conta"
           secondary
           active
-          onPress={() => navigation.navigate('Home' as never)}
+          onPress={() => navigation.navigate('Signup' as never)}
         />
       </ButtonContainer>
     </Container>

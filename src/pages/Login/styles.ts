@@ -20,8 +20,8 @@ export const RedefinirSenhaText = styled.Text`
 
 export const RedefinirSenhaButton = styled.TouchableOpacity`
   height: 30px;
-  width: 125px;
-  margin: 2px 0 10px 200px;
+  margin: 2px 25px 0 0;
+  align-self: flex-end;
 `;
 
 export const Linha = styled.View`
