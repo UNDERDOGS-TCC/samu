@@ -1,108 +1,140 @@
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ImageSourcePropType} from 'react-native';
+import {ImageSourcePropType, StyleSheet} from 'react-native';
+import {useTheme} from '../../themes/ThemeManagerProvider';
 import {
   Container,
-  User,
-  TextGoodMorning,
-  TextNome,
-  Image,
-  TextServicos,
-  BotaoAmbulancia,
-  Samu,
-  Text,
-  ImageAmbulance,
-  View,
-  Quadrado,
-  BotaoOutrosServicos,
-  Rolagem,
-  Icon,
+  ClosedDrawerIcon,
+  DrawerIconContainer,
+  UserContainer,
+  UserMessageContainer,
+  UserMessageTitle,
+  UserMessageSubtitle,
+  UserPictureContainer,
+  UserPicture,
+  UserMessage,
+  SamuButtonContainer,
+  SamuButton,
+  LeftButtonContainer,
+  RightButtonContainer,
+  SamuImage,
+  LeftButtonTitle,
+  LeftButtonDescription,
+  OtherServicesContainer,
+  OtherServicesTitle,
+  OtherServicesListContainer,
+  OtherServicesList,
+  OtherServicesListItem,
+  OtherServicesListItemText,
+  OtherServicesListImage,
 } from './styles';
 
-import formularioBranco from '../../../assets/formularioBranco.png';
-import seguranca from '../../../assets/seguranca.png';
-import saude from '../../../assets/saude.png';
-import chat from '../../../assets/chat.png';
-import usuario from '../../../assets/usuario.png';
-import carroambulancia from '../../../assets/carro-ambulancia.png';
-import {Button} from 'react-native';
+import userAvatar from '../../../assets/usuario.png';
+import samuImage from '../../../assets/carro-ambulancia.png';
+
+import otherServicesList, {
+  OtherServicesListInterface,
+} from '../../utils/otherServicesList';
+
+interface NavigationProps extends NavigationProp<any> {
+  openDrawer: () => void;
+}
 
 const Home: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
+  const {isDarkMode, lightMode, darkMode} = useTheme();
 
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
-      headerTitle: 'Home',
     });
   }, [navigation]);
 
+  const renderList = (item: OtherServicesListInterface, index: number) => {
+    const isFirstItem = index === 0;
+    const isLastItem = index === otherServicesList.length - 1;
+
+    return (
+      <OtherServicesListItem
+        marginRight={isLastItem ? 20 : undefined}
+        marginLeft={isFirstItem ? 20 : undefined}
+      >
+        <OtherServicesListImage resizeMode="contain" source={item.image} />
+        <OtherServicesListItemText>{item.title}</OtherServicesListItemText>
+      </OtherServicesListItem>
+    );
+  };
+
   return (
     <Container>
-      <User>
-        <TextGoodMorning>
-          Good Morning
-          {'\n'}
-          <TextNome>Igor Ferráz</TextNome>
-        </TextGoodMorning>
-        <Image source={usuario as ImageSourcePropType} />
-      </User>
-
-      <BotaoAmbulancia onPress={() => navigation.navigate('Mapa' as never)}>
-        <View>
-          <Quadrado>
-            <Samu>
-              Samu
-              {'\n'}
-            </Samu>
-            <Text>Chamar serviço de emergencia</Text>
-          </Quadrado>
-          <ImageAmbulance source={carroambulancia as ImageSourcePropType} />
-        </View>
-      </BotaoAmbulancia>
-
-      <TextServicos>Outros Serviços</TextServicos>
-
-      <Rolagem horizontal>
-        <BotaoOutrosServicos
-          onPress={() => navigation.navigate('Config' as never)}
+      <DrawerIconContainer>
+        <ClosedDrawerIcon
+          onPress={() => navigation.openDrawer()}
+          color={
+            isDarkMode ? darkMode.main.colors.text : lightMode.main.colors.text
+          }
+        />
+      </DrawerIconContainer>
+      <UserContainer>
+        <UserMessageContainer>
+          <UserMessage>
+            <UserMessageTitle>Good morning</UserMessageTitle>
+            <UserMessageSubtitle>Igor Ferraz</UserMessageSubtitle>
+          </UserMessage>
+        </UserMessageContainer>
+        <UserPictureContainer>
+          <UserPicture
+            resizeMode="contain"
+            source={userAvatar as ImageSourcePropType}
+          />
+        </UserPictureContainer>
+      </UserContainer>
+      <SamuButtonContainer>
+        <SamuButton
+          onPress={() => navigation.navigate('Mapa')}
+          style={styles.shadow}
         >
-          <Icon source={formularioBranco as ImageSourcePropType} />
-          <Text>
-            {'\n'}
-            Formulario de emergência
-          </Text>
-        </BotaoOutrosServicos>
-        <BotaoOutrosServicos
-          onPress={() => navigation.navigate('Config' as never)}
-        >
-          <Icon source={seguranca as ImageSourcePropType} />
-          <Text>
-            {'\n'}
-            Orientações de segurança
-          </Text>
-        </BotaoOutrosServicos>
-        <BotaoOutrosServicos
-          onPress={() => navigation.navigate('Config' as never)}
-        >
-          <Icon source={saude as ImageSourcePropType} />
-          <Text>
-            {'\n'}
-            Detalhes de saúde
-          </Text>
-        </BotaoOutrosServicos>
-        <BotaoOutrosServicos
-          onPress={() => navigation.navigate('Config' as never)}
-        >
-          <Icon source={chat as ImageSourcePropType} />
-          <Text>
-            {'\n'}
-            Inicie uma conversa
-          </Text>
-        </BotaoOutrosServicos>
-      </Rolagem>
+          <LeftButtonContainer>
+            <LeftButtonTitle>SAMU</LeftButtonTitle>
+            <LeftButtonDescription>
+              Chamar serviço de emergência
+            </LeftButtonDescription>
+          </LeftButtonContainer>
+          <RightButtonContainer>
+            <SamuImage
+              resizeMode="contain"
+              source={samuImage as ImageSourcePropType}
+            />
+          </RightButtonContainer>
+        </SamuButton>
+      </SamuButtonContainer>
+      <OtherServicesContainer>
+        <OtherServicesTitle>Outros Serviços</OtherServicesTitle>
+        <OtherServicesListContainer>
+          <OtherServicesList
+            horizontal
+            keyExtractor={(item) => item.key}
+            showsHorizontalScrollIndicator={false}
+            data={otherServicesList}
+            renderItem={({item, index}) => renderList(item, index)}
+          />
+        </OtherServicesListContainer>
+      </OtherServicesContainer>
     </Container>
   );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
+  },
+});

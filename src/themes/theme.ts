@@ -37,8 +37,10 @@ export const lightMode = {
       },
       size: {
         small: '14px',
+        medium: '16px',
         regular: '18px',
         big: '22px',
+        verybig: '26px',
         header: 24,
         drawer: 18,
       },
@@ -88,8 +90,10 @@ export const darkMode = {
       },
       size: {
         small: '14px',
+        medium: '16px',
         regular: '18px',
         big: '22px',
+        verybig: '26px',
         header: 24,
         drawer: 18,
       },

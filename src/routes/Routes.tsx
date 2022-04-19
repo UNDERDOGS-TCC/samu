@@ -14,6 +14,7 @@ const Stack = createStackNavigator();
 
 const Routes: React.FC = () => {
   const {isDarkMode} = useTheme();
+  const user = undefined;
 
   return (
     <NavigationContainer theme={isDarkMode ? darkMode : lightMode}>
@@ -30,16 +31,23 @@ const Routes: React.FC = () => {
           },
         }}
       >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Config" component={Config} />
-        <Stack.Screen
-          name="Sidebar"
-          component={Sidebar}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Mapa" component={Mapa} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        {user ? (
+          <Stack.Group>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            <Stack.Screen
+              name="Sidebar"
+              component={Sidebar}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen name="Config" component={Config} />
+            <Stack.Screen name="Mapa" component={Mapa} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

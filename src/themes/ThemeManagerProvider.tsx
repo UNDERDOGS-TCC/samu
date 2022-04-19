@@ -16,6 +16,8 @@ const isDarkMode = false;
 const ThemeContext = createContext({
   isDarkMode,
   setIsDarkMode: () => console.log(isDarkMode),
+  darkMode,
+  lightMode,
 });
 
 export const useTheme = () => useContext(ThemeContext);
@@ -40,6 +42,8 @@ const ThemeManagerProvider: React.FC = ({children}) => {
     () => ({
       isDarkMode: themeState,
       setIsDarkMode,
+      darkMode,
+      lightMode,
     }),
     [themeState, setIsDarkMode],
   );
