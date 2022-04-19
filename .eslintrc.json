@@ -61,7 +61,7 @@
          "operator-linebreak": "off",
          "semi": "off",
          "@typescript-eslint/no-non-null-assertion": "off",
-         "@typescript-eslint/no-explicit-any": "off"
+         "@typescript-eslint/no-explicit-any": "off",
          "react/jsx-props-no-spreading": "off",
          "react/no-unstable-nested-components": "off"
     },

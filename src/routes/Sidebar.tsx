@@ -8,6 +8,7 @@ import {useTheme} from '../themes/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
 import Profile from '../pages/Profile/Profile';
+import Teste from '../pages/Teste';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,6 +17,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <Drawer.Navigator
+      useLegacyImplementation
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={({
         navigation,
@@ -76,6 +78,15 @@ const Sidebar: React.FC = () => {
       <Drawer.Screen
         name="Configurações"
         component={Config}
+        options={{
+          drawerIcon: ({color}) => (
+            <Feather name="settings" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Teste"
+        component={Teste}
         options={{
           drawerIcon: ({color}) => (
             <Feather name="settings" size={24} color={color} />

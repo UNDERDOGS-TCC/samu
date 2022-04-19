@@ -24,6 +24,7 @@ export const lightMode = {
       placeholder: 'rgba(0, 0, 0, 0.5)',
       danger: '#a03c3c',
       red: '#c94444',
+      transparent: '#00000090',
     },
     font: {
       family: {
@@ -74,6 +75,7 @@ export const darkMode = {
       placeholder: '#C6C6C6',
       danger: '#a03c3c',
       red: '#c94444',
+      transparent: '#00000090',
     },
     font: {
       family: {

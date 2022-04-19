@@ -24,11 +24,6 @@ const Login: React.FC = () => {
   const {isDarkMode} = useTheme();
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
-  const images = {
-    LogoPreto: require('../../../assets/LogoPreto.png') as ImageSourcePropType,
-    LogoBranco:
-      require('../../../assets/LogoBranco.png') as ImageSourcePropType,
-  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -38,7 +33,13 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Image source={isDarkMode ? images.LogoBranco : images.LogoPreto} />
+      <Image
+        source={
+          isDarkMode
+            ? (logobranco as ImageSourcePropType)
+            : (logopreto as ImageSourcePropType)
+        }
+      />
       <InputContainer>
         <Input
           title="E-mail"
@@ -84,4 +85,5 @@ const Login: React.FC = () => {
     </Container>
   );
 };
+
 export default Login;
