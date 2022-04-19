@@ -1,7 +1,13 @@
-import React, {createContext, useContext, useMemo, useState} from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
+import LottieView from 'lottie-react-native';
 import User from '../interfaces/User';
 import loginApi from '../api/login';
-import Loader from '../components/Loader/Loader';
 
 interface AuthContextData {
   user: User;
@@ -17,18 +23,18 @@ const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     const response = await loginApi(email, password);
     if (response) {
       setIsLoading(false);
       setUser(response);
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(undefined);
-  };
+  }, []);
 
   const returnValues = useMemo(
     () => ({
@@ -36,12 +42,13 @@ const AuthProvider: React.FC = ({children}) => {
       login,
       logout,
     }),
-    [user],
+    [user, login, logout],
   );
 
-  return (
+  return isLoading ? (
+    <LottieView source={require('../../assets/loader.json')} autoPlay loop />
+  ) : (
     <AuthContext.Provider value={returnValues as AuthContextData}>
-      <Loader isActive={isLoading} />
       {children}
     </AuthContext.Provider>
   );

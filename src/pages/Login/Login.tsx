@@ -25,17 +25,13 @@ const Login: React.FC = () => {
   const {isDarkMode} = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {login, user} = useAuth();
+  const {login} = useAuth();
 
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, [navigation]);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   const handleLogin = () => {
     login(email, password);
