@@ -5,9 +5,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import LottieView from 'lottie-react-native';
 import User from '../interfaces/User';
 import loginApi from '../api/login';
+import Loader from '../components/Loader/Loader';
 
 interface AuthContextData {
   user: User;
@@ -45,10 +45,9 @@ const AuthProvider: React.FC = ({children}) => {
     [user, login, logout],
   );
 
-  return isLoading ? (
-    <LottieView source={require('../../assets/loader.json')} autoPlay loop />
-  ) : (
+  return (
     <AuthContext.Provider value={returnValues as AuthContextData}>
+      <Loader isActive={isLoading} />
       {children}
     </AuthContext.Provider>
   );
