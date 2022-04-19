@@ -2,6 +2,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {ImageSourcePropType, StyleSheet} from 'react-native';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
+import {useAuth} from '../../contexts/AuthProvider';
 import {
   Container,
   ClosedDrawerIcon,
@@ -43,6 +44,7 @@ interface NavigationProps extends NavigationProp<any> {
 const Home: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const {isDarkMode, lightMode, darkMode} = useTheme();
+  const {user} = useAuth();
 
   useEffect(() => {
     navigation.setOptions({
@@ -79,7 +81,9 @@ const Home: React.FC = () => {
         <UserMessageContainer>
           <UserMessage>
             <UserMessageTitle>Good morning</UserMessageTitle>
-            <UserMessageSubtitle>Igor Ferraz</UserMessageSubtitle>
+            <UserMessageSubtitle>
+              {user?.name.split(' ')[0]}
+            </UserMessageSubtitle>
           </UserMessage>
         </UserMessageContainer>
         <UserPictureContainer>
