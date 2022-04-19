@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import {ThemeProvider} from 'styled-components/native';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
-import {darkMode, lightMode} from './theme';
+import {darkMode, lightMode} from '../themes/theme';
 
 const isDarkMode = false;
 

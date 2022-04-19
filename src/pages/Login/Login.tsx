@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {ImageSourcePropType} from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {
   Container,
   Text,

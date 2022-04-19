@@ -1,7 +1,7 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {ImageSourcePropType, StyleSheet} from 'react-native';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {
   Container,
   ClosedDrawerIcon,

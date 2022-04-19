@@ -8,7 +8,7 @@ import {
   InputContainer,
   TextInput,
 } from './styles';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
 interface InputProps {

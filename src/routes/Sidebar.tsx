@@ -4,7 +4,7 @@ import {Feather} from '@expo/vector-icons';
 import {View} from 'react-native';
 import Home from '../pages/Home/Home';
 import Config from '../pages/Config/Config';
-import {useTheme} from '../themes/ThemeManagerProvider';
+import {useTheme} from '../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
 import Profile from '../pages/Profile/Profile';

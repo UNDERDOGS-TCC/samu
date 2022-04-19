@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import AnimatedLottieView from 'lottie-react-native';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {Container, LoaderContainer, LottieView, Wrapper} from './styles';
 
 import loaderDarkMode from '../../../assets/loader.json';

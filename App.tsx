@@ -15,7 +15,7 @@ import {
 } from '@expo-google-fonts/rubik';
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
-import ThemeManagerProvider from './src/themes/ThemeManagerProvider';
+import ThemeManagerProvider from './src/contexts/ThemeManagerProvider';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import {Avatar, Container} from './styles';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
 const ChangeAvatarButton: React.FC = () => {
