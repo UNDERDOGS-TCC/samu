@@ -9,12 +9,13 @@ import Signup from '../pages/Signup/Signup';
 import Mapa from '../pages/Mapa/Mapa';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import {useAuth} from '../contexts/AuthProvider';
 
 const Stack = createStackNavigator();
 
 const Routes: React.FC = () => {
   const {isDarkMode} = useTheme();
-  const user = undefined;
+  const {user} = useAuth();
 
   return (
     <NavigationContainer theme={isDarkMode ? darkMode : lightMode}>
@@ -31,7 +32,7 @@ const Routes: React.FC = () => {
           },
         }}
       >
-        {user ? (
+        {!user ? (
           <Stack.Group>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />

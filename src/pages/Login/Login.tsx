@@ -18,18 +18,28 @@ import {
 
 import logopreto from '../../../assets/LogoPreto.png';
 import logobranco from '../../../assets/LogoBranco.png';
+import {useAuth} from '../../contexts/AuthProvider';
 
 const Login: React.FC = () => {
   const navigation = useNavigation();
   const {isDarkMode} = useTheme();
-  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {login, user} = useAuth();
 
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, [navigation]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const handleLogin = () => {
+    login(email, password);
+  };
 
   return (
     <Container>
@@ -45,8 +55,8 @@ const Login: React.FC = () => {
           title="E-mail"
           placeholder="Informe o e-mail"
           isPassword={false}
-          value={user}
-          onChangeText={(text) => setUser(text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
       </InputContainer>
       <InputContainer>
@@ -64,8 +74,8 @@ const Login: React.FC = () => {
       <ButtonContainer>
         <Button
           title="Entrar"
-          active
-          onPress={() => navigation.navigate('Sidebar' as never)}
+          active={!!email && !!password}
+          onPress={handleLogin}
         />
       </ButtonContainer>
       <LadoALado>

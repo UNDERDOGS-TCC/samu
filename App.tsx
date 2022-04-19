@@ -16,6 +16,7 @@ import {
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
 import ThemeManagerProvider from './src/contexts/ThemeManagerProvider';
+import AuthProvider from './src/contexts/AuthProvider';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -37,7 +38,9 @@ const App: React.FC = () => {
 
   return (
     <ThemeManagerProvider>
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeManagerProvider>
   );
 };
