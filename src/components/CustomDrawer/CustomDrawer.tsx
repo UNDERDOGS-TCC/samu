@@ -15,11 +15,13 @@ import {
   LogoutButtonText,
   LogoutIcon,
 } from './styles';
+import {useAuth} from '../../contexts/AuthProvider';
 
 interface CustomDrawerProps extends DrawerContentComponentProps {}
 
 const CustomDrawer: React.FC<CustomDrawerProps> = (props) => {
   const {navigation} = props;
+  const {logout} = useAuth();
 
   return (
     <View style={{flex: 1}}>
@@ -33,7 +35,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props) => {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       <FooterContainer>
-        <LogoutButton onPress={() => console.log('eu sou o logout')}>
+        <LogoutButton onPress={logout}>
           <LogoutIcon />
           <LogoutButtonText>Sair</LogoutButtonText>
         </LogoutButton>
