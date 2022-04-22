@@ -5,7 +5,15 @@ import {Avatar, Container} from './styles';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
-const ChangeAvatarButton: React.FC = () => {
+interface ChangeAvatarButtonProps {
+  image?: string;
+  sendImageUri?: (uri: string) => void;
+}
+
+const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
+  image,
+  sendImageUri,
+}) => {
   const {isDarkMode} = useTheme();
   const [imageUri, setImageUri] = useState('');
 
@@ -18,12 +26,15 @@ const ChangeAvatarButton: React.FC = () => {
 
     if (!result.cancelled) {
       setImageUri(result.uri);
+      if (sendImageUri) {
+        sendImageUri(result.uri);
+      }
     }
   };
 
   return (
     <Container activeOpacity={0.7} onPress={handleImagePicker}>
-      {imageUri ? (
+      {image || imageUri ? (
         <Avatar source={{uri: imageUri}} />
       ) : (
         <Feather
