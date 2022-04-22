@@ -1,5 +1,4 @@
-import React, {useEffect, useRef} from 'react';
-import AnimatedLottieView from 'lottie-react-native';
+import React from 'react';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {Container, LoaderContainer, LottieView, Wrapper} from './styles';
 
@@ -12,11 +11,6 @@ interface LoaderProps {
 
 const Loader: React.FC<LoaderProps> = ({isActive}) => {
   const {isDarkMode} = useTheme();
-  const lottieRef = useRef<AnimatedLottieView>(null);
-
-  useEffect(() => {
-    lottieRef.current?.play();
-  }, []);
 
   return (
     <Wrapper visible={isActive}>
