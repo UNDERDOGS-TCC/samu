@@ -14,6 +14,8 @@ import {
   InputContainer,
   RedefinirSenhaText,
   RedefinirSenhaButton,
+  ButtonsContainer,
+  InputsContainer,
 } from './styles';
 
 import logopreto from '../../../assets/LogoPreto.png';
@@ -39,55 +41,59 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Image
-        source={
-          isDarkMode
-            ? (logobranco as ImageSourcePropType)
-            : (logopreto as ImageSourcePropType)
-        }
-      />
-      <InputContainer>
-        <Input
-          title="E-mail"
-          placeholder="Informe o e-mail"
-          isPassword={false}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
+      <InputsContainer>
+        <Image
+          source={
+            isDarkMode
+              ? (logobranco as ImageSourcePropType)
+              : (logopreto as ImageSourcePropType)
+          }
         />
-      </InputContainer>
-      <InputContainer>
-        <Input
-          title="Senha"
-          placeholder="Informe a senha"
-          isPassword
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-      </InputContainer>
-      <RedefinirSenhaButton>
-        <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
-      </RedefinirSenhaButton>
-      <ButtonContainer>
-        <Button
-          title="Entrar"
-          active={!!email && !!password}
-          onPress={handleLogin}
-        />
-      </ButtonContainer>
-      <LadoALado>
-        <Linha />
-        <Text> ou </Text>
-        <Linha />
-      </LadoALado>
+        <InputContainer>
+          <Input
+            title="E-mail"
+            placeholder="Informe o e-mail"
+            isPassword={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Input
+            title="Senha"
+            placeholder="Informe a senha"
+            isPassword
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+        </InputContainer>
+        <RedefinirSenhaButton>
+          <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
+        </RedefinirSenhaButton>
+      </InputsContainer>
+      <ButtonsContainer>
+        <ButtonContainer>
+          <Button
+            title="Entrar"
+            active={!!email && !!password}
+            onPress={handleLogin}
+          />
+        </ButtonContainer>
+        <LadoALado>
+          <Linha />
+          <Text> ou </Text>
+          <Linha />
+        </LadoALado>
 
-      <ButtonContainer>
-        <Button
-          title="Criar Conta"
-          secondary
-          active
-          onPress={() => navigation.navigate('Signup' as never)}
-        />
-      </ButtonContainer>
+        <ButtonContainer>
+          <Button
+            title="Criar Conta"
+            secondary
+            active
+            onPress={() => navigation.navigate('Signup' as never)}
+          />
+        </ButtonContainer>
+      </ButtonsContainer>
     </Container>
   );
 };
