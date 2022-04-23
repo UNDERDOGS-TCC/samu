@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Feather} from '@expo/vector-icons';
 
 export const Container = styled.View`
   flex: 1;
@@ -18,6 +19,7 @@ export const ProfilePicContainer = styled.View`
 
 export const UserInfosContainer = styled.View`
   flex: 1;
+  padding-bottom: 30px;
 `;
 
 export const BigInfo = styled.Text`
@@ -33,3 +35,18 @@ export const UserInfos = styled.Text`
   color: ${(props) => props.theme.main.colors.text};
   padding-bottom: 10px;
 `;
+
+export const HeaderRightContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.4,
+})`
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const HeaderRightIcon = styled(Feather).attrs((props) => ({
+  name: 'edit-2',
+  size: 24,
+  color: props.theme.main.colors.text,
+}))``;
