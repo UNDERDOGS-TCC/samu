@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import {Avatar, Container} from './styles';
+import {Avatar, AvatarEditOverlay, Container, EditIcon} from './styles';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
 interface ChangeAvatarButtonProps {
   image?: string;
   sendImageUri?: (uri: string) => void;
+  isEdit?: boolean;
 }
 
 const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
   image,
   sendImageUri,
+  isEdit,
 }) => {
   const {isDarkMode} = useTheme();
   const [imageUri, setImageUri] = useState('');
@@ -33,13 +35,30 @@ const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
   };
 
   return (
-    <Container activeOpacity={0.7} onPress={handleImagePicker}>
+    <Container
+      disabled={!isEdit || false}
+      activeOpacity={0.7}
+      onPress={handleImagePicker}
+    >
       {image || imageUri ? (
-        <Avatar source={{uri: imageUri}} />
+        <Avatar
+          imageStyle={{borderRadius: 100}}
+          source={{uri: image || imageUri}}
+        >
+          {isEdit && (
+            <AvatarEditOverlay>
+              <EditIcon />
+            </AvatarEditOverlay>
+          )}
+        </Avatar>
+      ) : isEdit ? (
+        <AvatarEditOverlay>
+          <EditIcon />
+        </AvatarEditOverlay>
       ) : (
         <Feather
-          name="camera"
-          size={48}
+          name="user"
+          size={100}
           color={
             isDarkMode
               ? darkMode.main.colors.placeholder

@@ -29,7 +29,7 @@ const Profile: React.FC = () => {
       headerRight: () => {
         if (!isEditing) {
           return (
-            <HeaderRightContainer onPress={() => setIsEditing(!isEditing)}>
+            <HeaderRightContainer onPress={() => setIsEditing(true)}>
               <HeaderRightIcon />
             </HeaderRightContainer>
           );
@@ -47,11 +47,20 @@ const Profile: React.FC = () => {
     console.log(imageUri);
   }, [imageUri]);
 
+  const handlePressSave = () => {
+    console.log('aa');
+    setIsEditing(false);
+  };
+
   return (
     <Container>
       <ScrollView contentContainerStyle={{paddingBottom: insets.bottom}}>
         <ProfilePicContainer>
-          <ChangeAvatarButton sendImageUri={getImageUri} />
+          <ChangeAvatarButton
+            isEdit={isEditing}
+            image={imageUri}
+            sendImageUri={getImageUri}
+          />
         </ProfilePicContainer>
         <UserInfosContainer>
           <BigInfo>{user?.name}</BigInfo>
@@ -123,7 +132,7 @@ const Profile: React.FC = () => {
                 value={user?.city}
                 onChangeText={() => console.log('aa')}
               />
-              <Button title="Salvar" active onPress={() => console.log('aa')} />
+              <Button title="Salvar" active onPress={handlePressSave} />
               <Button
                 title="Cancelar"
                 active

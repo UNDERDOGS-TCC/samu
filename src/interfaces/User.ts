@@ -9,4 +9,5 @@ export default interface User {
   state: string;
   city: string;
   complement: string;
+  imageUri: string;
 }
