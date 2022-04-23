@@ -19,10 +19,18 @@ import {
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
-  const [imageUri, setImageUri] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const {user} = useAuth();
+  const {user, updateUser} = useAuth();
   const insets = useSafeAreaInsets();
+
+  const [imageUri, setImageUri] = useState(user?.imageUri);
+  const [email, setEmail] = useState(user?.email);
+  const [cellphone, setCellphone] = useState(user?.cellphone);
+  const [address, setAddress] = useState(user?.address);
+  const [complement, setComplement] = useState(user?.complement);
+  const [cep, setCep] = useState(user?.cep);
+  const [state, setState] = useState(user?.state);
+  const [city, setCity] = useState(user?.city);
 
   useEffect(() => {
     navigation.setOptions({
@@ -43,12 +51,19 @@ const Profile: React.FC = () => {
     setImageUri(uri);
   };
 
-  useEffect(() => {
-    console.log(imageUri);
-  }, [imageUri]);
+  const handlePressSave = async () => {
+    const newUser = user;
 
-  const handlePressSave = () => {
-    console.log('aa');
+    newUser.email = email;
+    newUser.cellphone = cellphone;
+    newUser.address = address;
+    newUser.complement = complement;
+    newUser.cep = cep;
+    newUser.state = state;
+    newUser.city = city;
+    newUser.imageUri = imageUri;
+
+    await updateUser(newUser);
     setIsEditing(false);
   };
 
@@ -69,14 +84,14 @@ const Profile: React.FC = () => {
               <Input
                 title="Email"
                 placeholder="joazinho@gmail.com"
-                value={user?.email}
-                onChangeText={() => console.log('bb')}
+                value={email}
+                onChangeText={(text: string) => setEmail(text)}
               />
               <Input
                 title="Celular"
                 placeholder="11912345678"
-                value={user?.cellphone}
-                onChangeText={() => console.log('aa')}
+                value={cellphone}
+                onChangeText={(text: string) => setCellphone(text)}
               />
             </>
           ) : (
@@ -105,32 +120,32 @@ const Profile: React.FC = () => {
               <Input
                 title="Endereço"
                 placeholder="Rua dos Bobos, 0"
-                value={user?.address}
-                onChangeText={() => console.log('aa')}
+                value={address}
+                onChangeText={(text: string) => setAddress(text)}
               />
               <Input
                 title="Complemento"
                 placeholder="Torre 1, apto 101"
-                value={user?.complement}
-                onChangeText={() => console.log('aa')}
+                value={complement}
+                onChangeText={(text: string) => setComplement(text)}
               />
               <Input
                 title="CEP"
                 placeholder="01234567"
-                value={user?.cep}
-                onChangeText={() => console.log('aa')}
+                value={cep}
+                onChangeText={(text: string) => setCep(text)}
               />
               <Input
                 title="UF"
                 placeholder="SP"
-                value={user?.state}
-                onChangeText={() => console.log('aa')}
+                value={state}
+                onChangeText={(text: string) => setState(text)}
               />
               <Input
                 title="Cidade"
                 placeholder="São Paulo"
-                value={user?.city}
-                onChangeText={() => console.log('aa')}
+                value={city}
+                onChangeText={(text: string) => setCity(text)}
               />
               <Button title="Salvar" active onPress={handlePressSave} />
               <Button

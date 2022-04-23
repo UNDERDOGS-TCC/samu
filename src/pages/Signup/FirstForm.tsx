@@ -25,7 +25,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
       key="1"
     >
       <ImageContainer>
-        <ChangeAvatarButton />
+        <ChangeAvatarButton isEdit />
       </ImageContainer>
       <Input
         title="Nome"

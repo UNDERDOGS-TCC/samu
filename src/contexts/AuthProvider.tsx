@@ -6,13 +6,14 @@ import React, {
   useState,
 } from 'react';
 import User from '../interfaces/User';
-import loginApi from '../api/login';
+import {loginApi, updateApi} from '../api/user';
 import Loader from '../components/Loader/Loader';
 
 interface AuthContextData {
   user: User;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateUser: (newUser: User) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -36,13 +37,23 @@ const AuthProvider: React.FC = ({children}) => {
     setUser(undefined);
   }, []);
 
+  const updateUser = useCallback(async (newUser: User) => {
+    setIsLoading(true);
+    const response = await updateApi(newUser);
+    if (response) {
+      setUser(newUser);
+      setIsLoading(false);
+    }
+  }, []);
+
   const returnValues = useMemo(
     () => ({
       user,
       login,
       logout,
+      updateUser,
     }),
-    [user, login, logout],
+    [user, login, logout, updateUser],
   );
 
   return (
