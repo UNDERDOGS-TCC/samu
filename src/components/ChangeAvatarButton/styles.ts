@@ -27,5 +27,5 @@ export const AvatarEditOverlay = styled.View`
 export const EditIcon = styled(Feather).attrs((props) => ({
   name: 'camera',
   size: 64,
-  color: props.theme.main.colors.text,
+  color: props.theme.main.colors.black,
 }))``;

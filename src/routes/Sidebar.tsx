@@ -69,6 +69,7 @@ const Sidebar: React.FC = () => {
         name="Perfil"
         component={Profile}
         options={{
+          unmountOnBlur: true,
           drawerIcon: ({color}) => (
             <Feather name="user" size={24} color={color} />
           ),
