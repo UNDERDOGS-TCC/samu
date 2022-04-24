@@ -30,7 +30,6 @@ import {
   OtherServicesListImage,
 } from './styles';
 
-import userAvatar from '../../../assets/usuario.png';
 import samuImage from '../../../assets/carro-ambulancia.png';
 
 import otherServicesList, {
@@ -67,6 +66,23 @@ const Home: React.FC = () => {
     );
   };
 
+  const getWelcomeMessage = () => {
+    const hour = Number(new Date().toLocaleTimeString().split(':')[0]);
+    if (hour >= 6 && hour < 12) {
+      return 'Bom dia,';
+    }
+    if (hour >= 12 && hour < 18) {
+      return 'Boa tarde,';
+    }
+    if (hour >= 18 && hour < 24) {
+      return 'Boa noite,';
+    }
+    if (hour >= 0 && hour < 6) {
+      return 'Boa madrugada,';
+    }
+    return 'Bem vindo,';
+  };
+
   return (
     <Container>
       <DrawerIconContainer>
@@ -80,17 +96,14 @@ const Home: React.FC = () => {
       <UserContainer>
         <UserMessageContainer>
           <UserMessage>
-            <UserMessageTitle>Good morning</UserMessageTitle>
+            <UserMessageTitle>{getWelcomeMessage()}</UserMessageTitle>
             <UserMessageSubtitle>
               {user?.name.split(' ')[0]}
             </UserMessageSubtitle>
           </UserMessage>
         </UserMessageContainer>
         <UserPictureContainer>
-          <UserPicture
-            resizeMode="contain"
-            source={userAvatar as ImageSourcePropType}
-          />
+          <UserPicture source={{uri: user?.imageUri}} />
         </UserPictureContainer>
       </UserContainer>
       <SamuButtonContainer>

@@ -1,18 +1,19 @@
-import axios from 'axios';
-import User from '../interfaces/User';
+import Axios from 'axios';
+import User, {UserApiResponse} from '../interfaces/User';
 
-export function loginApi(email: string, password: string): Promise<User> {
-  return new Promise((resolve) => {
-    axios
-      .post('localhost:3333/login', {
-        email,
-        password,
-      })
-      .then((res) => resolve(res.data as User));
-  });
+const axios = Axios.create({
+  baseURL: 'http://localhost:3333',
+});
+
+export async function loginApi(
+  email: string,
+  password: string,
+): Promise<UserApiResponse> {
+  const res = await axios.post('/login', {email, password});
+  return res.data as UserApiResponse;
 }
 
-export function updateApi(newUser: User): Promise<boolean> {
+export async function updateApi(newUser: User): Promise<boolean> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);

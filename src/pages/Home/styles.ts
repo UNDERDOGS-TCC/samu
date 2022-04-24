@@ -22,6 +22,7 @@ export const UserContainer = styled.View`
   width: 100%;
   margin: 20px 0 10px;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const UserMessageContainer = styled.View`
@@ -50,13 +51,14 @@ export const UserMessageSubtitle = styled.Text`
 `;
 
 export const UserPictureContainer = styled.View`
-  width: 50%;
+  width: 100px;
   height: 100px;
 `;
 
 export const UserPicture = styled.Image`
   width: 100%;
   height: 100%;
+  border-radius: 50px;
 `;
 
 export const SamuButtonContainer = styled.View`

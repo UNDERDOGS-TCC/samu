@@ -11,3 +11,10 @@ export default interface User {
   complement: string;
   imageUri: string;
 }
+
+export interface UserApiResponse {
+  message: string;
+  success: boolean;
+  user?: User;
+  id?: string;
+}

@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import {Alert} from 'react-native';
 import User from '../interfaces/User';
 import {loginApi, updateApi} from '../api/user';
 import Loader from '../components/Loader/Loader';
@@ -27,9 +28,13 @@ const AuthProvider: React.FC = ({children}) => {
   const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     const response = await loginApi(email, password);
-    if (response) {
+    if (response?.success) {
+      console.log(response);
       setIsLoading(false);
-      setUser(response);
+      setUser(response.user);
+    } else {
+      setIsLoading(false);
+      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
     }
   }, []);
 
