@@ -6,6 +6,7 @@ import {darkMode, lightMode} from '../themes/theme';
 import Signup from '../pages/Signup/Signup';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import Questionario from '../pages/Questionario/Questionario';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ const Routes: React.FC = () => {
         />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        <Stack.Screen name="Questionario" component={Questionario} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );

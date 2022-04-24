@@ -23,6 +23,10 @@ const Home: React.FC = () => {
         title="Reset password"
         onPress={() => navigation.navigate('ResetPassword' as never)}
       />
+      <Button
+        title="Questionario"
+        onPress={() => navigation.navigate('Questionario' as never)}
+      />
     </Container>
   );
 };

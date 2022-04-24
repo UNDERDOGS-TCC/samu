@@ -62,7 +62,8 @@
          "semi": "off",
          "@typescript-eslint/no-non-null-assertion": "off",
          "react/jsx-props-no-spreading": "off",
-         "react/no-unstable-nested-components": "off"
+         "react/no-unstable-nested-components": "off",
+         "no-use-before-define": "off"
     },
     "settings": {
         "import/resolver": {
