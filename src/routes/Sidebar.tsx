@@ -60,6 +60,7 @@ const Sidebar: React.FC = () => {
         name="Home"
         component={Home}
         options={{
+          unmountOnBlur: true,
           drawerIcon: ({color}) => (
             <Feather name="home" size={24} color={color} />
           ),

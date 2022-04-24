@@ -67,6 +67,18 @@ const Profile: React.FC = () => {
     setIsEditing(false);
   };
 
+  const handlePressCancel = () => {
+    setEmail(user?.email);
+    setCellphone(user?.cellphone);
+    setAddress(user?.address);
+    setComplement(user?.complement);
+    setCep(user?.cep);
+    setState(user?.state);
+    setCity(user?.city);
+    setImageUri(user?.imageUri);
+    setIsEditing(false);
+  };
+
   return (
     <Container>
       <ScrollView contentContainerStyle={{paddingBottom: insets.bottom}}>
@@ -152,7 +164,7 @@ const Profile: React.FC = () => {
                 title="Cancelar"
                 active
                 danger
-                onPress={() => setIsEditing(false)}
+                onPress={handlePressCancel}
               />
             </>
           ) : (
