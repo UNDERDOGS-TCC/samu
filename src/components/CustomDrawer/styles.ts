@@ -5,7 +5,7 @@ export const HeaderContainer = styled.View`
   width: 100%;
   height: 100px;
   padding: 0 0 0 10px;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
 `;
