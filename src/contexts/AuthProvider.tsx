@@ -28,7 +28,7 @@ const AuthProvider: React.FC = ({children}) => {
   const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     const response = await loginApi(email, password);
-    if (response?.success) {
+    if (response.success) {
       console.log(response);
       setIsLoading(false);
       setUser(response.user);
@@ -45,9 +45,12 @@ const AuthProvider: React.FC = ({children}) => {
   const updateUser = useCallback(async (newUser: User) => {
     setIsLoading(true);
     const response = await updateApi(newUser);
-    if (response) {
+    if (response.success) {
       setUser(newUser);
       setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
     }
   }, []);
 

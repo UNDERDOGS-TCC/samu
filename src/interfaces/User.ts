@@ -12,9 +12,15 @@ export default interface User {
   imageUri: string;
 }
 
-export interface UserApiResponse {
+export interface UserLoginApiResponse {
   message: string;
   success: boolean;
   user?: User;
+  id?: string;
+}
+
+export interface UserUpdateApiResponse {
+  message: string;
+  success: boolean;
   id?: string;
 }
