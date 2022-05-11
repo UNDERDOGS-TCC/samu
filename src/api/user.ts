@@ -1,11 +1,13 @@
+/* eslint-disable import/no-unresolved */
 import Axios from 'axios';
+import {API_URL} from '@env';
 import User, {
   UserLoginApiResponse,
   UserUpdateApiResponse,
 } from '../interfaces/User';
 
 const axios = Axios.create({
-  baseURL: 'http://192.168.15.11:3333/api/user', // SE QUISER TESTAR NO CELULAR, ALTERAR PARA IPV4 DA MAQUINA
+  baseURL: `${API_URL}/api/user`, // SE QUISER TESTAR NO CELULAR, ALTERAR PARA IPV4 DA MAQUINA
 });
 
 export async function loginApi(
