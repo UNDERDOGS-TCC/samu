@@ -8,94 +8,100 @@ export const Container = styled.View`
 `;
 
 export const TextSamu = styled.Text`
-  font-size: 20px;
-  margin: 10px 25px 85px 0px;
+  font-size: 21px;
+  margin: 4% 10% 5% 5%;
   font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
 `;
 
 export const TextLocal = styled.Text`
-  font-size: 18px;
-  margin: 10px 50px 0px 40px;
+  font-size: 20px;
+  margin: -15% 12% 0% 10%;
   font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
 `;
 
 export const TextEndereco = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   font-weight: normal;
   color: ${(props) => props.theme.main.colors.text};
 `;
 
 export const TextAjuda = styled.Text`
-  font-size: 20px;
-  margin: 10px 10px 3px 20px;
+  font-size: 17px;
+  margin: 2% 1% 1% 5%;
   font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.white};
 `;
 export const TextInfo = styled.Text`
-  margin: 0px 0px 0px 20px;
+  margin: 0 0 0 5%;
   color: ${(props) => props.theme.main.colors.white};
 `;
 
 export const ImageAmbulance = styled.Image`
-  padding: 40px;
-  width: 10px;
-  height: 10px;
-  margin: 5px 10px 80px 20px;
+  padding: 10%;
+  width: 10%;
+  height: 10%;
+  margin: 0% 0% 3% 5%;
 `;
 export const ImageTraco = styled.Image`
-  padding: 30px;
-  width: 5px;
-  height: 5px;
-  margin: 10px;
+  padding: 10%;
+  width: 5%;
+  height: 5%;
+  margin: -8%;
 `;
 
-export const View = styled.View`
+export const ViewSamu = styled.View`
   align-items: center;
   flex-direction: row;
-  margin: -80px -20px -8px 0px;
+  width: 90%;
+  height: 16%;
+`;
+export const ViewLocal = styled.View`
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+  height: 26%;
 `;
 
 export const ViewTraco = styled.View`
-  padding: 0px 0px 60px 0px;
   align-items: center;
-  flex-direction: row;
-  margin: -80px 0px -30px 0px;
+  margin-top: -6%;
+  width: 90%;
+  height: 5%;
 `;
 
 export const Seta = styled.View`
   align-items: center;
   flex-direction: row;
-  margin: -50px -10px 0px 275px;
+  margin: -17% 0 0 102%;
 `;
 
 export const LocationIcon = styled.Image`
-  padding: 25px;
-  margin: 0px -40px 0px -10px;
-  width: 10px;
-  height: 10px;
+  padding: 7%;
+  margin: -12% -10% 3% 0%;
+  width: 10%;
+  height: 10%;
 `;
 
 export const SetaIcon = styled.Image`
   padding: 20px;
-  width: 10px;
-  height: 10px;
+  width: 10%;
+  height: 10%;
 `;
 
 export const Card = styled(Animated.View)`
-  border-radius: 10px;
-  margin: 400px 0 0 0;
-  height: 380px;
-  width: 380px;
+  border-radius: 20px;
+  margin: 95% 0 0 0;
+  height: 55%;
+  width: 100%;
   border: solid 0.5px ${(props) => props.theme.main.colors.gray};
 `;
 
 export const BotaoAjuda = styled.TouchableOpacity`
   border-radius: 8px;
-  margin: -100px 0 0 0;
-  height: 85px;
-  width: 341px;
+  height: 18%;
+  width: 90%;
   background-color: ${(props) => props.theme.main.colors.lightblue};
 `;
 
@@ -104,7 +110,7 @@ export const ButtonContainer = styled.View`
 `;
 
 export const Quadrado = styled.View`
-  height: 95px;
-  width: 270px;
-  margin: 2px 10px 10px 10px;
+  height: 95%;
+  width: 80%;
+  margin: 0 0 20% 2%;
 `;

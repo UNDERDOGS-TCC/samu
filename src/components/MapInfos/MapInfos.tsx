@@ -13,7 +13,6 @@ import Button from '../Button/Button';
 import {
   Container,
   ImageAmbulance,
-  View,
   LocationIcon,
   TextSamu,
   TextLocal,
@@ -28,6 +27,8 @@ import {
   ImageTraco,
   ViewTraco,
   Card,
+  ViewSamu,
+  ViewLocal,
 } from './styles';
 
 const MapInfos: React.FC = () => {
@@ -74,11 +75,11 @@ const MapInfos: React.FC = () => {
         offset = 0;
       }
       Animated.timing(translateY, {
-        toValue: opened ? 180 : 0,
+        toValue: opened ? 200 : 0,
         duration: 100,
         useNativeDriver: true,
       }).start(() => {
-        offset = opened ? 180 : 0;
+        offset = opened ? 200 : 0;
         translateY.setOffset(offset);
         translateY.setValue(0);
       });
@@ -86,71 +87,67 @@ const MapInfos: React.FC = () => {
   }
 
   return (
-    <Container>
-      <PanGestureHandler
-        onGestureEvent={animatedEvent}
-        // eslint-disable-next-line react/jsx-no-bind
-        onHandlerStateChange={onHandlerStateChanged}
+    <PanGestureHandler
+      onGestureEvent={animatedEvent}
+      // eslint-disable-next-line react/jsx-no-bind
+      onHandlerStateChange={onHandlerStateChanged}
+    >
+      <Card
+        style={{
+          transform: [
+            {
+              translateY: translateY.interpolate({
+                inputRange: [-300, 0, 200],
+                outputRange: [-50, 0, 200],
+                extrapolate: 'clamp',
+              }),
+            },
+          ],
+        }}
       >
-        <Card
-          style={{
-            transform: [
-              {
-                translateY: translateY.interpolate({
-                  inputRange: [-350, 0, 180],
-                  outputRange: [-50, 0, 180],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          }}
-        >
-          <Container>
-            <ViewTraco>
-              <ImageTraco source={images.traço} />
-            </ViewTraco>
-            <View>
-              <TextSamu>SAMU a caminho...</TextSamu>
-              <ImageAmbulance source={images.carroambulancia} />
-            </View>
-            <View>
-              <LocationIcon source={images.location_icon} />
-              <TextLocal>
-                Seu local
-                {'\n'}
-                <TextEndereco>Rua Coral, Nº 05</TextEndereco>
-              </TextLocal>
-              <TextLocal>
-                20 KM
-                {'\n'}
-                <TextEndereco>35m</TextEndereco>
-              </TextLocal>
-            </View>
-          </Container>
-          <Container>
-            <BotaoAjuda>
-              <Quadrado>
-                <TextAjuda>Nos Ajude</TextAjuda>
-                <TextInfo>
-                  Preencha este formulário, caso tenha mais informações
-                </TextInfo>
-                <Seta>
-                  <SetaIcon source={images.seta} />
-                </Seta>
-              </Quadrado>
-            </BotaoAjuda>
-            <ButtonContainer>
-              <Button
-                title="Cancelar"
-                danger
-                active
-                onPress={() => navigation.navigate('Home' as never)}
-              />
-            </ButtonContainer>
-          </Container>
-        </Card>
-      </PanGestureHandler>
-    </Container>
+        <Container>
+          <ViewTraco>
+            <ImageTraco source={images.traço} />
+          </ViewTraco>
+          <ViewSamu>
+            <TextSamu>SAMU a caminho...</TextSamu>
+            <ImageAmbulance source={images.carroambulancia} />
+          </ViewSamu>
+          <ViewLocal>
+            <LocationIcon source={images.location_icon} />
+            <TextLocal>
+              Seu local
+              {'\n'}
+              <TextEndereco>Rua Coral, Nº 05</TextEndereco>
+            </TextLocal>
+            <TextLocal>
+              20 KM
+              {'\n'}
+              <TextEndereco>35m</TextEndereco>
+            </TextLocal>
+          </ViewLocal>
+          <BotaoAjuda>
+            <Quadrado>
+              <TextAjuda>Nos Ajude</TextAjuda>
+              <TextInfo>
+                Preencha este formulário, caso tenha mais informações
+              </TextInfo>
+              <Seta>
+                <SetaIcon source={images.seta} />
+              </Seta>
+            </Quadrado>
+          </BotaoAjuda>
+          <ButtonContainer>
+            <Button
+              title="Cancelar"
+              danger
+              active
+              onPress={() => navigation.navigate('Home' as never)}
+            />
+          </ButtonContainer>
+        </Container>
+      </Card>
+    </PanGestureHandler>
   );
 };
 
