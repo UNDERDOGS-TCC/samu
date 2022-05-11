@@ -70,7 +70,7 @@ const Login: React.FC = () => {
             <Button
               title="Entrar"
               active
-              onPress={() => navigation.navigate('Home' as never)}
+              onPress={() => navigation.navigate('Sidebar' as never)}
             />
           </ButtonContainer>
           <LadoALado>
