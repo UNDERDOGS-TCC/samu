@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
+import {TextInput} from 'react-native';
 import ChangeAvatarButton from '../../components/ChangeAvatarButton/ChangeAvatarButton';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
@@ -12,6 +13,9 @@ const FirstForm: React.FC<SignupFormProps> = ({
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  const passwordRef = useRef<TextInput>(null);
+  const passwordConfirmationRef = useRef<TextInput>(null);
 
   return (
     <PageContainer
@@ -30,6 +34,9 @@ const FirstForm: React.FC<SignupFormProps> = ({
         value={name}
         onChangeText={(text) => setName(text)}
         textContentType="name"
+        onSubmitEditing={() => passwordRef.current?.focus()}
+        blurOnSubmit={false}
+        returnKeyType="next"
       />
       <Input
         title="Senha"
@@ -38,6 +45,10 @@ const FirstForm: React.FC<SignupFormProps> = ({
         value={password}
         onChangeText={(text) => setPassword(text)}
         textContentType="oneTimeCode"
+        nextRef={passwordRef}
+        onSubmitEditing={() => passwordConfirmationRef.current?.focus()}
+        blurOnSubmit={false}
+        returnKeyType="next"
       />
       <Input
         title="Confirmar senha"
@@ -46,6 +57,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
         value={passwordConfirmation}
         onChangeText={(text) => setPasswordConfirmation(text)}
         textContentType="oneTimeCode"
+        nextRef={passwordConfirmationRef}
       />
       <Button
         active={

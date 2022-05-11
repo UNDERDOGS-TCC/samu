@@ -23,6 +23,7 @@ export const lightMode = {
       border: '#686868',
       placeholder: 'rgba(0, 0, 0, 0.5)',
       danger: '#a03c3c',
+      red: '#c94444',
     },
     font: {
       family: {
@@ -38,6 +39,7 @@ export const lightMode = {
         regular: '18px',
         big: '22px',
         header: 24,
+        drawer: 18,
       },
       weight: {
         bold: 'bold',
@@ -73,6 +75,7 @@ export const darkMode = {
       placeholder: '#C6C6C6',
       white: '#FFFFFF',
       danger: '#a03c3c',
+      red: '#c94444',
     },
     font: {
       family: {
@@ -88,6 +91,7 @@ export const darkMode = {
         regular: '18px',
         big: '22px',
         header: 24,
+        drawer: 18,
       },
       weight: {
         bold: 'bold',

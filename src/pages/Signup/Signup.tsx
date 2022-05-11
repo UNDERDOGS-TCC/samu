@@ -41,7 +41,7 @@ const Signup: React.FC = () => {
   };
 
   const handleCreateAccount = () => {
-    navigation.reset({index: 0, routes: [{name: 'Home' as never}]});
+    navigation.navigate('Home' as never);
   };
 
   return (
