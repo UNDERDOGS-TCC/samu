@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {ImageSourcePropType} from 'react-native';
+import {ImageSourcePropType, KeyboardAvoidingView} from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import {useTheme} from '../../themes/ThemeManagerProvider';
@@ -38,51 +38,53 @@ const Login: React.FC = () => {
   return (
     <Container>
       <OptionContainer>
-        <ImageContainer>
-          <Image source={isDarkMode ? images.LogoBranco : images.LogoPreto} />
-        </ImageContainer>
-        <InputContainer>
-          <Input
-            title="E-mail"
-            placeholder="Informe o e-mail"
-            isPassword={false}
-            value={user}
-            onChangeText={(text) => setUser(text)}
-          />
-        </InputContainer>
-        <InputContainer>
-          <Input
-            title="Senha"
-            placeholder="Informe a senha"
-            isPassword
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-        </InputContainer>
-        <RedefinirSenhaButton>
-          <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
-        </RedefinirSenhaButton>
-        <ButtonContainer>
-          <Button
-            title="Entrar"
-            active
-            onPress={() => navigation.navigate('Home' as never)}
-          />
-        </ButtonContainer>
-        <LadoALado>
-          <Linha />
-          <Text> ou </Text>
-          <Linha />
-        </LadoALado>
+        <KeyboardAvoidingView behavior="height">
+          <ImageContainer>
+            <Image source={isDarkMode ? images.LogoBranco : images.LogoPreto} />
+          </ImageContainer>
+          <InputContainer>
+            <Input
+              title="E-mail"
+              placeholder="Informe o e-mail"
+              isPassword={false}
+              value={user}
+              onChangeText={(text) => setUser(text)}
+            />
+          </InputContainer>
+          <InputContainer>
+            <Input
+              title="Senha"
+              placeholder="Informe a senha"
+              isPassword
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+          </InputContainer>
+          <RedefinirSenhaButton>
+            <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
+          </RedefinirSenhaButton>
+          <ButtonContainer>
+            <Button
+              title="Entrar"
+              active
+              onPress={() => navigation.navigate('Home' as never)}
+            />
+          </ButtonContainer>
+          <LadoALado>
+            <Linha />
+            <Text> ou </Text>
+            <Linha />
+          </LadoALado>
 
-        <ButtonContainer>
-          <Button
-            title="Criar Conta"
-            secondary
-            active
-            onPress={() => navigation.navigate('Home' as never)}
-          />
-        </ButtonContainer>
+          <ButtonContainer>
+            <Button
+              title="Criar Conta"
+              secondary
+              active
+              onPress={() => navigation.navigate('Home' as never)}
+            />
+          </ButtonContainer>
+        </KeyboardAvoidingView>
       </OptionContainer>
     </Container>
   );

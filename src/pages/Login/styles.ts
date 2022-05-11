@@ -13,6 +13,7 @@ export const OptionContainer = styled.View`
 `;
 export const ImageContainer = styled.View`
   align-items: center;
+  margin-top: -8%;
 `;
 
 export const Text = styled.Text`
@@ -29,7 +30,7 @@ export const RedefinirSenhaText = styled.Text`
 export const RedefinirSenhaButton = styled.TouchableOpacity`
   width: 38%;
   align-self: flex-end;
-  margin: -2% 0 10% 0;
+  margin: -2% 0 9% 0;
 `;
 
 export const Linha = styled.View`
@@ -53,5 +54,5 @@ export const InputContainer = styled.View`
 export const Image = styled.Image`
   width: 50%;
   height: 45%;
-  margin: 20% 0% -50% 0%;
+  margin: 25% 0% -58% 0%;
 `;
