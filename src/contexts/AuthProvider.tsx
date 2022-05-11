@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 import {Alert} from 'react-native';
-import User from '../interfaces/User';
-import {loginApi, updateApi} from '../api/user';
+import User, {UserRegister} from '../interfaces/User';
+import {loginApi, registerApi, updateApi} from '../api/user';
 import Loader from '../components/Loader/Loader';
 
 interface AuthContextData {
@@ -15,6 +15,7 @@ interface AuthContextData {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   updateUser: (newUser: User) => Promise<void>;
+  registerUser: (newUser: UserRegister) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -54,14 +55,31 @@ const AuthProvider: React.FC = ({children}) => {
     }
   }, []);
 
+  const registerUser = useCallback(async (newUser: UserRegister) => {
+    setIsLoading(true);
+    const response = await registerApi(newUser);
+    if (response.success) {
+      const userWithoutPassword = newUser;
+      delete userWithoutPassword.password;
+      delete userWithoutPassword.passwordConfirmation;
+
+      setUser(userWithoutPassword as User);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+    }
+  }, []);
+
   const returnValues = useMemo(
     () => ({
       user,
       login,
       logout,
       updateUser,
+      registerUser,
     }),
-    [user, login, logout, updateUser],
+    [user, login, logout, updateUser, registerUser],
   );
 
   return (

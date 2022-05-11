@@ -3,11 +3,13 @@ import Axios from 'axios';
 import {API_URL} from '@env';
 import User, {
   UserLoginApiResponse,
+  UserRegister,
+  UserRegisterApiResponse,
   UserUpdateApiResponse,
 } from '../interfaces/User';
 
 const axios = Axios.create({
-  baseURL: `${API_URL}/api/user`, // SE QUISER TESTAR NO CELULAR, ALTERAR PARA IPV4 DA MAQUINA
+  baseURL: `${API_URL}/api/user`,
 });
 
 export async function loginApi(
@@ -21,4 +23,11 @@ export async function loginApi(
 export async function updateApi(newUser: User): Promise<UserUpdateApiResponse> {
   const res = await axios.post('/update', newUser);
   return res.data as UserUpdateApiResponse;
+}
+
+export async function registerApi(
+  newUser: UserRegister,
+): Promise<UserRegisterApiResponse> {
+  const res = await axios.post('/signup', newUser);
+  return res.data as UserRegisterApiResponse;
 }

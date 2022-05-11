@@ -12,6 +12,11 @@ export default interface User {
   imageUri: string;
 }
 
+export interface UserRegister extends User {
+  password?: string;
+  passwordConfirmation?: string;
+}
+
 export interface UserLoginApiResponse {
   message: string;
   success: boolean;
@@ -20,6 +25,12 @@ export interface UserLoginApiResponse {
 }
 
 export interface UserUpdateApiResponse {
+  message: string;
+  success: boolean;
+  id?: string;
+}
+
+export interface UserRegisterApiResponse {
   message: string;
   success: boolean;
   id?: string;

@@ -1,20 +1,23 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {TextInput} from 'react-native';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import {PageContainer} from './styles';
-import SignupFormProps from '../../interfaces/SignupForm';
+import {SecondFormProps} from '../../interfaces/SignupForm';
 
-const SecondForm: React.FC<SignupFormProps> = ({
+const SecondForm: React.FC<SecondFormProps> = ({
   paddingBottom,
   handlePressNext,
   handlePressBack,
+  cpf,
+  setCpf,
+  birthday,
+  setBirthday,
+  cellphone,
+  setCellphone,
+  email,
+  setEmail,
 }) => {
-  const [cpf, setCpf] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [cellphone, setCellphone] = useState('');
-  const [email, setEmail] = useState('');
-
   const birthdayRef = useRef<TextInput>(null);
   const cellphoneRef = useRef<TextInput>(null);
   const emailRef = useRef<TextInput>(null);

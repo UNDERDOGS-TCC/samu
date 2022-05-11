@@ -1,21 +1,25 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {TextInput} from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import SignupFormProps from '../../interfaces/SignupForm';
+import {ThirdFormProps} from '../../interfaces/SignupForm';
 import {DoubleInputContainer, InputContainer, PageContainer} from './styles';
 
-const ThirdForm: React.FC<SignupFormProps> = ({
+const ThirdForm: React.FC<ThirdFormProps> = ({
   paddingBottom,
   handlePressNext,
   handlePressBack,
+  address,
+  setAddress,
+  complement,
+  setComplement,
+  zipCode,
+  setZipCode,
+  state,
+  setState,
+  city,
+  setCity,
 }) => {
-  const [address, setAddress] = useState('');
-  const [complement, setComplement] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
-
   const complementRef = useRef<TextInput>(null);
   const zipCodeRef = useRef<TextInput>(null);
   const stateRef = useRef<TextInput>(null);
