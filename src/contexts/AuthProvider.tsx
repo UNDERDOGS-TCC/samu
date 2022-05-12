@@ -27,14 +27,21 @@ const AuthProvider: React.FC = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const login = useCallback(async (email: string, password: string) => {
-    setIsLoading(true);
-    const response = await loginApi(email, password);
-    if (response.success) {
+    try {
+      setIsLoading(true);
+      const response = await loginApi(email, password);
+      if (response.success) {
+        setIsLoading(false);
+        setUser(response.user);
+      } else {
+        setIsLoading(false);
+        Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      }
+    } catch (error) {
       setIsLoading(false);
-      setUser(response.user);
-    } else {
-      setIsLoading(false);
-      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      Alert.alert('Ocorreu um erro', 'Tente novamente mais tarde', [
+        {text: 'OK'},
+      ]);
     }
   }, []);
 
@@ -43,30 +50,43 @@ const AuthProvider: React.FC = ({children}) => {
   }, []);
 
   const updateUser = useCallback(async (newUser: User) => {
-    setIsLoading(true);
-    const response = await updateApi(newUser);
-    if (response.success) {
-      setUser(newUser);
+    try {
+      setIsLoading(true);
+      const response = await updateApi(newUser);
+      if (response.success) {
+        setUser(newUser);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+        Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      }
+    } catch (error) {
       setIsLoading(false);
-    } else {
-      setIsLoading(false);
-      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      Alert.alert('Ocorreu um erro', 'Tente novamente mais tarde', [
+        {text: 'OK'},
+      ]);
     }
   }, []);
 
   const registerUser = useCallback(async (newUser: UserRegister) => {
-    setIsLoading(true);
-    const response = await registerApi(newUser);
-    if (response.success) {
-      const userWithoutPassword = newUser;
-      delete userWithoutPassword.password;
-      delete userWithoutPassword.passwordConfirmation;
-
-      setUser(userWithoutPassword as User);
+    try {
+      setIsLoading(true);
+      const response = await registerApi(newUser);
+      if (response.success) {
+        const userWithoutPassword = newUser;
+        delete userWithoutPassword.password;
+        delete userWithoutPassword.passwordConfirmation;
+        setUser(userWithoutPassword as User);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+        Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      }
+    } catch (error) {
       setIsLoading(false);
-    } else {
-      setIsLoading(false);
-      Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+      Alert.alert('Ocorreu um erro', 'Tente novamente mais tarde', [
+        {text: 'OK'},
+      ]);
     }
   }, []);
 
