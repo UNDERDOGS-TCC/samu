@@ -103,7 +103,9 @@ const Home: React.FC = () => {
           </UserMessage>
         </UserMessageContainer>
         <UserPictureContainer>
-          <UserPicture source={{uri: user?.imageUri}} />
+          <UserPicture
+            source={{uri: `data:image/jpg;base64,${user?.imageUri}`}}
+          />
         </UserPictureContainer>
       </UserContainer>
       <SamuButtonContainer>

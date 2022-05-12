@@ -15,6 +15,7 @@ const FirstForm: React.FC<FirstFormProps> = ({
   setPassword,
   passwordConfirmation,
   setPasswordConfirmation,
+  setImageUri,
 }) => {
   const passwordRef = useRef<TextInput>(null);
   const passwordConfirmationRef = useRef<TextInput>(null);
@@ -27,7 +28,7 @@ const FirstForm: React.FC<FirstFormProps> = ({
       key="1"
     >
       <ImageContainer>
-        <ChangeAvatarButton isEdit />
+        <ChangeAvatarButton sendImageUri={setImageUri} isEdit />
       </ImageContainer>
       <Input
         title="Nome"

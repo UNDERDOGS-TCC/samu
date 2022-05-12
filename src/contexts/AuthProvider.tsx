@@ -30,7 +30,6 @@ const AuthProvider: React.FC = ({children}) => {
     setIsLoading(true);
     const response = await loginApi(email, password);
     if (response.success) {
-      console.log(response);
       setIsLoading(false);
       setUser(response.user);
     } else {

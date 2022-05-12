@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import {manipulateAsync} from 'expo-image-manipulator';
 import {Avatar, AvatarEditOverlay, Container, EditIcon} from './styles';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
@@ -23,13 +24,19 @@ const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 1,
+      quality: 0,
+      base64: true,
     });
 
     if (!result.cancelled) {
-      setImageUri(result.uri);
+      const compressedImage = await manipulateAsync(result.uri, [], {
+        compress: 0,
+        base64: true,
+      });
+
+      setImageUri(compressedImage.base64!);
       if (sendImageUri) {
-        sendImageUri(result.uri);
+        sendImageUri(compressedImage.base64!);
       }
     }
   };
@@ -43,7 +50,7 @@ const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
       {image || imageUri ? (
         <Avatar
           imageStyle={{borderRadius: 100}}
-          source={{uri: image || imageUri}}
+          source={{uri: `data:image/jpg;base64,${image || imageUri}`}}
         >
           {isEdit && (
             <AvatarEditOverlay>

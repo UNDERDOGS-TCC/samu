@@ -91,6 +91,7 @@ const Signup: React.FC = () => {
             setPassword={setPassword}
             passwordConfirmation={passwordConfirmation}
             setPasswordConfirmation={setPasswordConfirmation}
+            setImageUri={setImageUri}
             paddingBottom={insets.bottom}
             handlePressNext={handlePressNext}
             key="1"

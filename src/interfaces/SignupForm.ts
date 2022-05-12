@@ -11,6 +11,7 @@ export interface FirstFormProps extends SignupFormProps {
   setPassword: (password: string) => void;
   passwordConfirmation: string;
   setPasswordConfirmation: (passwordConfirmation: string) => void;
+  setImageUri: (imageUri: string) => void;
 }
 
 export interface SecondFormProps extends SignupFormProps {
