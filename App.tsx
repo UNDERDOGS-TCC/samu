@@ -14,6 +14,7 @@ import {
   Rubik_900Black_Italic,
 } from '@expo-google-fonts/rubik';
 import AppLoading from 'expo-app-loading';
+import {useAssets} from 'expo-asset';
 import Routes from './src/routes/Routes';
 import ThemeManagerProvider from './src/contexts/ThemeManagerProvider';
 import AuthProvider from './src/contexts/AuthProvider';
@@ -31,14 +32,26 @@ const App: React.FC = () => {
     Rubik_900Black,
     Rubik_900Black_Italic,
   });
+  const [assets] = useAssets([
+    require('./assets/carro-ambulancia.png'),
+    require('./assets/chat.png'),
+    require('./assets/formularioBranco.png'),
+    require('./assets/location_icon.png'),
+    require('./assets/LogoBranco.png'),
+    require('./assets/LogoPreto.png'),
+    require('./assets/saude.png'),
+    require('./assets/seguranca.png'),
+    require('./assets/seta.png'),
+    require('./assets/traco.png'),
+  ]);
 
-  if (!isFontsLoaded) {
+  if (!isFontsLoaded || !assets) {
     return <AppLoading autoHideSplash={false} />;
   }
 
   return (
     <ThemeManagerProvider>
-      <AuthProvider appIsReady={isFontsLoaded}>
+      <AuthProvider appIsReady={isFontsLoaded && !!assets}>
         <Routes />
       </AuthProvider>
     </ThemeManagerProvider>

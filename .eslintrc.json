@@ -68,7 +68,8 @@
          "react/jsx-curly-newline": "off",
          "no-nested-ternary": "off",
          "no-underscore-dangle": "off",
-         "no-useless-return": "off"
+         "no-useless-return": "off",
+         "global-require": "off"
     },
     "settings": {
         "import/resolver": {
