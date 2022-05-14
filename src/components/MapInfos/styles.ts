@@ -1,7 +1,15 @@
-import {Animated} from 'react-native';
+import {Animated, Dimensions} from 'react-native';
+import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
 
+export const Map = styled(MapView)`
+  flex: 1;
+  width: ${Dimensions.get('window').width}px;
+  height: ${Dimensions.get('window').height}px;
+`;
+
 export const Container = styled.View`
+  position: relative;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -84,10 +92,13 @@ export const SetaIcon = styled.Image`
 `;
 
 export const Card = styled(Animated.View)`
+  position: absolute;
+  bottom: 15px;
   border-radius: 10px;
   margin: 400px 0 0 0;
   height: 380px;
   width: 380px;
+  background-color: ${(props) => props.theme.main.colors.background};
   border: solid 0.5px ${(props) => props.theme.main.colors.gray};
 `;
 
