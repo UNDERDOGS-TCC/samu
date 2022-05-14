@@ -35,7 +35,6 @@ export const UserMessage = styled.View`
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 20px;
 `;
 
 export const UserMessageTitle = styled.Text`
@@ -82,7 +81,7 @@ export const LeftButtonContainer = styled.View`
   width: 50%;
   height: 100%;
   padding: 10% 0;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -93,7 +92,7 @@ export const LeftButtonTitle = styled.Text`
 `;
 
 export const LeftButtonDescription = styled.Text`
-  font-size: ${(props) => props.theme.main.font.size.small};
+  font-size: ${(props) => props.theme.main.font.size.regular};
   color: ${(props) => props.theme.main.colors.white};
   font-family: ${(props) => props.theme.main.font.family.rubik.regular};
   text-align: center;
