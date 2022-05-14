@@ -19,7 +19,7 @@ import ThemeManagerProvider from './src/contexts/ThemeManagerProvider';
 import AuthProvider from './src/contexts/AuthProvider';
 
 const App: React.FC = () => {
-  const [fontsLoaded] = useFonts({
+  const [isFontsLoaded] = useFonts({
     Rubik_300Light,
     Rubik_300Light_Italic,
     Rubik_400Regular,
@@ -32,13 +32,13 @@ const App: React.FC = () => {
     Rubik_900Black_Italic,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  if (!isFontsLoaded) {
+    return <AppLoading autoHideSplash={false} />;
   }
 
   return (
     <ThemeManagerProvider>
-      <AuthProvider>
+      <AuthProvider appIsReady={isFontsLoaded}>
         <Routes />
       </AuthProvider>
     </ThemeManagerProvider>

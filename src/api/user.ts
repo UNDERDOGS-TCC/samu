@@ -31,3 +31,10 @@ export async function registerApi(
   const res = await axios.post('/signup', newUser);
   return res.data as UserRegisterApiResponse;
 }
+
+export async function getUserById(
+  userId: string,
+): Promise<UserLoginApiResponse> {
+  const res = await axios.get(`/${userId}`);
+  return res.data as UserLoginApiResponse;
+}
