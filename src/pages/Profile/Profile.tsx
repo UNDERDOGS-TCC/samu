@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
+import {useHeaderHeight} from '@react-navigation/elements';
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {KeyboardAvoidingView, Platform, StatusBar, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import ChangeAvatarButton from '../../components/ChangeAvatarButton/ChangeAvatarButton';
@@ -81,118 +82,126 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
-      <ScrollView contentContainerStyle={{paddingBottom: insets.bottom}}>
-        <ProfilePicContainer>
-          <ChangeAvatarButton
-            isEdit={isEditing}
-            image={imageUri}
-            sendImageUri={getImageUri}
-          />
-        </ProfilePicContainer>
-        <UserInfosContainer>
-          <BigInfo>{user?.name}</BigInfo>
-          {isEditing ? (
-            <>
-              <Input
-                title="Email"
-                placeholder="joazinho@gmail.com"
-                value={email}
-                onChangeText={(text: string) => setEmail(text)}
-              />
-              <Input
-                title="Celular"
-                placeholder="11912345678"
-                value={cellphone}
-                onChangeText={(text: string) => setCellphone(text)}
-              />
-            </>
-          ) : (
-            <>
-              <UserInfos>
-                Email:&nbsp;
-                {user?.email}
-              </UserInfos>
-              <UserInfos>
-                Cel.:&nbsp;
-                {user?.cellphone}
-              </UserInfos>
-            </>
-          )}
-          <UserInfos>
-            Data de nasc.:&nbsp;
-            {user?.birthday}
-          </UserInfos>
-          <UserInfos>
-            CPF:&nbsp;
-            {user?.cpf}
-          </UserInfos>
-          <BigInfo>Logradouro</BigInfo>
-          {isEditing ? (
-            <>
-              <Input
-                title="Endereço"
-                placeholder="Rua dos Bobos, 0"
-                value={address}
-                onChangeText={(text: string) => setAddress(text)}
-              />
-              <Input
-                title="Complemento"
-                placeholder="Torre 1, apto 101"
-                value={complement}
-                onChangeText={(text: string) => setComplement(text)}
-              />
-              <Input
-                title="CEP"
-                placeholder="01234567"
-                value={cep}
-                onChangeText={(text: string) => setCep(text)}
-              />
-              <Input
-                title="UF"
-                placeholder="SP"
-                value={state}
-                onChangeText={(text: string) => setState(text)}
-              />
-              <Input
-                title="Cidade"
-                placeholder="São Paulo"
-                value={city}
-                onChangeText={(text: string) => setCity(text)}
-              />
-              <Button title="Salvar" active onPress={handlePressSave} />
-              <Button
-                title="Cancelar"
-                active
-                danger
-                onPress={handlePressCancel}
-              />
-            </>
-          ) : (
-            <>
-              <UserInfos>
-                Endereço:&nbsp;
-                {user?.address}
-              </UserInfos>
-              <UserInfos>
-                Complemento:&nbsp;
-                {user?.complement}
-              </UserInfos>
-              <UserInfos>
-                CEP:&nbsp;
-                {user?.cep}
-              </UserInfos>
-              <UserInfos>
-                UF:&nbsp;
-                {user?.state}
-              </UserInfos>
-              <UserInfos>
-                Cidade:&nbsp;
-                {user?.city}
-              </UserInfos>
-            </>
-          )}
-        </UserInfosContainer>
-      </ScrollView>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={
+          useHeaderHeight() + (StatusBar.currentHeight || 0)
+        }
+      >
+        <ScrollView contentContainerStyle={{paddingBottom: insets.bottom}}>
+          <ProfilePicContainer>
+            <ChangeAvatarButton
+              isEdit={isEditing}
+              image={imageUri}
+              sendImageUri={getImageUri}
+            />
+          </ProfilePicContainer>
+          <UserInfosContainer>
+            <BigInfo>{user?.name}</BigInfo>
+            {isEditing ? (
+              <>
+                <Input
+                  title="Email"
+                  placeholder="joazinho@gmail.com"
+                  value={email}
+                  onChangeText={(text: string) => setEmail(text)}
+                />
+                <Input
+                  title="Celular"
+                  placeholder="11912345678"
+                  value={cellphone}
+                  onChangeText={(text: string) => setCellphone(text)}
+                />
+              </>
+            ) : (
+              <>
+                <UserInfos>
+                  Email:&nbsp;
+                  {user?.email}
+                </UserInfos>
+                <UserInfos>
+                  Cel.:&nbsp;
+                  {user?.cellphone}
+                </UserInfos>
+              </>
+            )}
+            <UserInfos>
+              Data de nasc.:&nbsp;
+              {user?.birthday}
+            </UserInfos>
+            <UserInfos>
+              CPF:&nbsp;
+              {user?.cpf}
+            </UserInfos>
+            <BigInfo>Logradouro</BigInfo>
+            {isEditing ? (
+              <>
+                <Input
+                  title="Endereço"
+                  placeholder="Rua dos Bobos, 0"
+                  value={address}
+                  onChangeText={(text: string) => setAddress(text)}
+                />
+                <Input
+                  title="Complemento"
+                  placeholder="Torre 1, apto 101"
+                  value={complement}
+                  onChangeText={(text: string) => setComplement(text)}
+                />
+                <Input
+                  title="CEP"
+                  placeholder="01234567"
+                  value={cep}
+                  onChangeText={(text: string) => setCep(text)}
+                />
+                <Input
+                  title="UF"
+                  placeholder="SP"
+                  value={state}
+                  onChangeText={(text: string) => setState(text)}
+                />
+                <Input
+                  title="Cidade"
+                  placeholder="São Paulo"
+                  value={city}
+                  onChangeText={(text: string) => setCity(text)}
+                />
+                <Button title="Salvar" active onPress={handlePressSave} />
+                <Button
+                  title="Cancelar"
+                  active
+                  danger
+                  onPress={handlePressCancel}
+                />
+              </>
+            ) : (
+              <>
+                <UserInfos>
+                  Endereço:&nbsp;
+                  {user?.address}
+                </UserInfos>
+                <UserInfos>
+                  Complemento:&nbsp;
+                  {user?.complement}
+                </UserInfos>
+                <UserInfos>
+                  CEP:&nbsp;
+                  {user?.cep}
+                </UserInfos>
+                <UserInfos>
+                  UF:&nbsp;
+                  {user?.state}
+                </UserInfos>
+                <UserInfos>
+                  Cidade:&nbsp;
+                  {user?.city}
+                </UserInfos>
+              </>
+            )}
+          </UserInfosContainer>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Container>
   );
 };

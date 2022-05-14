@@ -2,13 +2,19 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  align-items: center;
-  justify-content: space-between;
   background-color: ${(props) => props.theme.main.colors.background};
 `;
 
+export const ContainerInner = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+})``;
+
 export const InputsContainer = styled.View`
-  flex: 2;
+  flex: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
