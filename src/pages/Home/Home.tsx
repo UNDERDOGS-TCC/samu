@@ -102,7 +102,7 @@ const Home: React.FC = () => {
             </UserMessageSubtitle>
           </UserMessage>
         </UserMessageContainer>
-        <UserPictureContainer>
+        <UserPictureContainer onPress={() => navigation.navigate('Perfil')}>
           <UserPicture
             source={{uri: `data:image/jpg;base64,${user?.imageUri}`}}
           />

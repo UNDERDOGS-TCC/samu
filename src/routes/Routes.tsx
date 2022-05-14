@@ -35,6 +35,7 @@ const Routes: React.FC = () => {
           <Stack.Group>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} />
           </Stack.Group>
         ) : (
           <Stack.Group>
@@ -44,7 +45,6 @@ const Routes: React.FC = () => {
               options={{headerShown: false}}
             />
             <Stack.Screen name="Mapa" component={Mapa} />
-            <Stack.Screen name="ResetPassword" component={ResetPassword} />
           </Stack.Group>
         )}
       </Stack.Navigator>

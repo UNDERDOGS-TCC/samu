@@ -82,7 +82,10 @@ const Login: React.FC = () => {
                 onChangeText={(text) => setPassword(text)}
               />
             </InputContainer>
-            <RedefinirSenhaButton>
+            <RedefinirSenhaButton
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('ResetPassword' as never)}
+            >
               <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
             </RedefinirSenhaButton>
           </InputsContainer>

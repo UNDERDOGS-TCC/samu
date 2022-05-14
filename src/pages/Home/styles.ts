@@ -49,9 +49,12 @@ export const UserMessageSubtitle = styled.Text`
   font-family: ${(props) => props.theme.main.font.family.rubik.bold};
 `;
 
-export const UserPictureContainer = styled.View`
+export const UserPictureContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   width: 100px;
   height: 100px;
+  border-radius: 50px;
 `;
 
 export const UserPicture = styled.Image`
