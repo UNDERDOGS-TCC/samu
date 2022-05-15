@@ -28,10 +28,18 @@ import {
   ImageTraco,
   ViewTraco,
   Card,
+  Map,
 } from './styles';
 
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
+  const initialRegion = {
+    latitude: -23.56498,
+    longitude: -46.63327,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+
   let offset = 0;
   const translateY = new Animated.Value(0);
   const animatedEvent = Animated.event(
@@ -87,6 +95,7 @@ const MapInfos: React.FC = () => {
 
   return (
     <Container>
+      <Map region={initialRegion} />
       <PanGestureHandler
         onGestureEvent={animatedEvent}
         // eslint-disable-next-line react/jsx-no-bind
