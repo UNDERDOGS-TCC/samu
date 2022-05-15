@@ -38,3 +38,12 @@ export async function getUserById(
   const res = await axios.get(`/${userId}`);
   return res.data as UserLoginApiResponse;
 }
+
+export async function resetPassword(
+  cpf: string,
+  email: string,
+  birthday: string,
+): Promise<UserLoginApiResponse> {
+  const res = await axios.post('/resetpassword', {cpf, email, birthday});
+  return res.data as UserLoginApiResponse;
+}
