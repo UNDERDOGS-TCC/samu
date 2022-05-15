@@ -35,7 +35,6 @@ export const UserMessage = styled.View`
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 20px;
 `;
 
 export const UserMessageTitle = styled.Text`
@@ -107,8 +106,8 @@ export const RightButtonContainer = styled.View`
 `;
 
 export const SamuImage = styled.Image`
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
 `;
 
 export const OtherServicesContainer = styled.View`
@@ -159,7 +158,7 @@ export const OtherServicesListItem = styled.View<OtherServicesListItemProps>`
 
 export const OtherServicesListImage = styled.Image`
   height: 50%;
-  width: 100%;
+  width: 90%;
 `;
 
 export const OtherServicesListItemText = styled.Text`

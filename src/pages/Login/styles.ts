@@ -1,24 +1,10 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${(props) => props.theme.main.colors.background};
-`;
-
-export const InputsContainer = styled.View`
-  flex: 2;
   align-items: center;
   justify-content: center;
-  width: 100%;
-`;
-
-export const ButtonsContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  height: 100%;
+  margin: 4%;
 `;
 
 export const Text = styled.Text`
@@ -33,34 +19,23 @@ export const RedefinirSenhaText = styled.Text`
 `;
 
 export const RedefinirSenhaButton = styled.TouchableOpacity`
-  height: 30px;
-  margin: 2px 25px 0 0;
+  margin: -2% 0% 6% 0%;
   align-self: flex-end;
 `;
 
 export const Linha = styled.View`
-  height: 0px;
-  width: 140px;
-  margin-top: 5px;
+  width: 42%;
+  margin-top: 1.5%;
   border: 1px solid ${(props) => props.theme.main.colors.gray};
 `;
 export const LadoALado = styled.View`
   flex-direction: row;
   align-items: center;
-  margin: 2px 0;
-`;
-
-export const ButtonContainer = styled.View`
-  width: 90%;
-`;
-
-export const InputContainer = styled.View`
-  width: 90%;
-  margin: -5px;
+  margin: 1%;
 `;
 
 export const Image = styled.Image`
-  width: 200px;
-  height: 100px;
-  margin: 50px 0 15px;
+  width: 55%;
+  height: 15%;
+  margin: 0% 0% 5%;
 `;

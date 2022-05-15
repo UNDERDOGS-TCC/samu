@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ImageSourcePropType, Animated} from 'react-native';
+import {Animated, Platform} from 'react-native';
 import {
   HandlerStateChangeEvent,
   PanGestureHandler,
@@ -13,7 +13,6 @@ import Button from '../Button/Button';
 import {
   Container,
   ImageAmbulance,
-  View,
   LocationIcon,
   TextSamu,
   TextLocal,
@@ -28,7 +27,15 @@ import {
   ImageTraco,
   ViewTraco,
   Card,
+  Teste,
+  ViewSamu,
+  ViewLocal,
 } from './styles';
+
+import carroambulancia from '../../../assets/carro-ambulancia.png';
+import location_icon from '../../../assets/location_icon.png';
+import seta from '../../../assets/seta.png';
+import traço from '../../../assets/traco.png';
 
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
@@ -44,14 +51,6 @@ const MapInfos: React.FC = () => {
     ],
     {useNativeDriver: true},
   );
-  const images = {
-    carroambulancia:
-      require('../../../assets/carro-ambulancia.png') as ImageSourcePropType,
-    location_icon:
-      require('../../../assets/location_icon.png') as ImageSourcePropType,
-    seta: require('../../../assets/seta.png') as ImageSourcePropType,
-    traço: require('../../../assets/traco.png') as ImageSourcePropType,
-  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -74,11 +73,11 @@ const MapInfos: React.FC = () => {
         offset = 0;
       }
       Animated.timing(translateY, {
-        toValue: opened ? 180 : 0,
-        duration: 100,
+        toValue: opened ? 0 : 100,
+        duration: 1,
         useNativeDriver: true,
       }).start(() => {
-        offset = opened ? 180 : 0;
+        offset = opened ? 0 : 100;
         translateY.setOffset(offset);
         translateY.setValue(0);
       });
@@ -86,35 +85,36 @@ const MapInfos: React.FC = () => {
   }
 
   return (
-    <Container>
-      <PanGestureHandler
-        onGestureEvent={animatedEvent}
-        // eslint-disable-next-line react/jsx-no-bind
-        onHandlerStateChange={onHandlerStateChanged}
+    <PanGestureHandler
+      onGestureEvent={animatedEvent}
+      // eslint-disable-next-line react/jsx-no-bind
+      onHandlerStateChange={onHandlerStateChanged}
+    >
+      <Card
+        style={{
+          transform: [
+            {
+              translateY: translateY.interpolate({
+                inputRange: Platform.OS === 'ios' ? [-1, 0, 100] : [-1, 0, 100],
+                outputRange:
+                  Platform.OS === 'ios' ? [-1, 160, 0] : [-1, 220, 0],
+                extrapolate: 'clamp',
+              }),
+            },
+          ],
+        }}
       >
-        <Card
-          style={{
-            transform: [
-              {
-                translateY: translateY.interpolate({
-                  inputRange: [-350, 0, 180],
-                  outputRange: [-50, 0, 180],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          }}
-        >
+        <Teste>
           <Container>
             <ViewTraco>
-              <ImageTraco source={images.traço} />
+              <ImageTraco source={traço} />
             </ViewTraco>
-            <View>
+            <ViewSamu>
               <TextSamu>SAMU a caminho...</TextSamu>
-              <ImageAmbulance source={images.carroambulancia} />
-            </View>
-            <View>
-              <LocationIcon source={images.location_icon} />
+              <ImageAmbulance source={carroambulancia} />
+            </ViewSamu>
+            <ViewLocal>
+              <LocationIcon source={location_icon} />
               <TextLocal>
                 Seu local
                 {'\n'}
@@ -125,9 +125,8 @@ const MapInfos: React.FC = () => {
                 {'\n'}
                 <TextEndereco>35m</TextEndereco>
               </TextLocal>
-            </View>
-          </Container>
-          <Container>
+            </ViewLocal>
+
             <BotaoAjuda>
               <Quadrado>
                 <TextAjuda>Nos Ajude</TextAjuda>
@@ -135,7 +134,7 @@ const MapInfos: React.FC = () => {
                   Preencha este formulário, caso tenha mais informações
                 </TextInfo>
                 <Seta>
-                  <SetaIcon source={images.seta} />
+                  <SetaIcon source={seta} />
                 </Seta>
               </Quadrado>
             </BotaoAjuda>
@@ -148,9 +147,9 @@ const MapInfos: React.FC = () => {
               />
             </ButtonContainer>
           </Container>
-        </Card>
-      </PanGestureHandler>
-    </Container>
+        </Teste>
+      </Card>
+    </PanGestureHandler>
   );
 };
 

@@ -1,6 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {ImageSourcePropType} from 'react-native';
+import {
+  ImageSourcePropType,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
@@ -10,12 +16,8 @@ import {
   Linha,
   LadoALado,
   Image,
-  ButtonContainer,
-  InputContainer,
   RedefinirSenhaText,
   RedefinirSenhaButton,
-  ButtonsContainer,
-  InputsContainer,
 } from './styles';
 
 import logopreto from '../../../assets/LogoPreto.png';
@@ -40,16 +42,19 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container>
-      <InputsContainer>
-        <Image
-          source={
-            isDarkMode
-              ? (logobranco as ImageSourcePropType)
-              : (logopreto as ImageSourcePropType)
-          }
-        />
-        <InputContainer>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Image
+            source={
+              isDarkMode
+                ? (logobranco as ImageSourcePropType)
+                : (logopreto as ImageSourcePropType)
+            }
+          />
+
           <Input
             title="E-mail"
             placeholder="Informe o e-mail"
@@ -57,8 +62,7 @@ const Login: React.FC = () => {
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
-        </InputContainer>
-        <InputContainer>
+
           <Input
             title="Senha"
             placeholder="Informe a senha"
@@ -66,35 +70,31 @@ const Login: React.FC = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-        </InputContainer>
-        <RedefinirSenhaButton>
-          <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
-        </RedefinirSenhaButton>
-      </InputsContainer>
-      <ButtonsContainer>
-        <ButtonContainer>
+
+          <RedefinirSenhaButton>
+            <RedefinirSenhaText>Redefinir senha</RedefinirSenhaText>
+          </RedefinirSenhaButton>
+
           <Button
             title="Entrar"
             active={!!email && !!password}
             onPress={handleLogin}
           />
-        </ButtonContainer>
-        <LadoALado>
-          <Linha />
-          <Text> ou </Text>
-          <Linha />
-        </LadoALado>
 
-        <ButtonContainer>
+          <LadoALado>
+            <Linha />
+            <Text> ou </Text>
+            <Linha />
+          </LadoALado>
           <Button
             title="Criar Conta"
             secondary
             active
             onPress={() => navigation.navigate('Signup' as never)}
           />
-        </ButtonContainer>
-      </ButtonsContainer>
-    </Container>
+        </Container>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
