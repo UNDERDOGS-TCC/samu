@@ -32,6 +32,14 @@ import {
   TextLocationUserInfos,
   ContainerSamuInfos,
   TextLocationSamuInfos,
+  ContainerButtons,
+  BtnHelp,
+  TextTitleBtnHelp,
+  ContainerTextBtnHelp,
+  TextBtnHelp,
+  ContainerArrow,
+  ArrowIcon,
+  BtnCancel,
 } from './styles';
 
 import carroambulancia from '../../../assets/carro-ambulancia.png';
@@ -42,6 +50,13 @@ import traço from '../../../assets/traco.png';
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const [userAddress, setAddress] = useState('');
+  const [samuLocation, setSamuLocation] = useState({
+    location: {
+      kmToYou: '',
+      minutesToYou: '',
+    },
+  });
   const [region, setRegion] = useState({
     location: {
       latitude: 0,
@@ -81,6 +96,13 @@ const MapInfos: React.FC = () => {
           longitudeDelta: 0.01,
         },
       });
+      setAddress('Rua Valdomiro Gonzaga Silva, 873');
+      setSamuLocation({
+        location: {
+          kmToYou: '4,7 Km',
+          minutesToYou: '5 min',
+        },
+      });
       setIsLoading(false);
     })();
     navigation.setOptions({
@@ -103,11 +125,11 @@ const MapInfos: React.FC = () => {
         offset = 0;
       }
       Animated.timing(translateY, {
-        toValue: opened ? 180 : 0,
-        duration: 100,
+        toValue: opened ? 0 : 100,
+        duration: 1,
         useNativeDriver: true,
       }).start(() => {
-        offset = opened ? 180 : 0;
+        offset = opened ? 0 : 100;
         translateY.setOffset(offset);
         translateY.setValue(0);
       });
@@ -163,83 +185,40 @@ const MapInfos: React.FC = () => {
                 </ContainerUserLocationIcon>
                 <ContainerUserAddressInfo>
                   <TextLocationUserInfos>Seu local: </TextLocationUserInfos>
-                  <TextLocationUserInfos>
-                    Rua Valdomiro Gonzaga Silva, 873
-                  </TextLocationUserInfos>
+                  <TextLocationUserInfos>{userAddress}</TextLocationUserInfos>
                 </ContainerUserAddressInfo>
               </ContainerUserInfos>
               <ContainerSamuInfos>
-                <TextLocationSamuInfos>4,5 Km</TextLocationSamuInfos>
-                <TextLocationSamuInfos>15 Min</TextLocationSamuInfos>
+                <TextLocationSamuInfos>
+                  {samuLocation.location.kmToYou}
+                </TextLocationSamuInfos>
+                <TextLocationSamuInfos>
+                  {samuLocation.location.minutesToYou}
+                </TextLocationSamuInfos>
               </ContainerSamuInfos>
             </ContainerInfos>
+
+            <ContainerButtons>
+              <BtnHelp>
+                <ContainerTextBtnHelp>
+                  <TextTitleBtnHelp>Nos Ajude</TextTitleBtnHelp>
+                  <TextBtnHelp>
+                    Preencha este formulário, caso tenha mais informações
+                  </TextBtnHelp>
+                </ContainerTextBtnHelp>
+                <ContainerArrow>
+                  <ArrowIcon source={seta} />
+                </ContainerArrow>
+              </BtnHelp>
+
+              <BtnCancel onPress={() => navigation.navigate('Home' as never)}>
+                <TextBtnHelp>CANCELAR</TextBtnHelp>
+              </BtnCancel>
+            </ContainerButtons>
           </CardContainer>
         </Card>
       </PanGestureHandler>
     </Container>
-    /* <PanGestureHandler
-        onGestureEvent={animatedEvent}
-        // eslint-disable-next-line react/jsx-no-bind
-        onHandlerStateChange={onHandlerStateChanged}
-      >
-        <Card
-          style={{
-            transform: [
-              {
-                translateY: translateY.interpolate({
-                  inputRange: [-350, 0, 180],
-                  outputRange: [-50, 0, 180],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          }}
-        >
-          <Container>
-            <ViewTraco>
-              <ImageTraco source={images.traço} />
-            </ViewTraco>
-            <View>
-              <TextSamu>SAMU a caminho...</TextSamu>
-              <ImageAmbulance source={images.carroambulancia} />
-            </View>
-            <View>
-              <LocationIcon source={images.location_icon} />
-              <TextLocal>
-                Seu local
-                {'\n'}
-                <TextEndereco>Rua Coral, Nº 05</TextEndereco>
-              </TextLocal>
-              <TextLocal>
-                20 KM
-                {'\n'}
-                <TextEndereco>35m</TextEndereco>
-              </TextLocal>
-            </View>
-          </Container>
-          <Container>
-            <BotaoAjuda>
-              <Quadrado>
-                <TextAjuda>Nos Ajude</TextAjuda>
-                <TextInfo>
-                  Preencha este formulário, caso tenha mais informações
-                </TextInfo>
-                <Seta>
-                  <SetaIcon source={images.seta} />
-                </Seta>
-              </Quadrado>
-            </BotaoAjuda>
-            <ButtonContainer>
-              <Button
-                title="Cancelar"
-                danger
-                active
-                onPress={() => navigation.navigate('Home' as never)}
-              />
-            </ButtonContainer>
-          </Container>
-        </Card>
-      </PanGestureHandler> */
   );
 };
 

@@ -38,7 +38,6 @@ export const CardContainer = styled.View`
 
 export const ContainerTraco = styled.View`
   align-items: center;
-  top: -10%;
   justify-content: center;
   height: 10%;
   width: 95%;
@@ -54,7 +53,7 @@ export const ContainerSamu = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 40%;
+  height: 20%;
   width: 80%;
   margin-bottom: 15px;
 `;
@@ -69,13 +68,13 @@ export const ContainerTextSamu = styled.View`
 `;
 
 export const TextSamu = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
 `;
 
 export const ImageAmbulance = styled.Image`
-  height: 130%;
+  height: 120%;
   width: auto;
   aspect-ratio: 1;
 `;
@@ -87,6 +86,7 @@ export const ContainerInfos = styled.View`
   justify-content: space-between;
   height: 20%;
   width: 95%;
+  margin-bottom: 10px;
 `;
 
 export const ContainerUserInfos = styled.View`
@@ -95,15 +95,14 @@ export const ContainerUserInfos = styled.View`
   justify-content: center;
   flex-direction: row;
   height: 100%;
-  width: 50%;
+  width: 60%;
 `;
 
 export const ContainerUserLocationIcon = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start;
-  height: 100%;
+  height: 80%;
   width: 20%;
 `;
 
@@ -127,7 +126,7 @@ export const ContainerSamuInfos = styled.View`
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 50%;
+  width: 40%;
 `;
 
 export const TextLocationSamuInfos = styled.Text`
@@ -141,6 +140,83 @@ export const TextLocationUserInfos = styled.Text`
   font-weight: ${(props) => props.theme.main.font.weight.bold};
   color: ${(props) => props.theme.main.colors.text};
   margin-left: 10px;
+`;
+
+export const ContainerButtons = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 40%;
+  width: 95%;
+`;
+
+export const BtnHelp = styled.TouchableOpacity`
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  height: 50%;
+  width: 100%;
+  background-color: ${(props) => props.theme.main.colors.lightblue};
+`;
+
+export const ContainerTextBtnHelp = styled.View`
+  display: flex;
+  padding: 0 10px 0 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 80%;
+`;
+
+export const ContainerArrowBtnHelp = styled.View`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 10px;
+  height: 40%;
+  width: 100%;
+`;
+
+export const TextTitleBtnHelp = styled.Text`
+  font-size: 18px;
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
+  color: ${(props) => props.theme.main.colors.white};
+`;
+
+export const TextBtnHelp = styled.Text`
+  font-size: 14px;
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
+  color: ${(props) => props.theme.main.colors.white};
+`;
+
+export const ContainerArrow = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 20%;
+`;
+
+export const ArrowIcon = styled.Image`
+  width: 50%;
+  height: auto;
+  aspect-ratio: 1;
+`;
+
+export const BtnCancel = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  height: 40%;
+  width: 100%;
+  background-color: ${(props) => props.theme.main.colors.danger};
 `;
 
 // export const TextLocal = styled.Text`
