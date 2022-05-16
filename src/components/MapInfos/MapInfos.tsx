@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
 import {ImageSourcePropType, Animated} from 'react-native';
@@ -32,15 +32,20 @@ import {
   Card,
   Map,
 } from './styles';
+import Loader from '../Loader/Loader';
 
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
-  const initialRegion = {
-    latitude: -23.56498,
-    longitude: -46.63327,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(String);
+  const [region, setRegion] = useState({
+    location: {
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
+    },
+  });
 
   let offset = 0;
   const translateY = new Animated.Value(0);
@@ -64,6 +69,25 @@ const MapInfos: React.FC = () => {
   };
 
   useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      const {status} = await Location.requestBackgroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        alert(errorMsg);
+        setIsLoading(false);
+      }
+      const findLocation = await Location.getCurrentPositionAsync({});
+      setRegion({
+        location: {
+          latitude: findLocation.coords.latitude,
+          longitude: findLocation.coords.longitude,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        },
+      });
+      setIsLoading(false);
+    })();
     navigation.setOptions({
       headerShown: false,
     });
@@ -97,11 +121,12 @@ const MapInfos: React.FC = () => {
 
   return (
     <Container>
-      <Map region={initialRegion}>
+      <Loader isActive={isLoading} />
+      <Map region={region.location}>
         <Marker
           coordinate={{
-            latitude: initialRegion.latitude,
-            longitude: initialRegion.longitude,
+            latitude: region.location.latitude,
+            longitude: region.location.longitude,
           }}
         />
       </Map>
