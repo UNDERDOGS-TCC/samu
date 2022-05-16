@@ -3,7 +3,6 @@ import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
 
 export const Map = styled(MapView)`
-  flex: 1;
   width: ${Dimensions.get('window').width}px;
   height: ${Dimensions.get('window').height}px;
 `;

@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
+import {Marker} from 'react-native-maps';
+import * as Location from 'expo-location';
 import {ImageSourcePropType, Animated} from 'react-native';
 import {
   HandlerStateChangeEvent,
@@ -95,7 +97,14 @@ const MapInfos: React.FC = () => {
 
   return (
     <Container>
-      <Map region={initialRegion} />
+      <Map region={initialRegion}>
+        <Marker
+          coordinate={{
+            latitude: initialRegion.latitude,
+            longitude: initialRegion.longitude,
+          }}
+        />
+      </Map>
       <PanGestureHandler
         onGestureEvent={animatedEvent}
         // eslint-disable-next-line react/jsx-no-bind
