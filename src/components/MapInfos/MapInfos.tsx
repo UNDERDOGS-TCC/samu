@@ -121,6 +121,7 @@ const MapInfos: React.FC = () => {
 
   return (
     <Container>
+      <Loader isActive={isLoading} />
       <Map region={region.location}>
         <Marker
           coordinate={{
@@ -192,7 +193,6 @@ const MapInfos: React.FC = () => {
           </Container>
         </Card>
       </PanGestureHandler>
-      <Loader isActive={isLoading} />
     </Container>
   );
 };
