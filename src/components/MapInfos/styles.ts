@@ -53,9 +53,9 @@ export const ContainerSamu = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 40%;
-  width: 95%;
+  width: 80%;
   margin-bottom: 15px;
 `;
 
@@ -84,7 +84,7 @@ export const ContainerInfos = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 20%;
   width: 95%;
 `;

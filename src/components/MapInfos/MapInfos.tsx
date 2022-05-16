@@ -168,7 +168,6 @@ const MapInfos: React.FC = () => {
                   </TextLocationUserInfos>
                 </ContainerUserAddressInfo>
               </ContainerUserInfos>
-
               <ContainerSamuInfos>
                 <TextLocationSamuInfos>4,5 Km</TextLocationSamuInfos>
                 <TextLocationSamuInfos>15 Min</TextLocationSamuInfos>
