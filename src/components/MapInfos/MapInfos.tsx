@@ -11,6 +11,7 @@ import {
   PanGestureHandlerEventPayload,
   State,
 } from 'react-native-gesture-handler';
+import Loader from '../Loader/Loader';
 import Button from '../Button/Button';
 import {
   Container,
@@ -32,7 +33,6 @@ import {
   Card,
   Map,
 } from './styles';
-import Loader from '../Loader/Loader';
 
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
@@ -82,8 +82,8 @@ const MapInfos: React.FC = () => {
         location: {
           latitude: findLocation.coords.latitude,
           longitude: findLocation.coords.longitude,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
         },
       });
       setIsLoading(false);
@@ -121,7 +121,6 @@ const MapInfos: React.FC = () => {
 
   return (
     <Container>
-      <Loader isActive={isLoading} />
       <Map region={region.location}>
         <Marker
           coordinate={{
@@ -193,6 +192,7 @@ const MapInfos: React.FC = () => {
           </Container>
         </Card>
       </PanGestureHandler>
+      <Loader isActive={isLoading} />
     </Container>
   );
 };
