@@ -50,7 +50,7 @@ import traço from '../../../assets/traco.png';
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
-  const [userAddress, setAddress] = useState('');
+  const [userAddress, setAddress] = useState('Aguardando localização...');
   const [samuLocation, setSamuLocation] = useState({
     location: {
       kmToYou: '',
@@ -96,7 +96,14 @@ const MapInfos: React.FC = () => {
           longitudeDelta: 0.01,
         },
       });
-      setAddress('Rua Valdomiro Gonzaga Silva, 873');
+      const FindAddress = await Location.reverseGeocodeAsync({
+        latitude: findLocation.coords.latitude,
+        longitude: findLocation.coords.longitude,
+      });
+      console.log(FindAddress);
+      setAddress(
+        `${String(FindAddress[0].street)}, ${String(FindAddress[0].name)}`,
+      );
       setSamuLocation({
         location: {
           kmToYou: '4,7 Km',
@@ -158,9 +165,9 @@ const MapInfos: React.FC = () => {
               {
                 translateY: translateY.interpolate({
                   inputRange:
-                    Platform.OS === 'ios' ? [-350, 0, 180] : [-200, 0, 180],
+                    Platform.OS === 'ios' ? [-1, 0, 100] : [-1, 0, 100],
                   outputRange:
-                    Platform.OS === 'ios' ? [-50, 0, 180] : [-50, 0, 180],
+                    Platform.OS === 'ios' ? [-1, 160, 0] : [-1, 220, 0],
                   extrapolate: 'clamp',
                 }),
               },
