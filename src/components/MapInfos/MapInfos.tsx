@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
-import {ImageSourcePropType, Animated} from 'react-native';
+import {ImageSourcePropType, Animated, Platform} from 'react-native';
 import {
   HandlerStateChangeEvent,
   PanGestureHandler,
@@ -15,29 +15,33 @@ import Loader from '../Loader/Loader';
 import Button from '../Button/Button';
 import {
   Container,
-  ImageAmbulance,
-  View,
-  LocationIcon,
-  TextSamu,
-  TextLocal,
-  TextEndereco,
-  BotaoAjuda,
-  TextAjuda,
-  TextInfo,
-  Quadrado,
-  SetaIcon,
-  Seta,
-  ButtonContainer,
-  ImageTraco,
-  ViewTraco,
-  Card,
   Map,
+  Card,
+  CardContainer,
+  ContainerTraco,
+  Traco,
+  ContainerSamu,
+  ContainerTextSamu,
+  TextSamu,
+  ImageAmbulance,
+  ContainerInfos,
+  ContainerUserInfos,
+  ContainerUserLocationIcon,
+  LocationIcon,
+  ContainerUserAddressInfo,
+  TextLocationUserInfos,
+  ContainerSamuInfos,
+  TextLocationSamuInfos,
 } from './styles';
+
+import carroambulancia from '../../../assets/carro-ambulancia.png';
+import location_icon from '../../../assets/location_icon.png';
+import seta from '../../../assets/seta.png';
+import traço from '../../../assets/traco.png';
 
 const MapInfos: React.FC = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(String);
   const [region, setRegion] = useState({
     location: {
       latitude: 0,
@@ -59,22 +63,13 @@ const MapInfos: React.FC = () => {
     ],
     {useNativeDriver: true},
   );
-  const images = {
-    carroambulancia:
-      require('../../../assets/carro-ambulancia.png') as ImageSourcePropType,
-    location_icon:
-      require('../../../assets/location_icon.png') as ImageSourcePropType,
-    seta: require('../../../assets/seta.png') as ImageSourcePropType,
-    traço: require('../../../assets/traco.png') as ImageSourcePropType,
-  };
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const {status} = await Location.requestBackgroundPermissionsAsync();
+      const {status} = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        alert(errorMsg);
+        alert('Permissão para localização negada!');
         setIsLoading(false);
       }
       const findLocation = await Location.getCurrentPositionAsync({});
@@ -140,6 +135,59 @@ const MapInfos: React.FC = () => {
             transform: [
               {
                 translateY: translateY.interpolate({
+                  inputRange:
+                    Platform.OS === 'ios' ? [-350, 0, 180] : [-200, 0, 180],
+                  outputRange:
+                    Platform.OS === 'ios' ? [-50, 0, 180] : [-50, 0, 180],
+                  extrapolate: 'clamp',
+                }),
+              },
+            ],
+          }}
+        >
+          <CardContainer>
+            <ContainerTraco>
+              <Traco source={traço} />
+            </ContainerTraco>
+            <ContainerSamu>
+              <ContainerTextSamu>
+                <TextSamu>SAMU</TextSamu>
+                <TextSamu>a caminho...</TextSamu>
+              </ContainerTextSamu>
+              <ImageAmbulance source={carroambulancia} />
+            </ContainerSamu>
+            <ContainerInfos>
+              <ContainerUserInfos>
+                <ContainerUserLocationIcon>
+                  <LocationIcon source={location_icon} />
+                </ContainerUserLocationIcon>
+                <ContainerUserAddressInfo>
+                  <TextLocationUserInfos>Seu local: </TextLocationUserInfos>
+                  <TextLocationUserInfos>
+                    Rua Valdomiro Gonzaga Silva, 873
+                  </TextLocationUserInfos>
+                </ContainerUserAddressInfo>
+              </ContainerUserInfos>
+
+              <ContainerSamuInfos>
+                <TextLocationSamuInfos>4,5 Km</TextLocationSamuInfos>
+                <TextLocationSamuInfos>15 Min</TextLocationSamuInfos>
+              </ContainerSamuInfos>
+            </ContainerInfos>
+          </CardContainer>
+        </Card>
+      </PanGestureHandler>
+    </Container>
+    /* <PanGestureHandler
+        onGestureEvent={animatedEvent}
+        // eslint-disable-next-line react/jsx-no-bind
+        onHandlerStateChange={onHandlerStateChanged}
+      >
+        <Card
+          style={{
+            transform: [
+              {
+                translateY: translateY.interpolate({
                   inputRange: [-350, 0, 180],
                   outputRange: [-50, 0, 180],
                   extrapolate: 'clamp',
@@ -192,8 +240,7 @@ const MapInfos: React.FC = () => {
             </ButtonContainer>
           </Container>
         </Card>
-      </PanGestureHandler>
-    </Container>
+      </PanGestureHandler> */
   );
 };
 
