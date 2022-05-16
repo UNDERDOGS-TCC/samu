@@ -100,7 +100,6 @@ const MapInfos: React.FC = () => {
         latitude: findLocation.coords.latitude,
         longitude: findLocation.coords.longitude,
       });
-      console.log(FindAddress);
       setAddress(
         `${String(FindAddress[0].street)}, ${String(FindAddress[0].name)}`,
       );
