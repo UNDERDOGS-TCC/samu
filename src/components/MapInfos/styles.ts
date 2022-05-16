@@ -146,7 +146,7 @@ export const ContainerButtons = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 40%;
   width: 95%;
 `;
@@ -158,7 +158,7 @@ export const BtnHelp = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  height: 50%;
+  height: 55%;
   width: 100%;
   background-color: ${(props) => props.theme.main.colors.lightblue};
 `;
