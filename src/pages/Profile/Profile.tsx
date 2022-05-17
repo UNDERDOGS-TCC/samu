@@ -16,6 +16,9 @@ import {
   BigInfo,
   HeaderRightContainer,
   HeaderRightIcon,
+  ResetPasswordContainer,
+  ResetPasswordButton,
+  ResetPasswordText,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -101,6 +104,15 @@ const Profile: React.FC = () => {
             <BigInfo>{user?.name}</BigInfo>
             {isEditing ? (
               <>
+                <ResetPasswordContainer>
+                  <ResetPasswordButton
+                    onPress={() =>
+                      navigation.navigate('RedefinePassword' as never)
+                    }
+                  >
+                    <ResetPasswordText>Redefinir senha</ResetPasswordText>
+                  </ResetPasswordButton>
+                </ResetPasswordContainer>
                 <Input
                   title="Email"
                   placeholder="joazinho@gmail.com"

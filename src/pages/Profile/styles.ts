@@ -45,6 +45,30 @@ export const HeaderRightContainer = styled.TouchableOpacity.attrs({
   height: 100%;
 `;
 
+export const ResetPasswordContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const ResetPasswordButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ResetPasswordText = styled.Text`
+  font-size: ${(props) => props.theme.main.font.size.regular};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
+  color: ${(props) => props.theme.main.colors.text};
+  padding-bottom: 15px;
+  text-decoration: underline;
+  text-decoration-color: ${(props) => props.theme.main.colors.text};
+`;
+
 export const HeaderRightIcon = styled(Feather).attrs((props) => ({
   name: 'edit-2',
   size: 24,

@@ -32,6 +32,7 @@ const ResetPassword: React.FC = () => {
       if (!response.success) {
         setIsLoading(false);
         Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+        return;
       }
       setIsLoading(false);
       Alert.alert('Sucesso', response.message, [

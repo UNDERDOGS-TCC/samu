@@ -119,7 +119,7 @@ const Input: React.FC<InputProps> = ({
         {isPassword && !showPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Feather
-              name="eye"
+              name="eye-off"
               size={24}
               color={
                 isDarkMode
@@ -132,7 +132,7 @@ const Input: React.FC<InputProps> = ({
         {isPassword && showPassword && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Feather
-              name="eye-off"
+              name="eye"
               size={24}
               color={
                 isDarkMode

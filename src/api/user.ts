@@ -2,6 +2,7 @@
 import Axios from 'axios';
 import {API_URL} from '@env';
 import User, {
+  UserGenericApiResponse,
   UserLoginApiResponse,
   UserRegister,
   UserRegisterApiResponse,
@@ -43,7 +44,20 @@ export async function resetPassword(
   cpf: string,
   email: string,
   birthday: string,
-): Promise<UserLoginApiResponse> {
+): Promise<UserGenericApiResponse> {
   const res = await axios.post('/resetpassword', {cpf, email, birthday});
-  return res.data as UserLoginApiResponse;
+  return res.data as UserGenericApiResponse;
+}
+
+export async function redefinePassword(
+  id: string,
+  oldPassword: string,
+  newPassword: string,
+): Promise<UserGenericApiResponse> {
+  const res = await axios.post('/redefinepassword', {
+    id,
+    oldPassword,
+    newPassword,
+  });
+  return res.data as UserGenericApiResponse;
 }

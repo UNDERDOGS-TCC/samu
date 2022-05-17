@@ -9,6 +9,7 @@ import Mapa from '../pages/Mapa/Mapa';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import {useAuth} from '../contexts/AuthProvider';
+import RedefinePassword from '../pages/RedefinePassword/RedefinePassword';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,10 @@ const Routes: React.FC = () => {
               options={{headerShown: false}}
             />
             <Stack.Screen name="Mapa" component={Mapa} />
+            <Stack.Screen
+              name="RedefinePassword"
+              component={RedefinePassword}
+            />
           </Stack.Group>
         )}
       </Stack.Navigator>
