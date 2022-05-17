@@ -35,6 +35,7 @@ const Signup: React.FC = () => {
   useEffect(() => {
     navigation.setOptions({
       title: 'Cadastro',
+      headerShadowVisible: false,
     });
   }, [navigation]);
 
