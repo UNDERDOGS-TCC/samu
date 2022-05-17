@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useHeaderHeight} from '@react-navigation/elements';
-import {KeyboardAvoidingView, Platform, StatusBar} from 'react-native';
+import {Alert, KeyboardAvoidingView, Platform, StatusBar} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
@@ -11,14 +11,18 @@ import {
   InputsContainer,
   ScrollContainer,
 } from './styles';
+import {redefinePassword} from '../../api/user';
+import {useAuth} from '../../contexts/AuthProvider';
+import Loader from '../../components/Loader/Loader';
 
 const RedefinePassword: React.FC = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-
+  const {user} = useAuth();
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
@@ -27,8 +31,29 @@ const RedefinePassword: React.FC = () => {
     });
   }, [navigation]);
 
+  const handlePressSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const res = await redefinePassword(user._id!, oldPassword, newPassword);
+      if (!res.success) {
+        setIsLoading(false);
+        Alert.alert('Erro ao redefinir senha', res.message, [{text: 'OK'}]);
+        return;
+      }
+      setIsLoading(false);
+      Alert.alert('Sucesso', res.message, [{text: 'OK'}]);
+      navigation.goBack();
+    } catch (error) {
+      setIsLoading(false);
+      Alert.alert('Erro ao redefinir senha', 'Tente novamente mais tarde', [
+        {text: 'OK'},
+      ]);
+    }
+  };
+
   return (
     <Container>
+      <Loader isActive={isLoading} />
       <KeyboardAvoidingView
         style={{flex: 1}}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -61,7 +86,15 @@ const RedefinePassword: React.FC = () => {
             />
           </InputsContainer>
           <ButtonContainer paddingBottom={insets.bottom}>
-            <Button title="Redefinir senha" active onPress={() => {}} />
+            <Button
+              title="Redefinir senha"
+              active={
+                !!oldPassword &&
+                !!newPassword &&
+                newPassword === newPasswordConfirmation
+              }
+              onPress={handlePressSubmit}
+            />
           </ButtonContainer>
         </ScrollContainer>
       </KeyboardAvoidingView>
