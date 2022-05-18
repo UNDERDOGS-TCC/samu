@@ -1,4 +1,4 @@
-# SAMU PROJECT <a href="#"><img src="https://img.shields.io/badge/Version-0.1.2-green?style=flat-square" alt="Actual Version"></a>
+# SAMU JÁ PROJECT <a href="#"><img src="https://img.shields.io/badge/Version-1.0.5-green?style=flat-square" alt="Actual Version"></a>
 <p> A project that estimates the time Samu takes to reach you. </p>
 
 ## USED TECHNOLOGIES
