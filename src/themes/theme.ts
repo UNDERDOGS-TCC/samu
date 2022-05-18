@@ -64,11 +64,11 @@ export const darkMode = {
   },
   main: {
     colors: {
-      primary: '#1C3253',
-      secondary: '#18A0FB',
+      primary: '#18A0FB',
+      secondary: '#1C3253',
       lightblue: '#18A0FB',
       darkblue: '#1C3253',
-      gray: '#C6C6C6',
+      gray: '#808080',
       white: '#FFFFFF',
       black: '#000000',
       background: '#303030',

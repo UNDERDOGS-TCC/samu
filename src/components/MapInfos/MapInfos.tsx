@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Marker} from 'react-native-maps';
 import * as Location from 'expo-location';
-import {Animated, Platform} from 'react-native';
+import {Alert, Animated, Platform} from 'react-native';
 import {
   HandlerStateChangeEvent,
   PanGestureHandler,
@@ -83,8 +83,7 @@ const MapInfos: React.FC = () => {
       setIsLoading(true);
       const {status} = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        // eslint-disable-next-line no-alert
-        alert('Permissão para localização negada!');
+        Alert.alert('Permissão para localização negada!', '', [{text: 'OK'}]);
         setIsLoading(false);
       }
       const findLocation = await Location.getCurrentPositionAsync({});

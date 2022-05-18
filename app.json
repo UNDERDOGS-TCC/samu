@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "samu",
-    "slug": "samu",
+    "name": "Samu Já",
+    "slug": "samuja",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splashscreen.png",
+      "image": "./assets/new_splashscreen.png",
       "resizeMode": "cover",
-      "backgroundColor": "#146478"
+      "backgroundColor": "#18A0FB"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,8 +21,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#18A0FB"
       }
     },
     "web": {

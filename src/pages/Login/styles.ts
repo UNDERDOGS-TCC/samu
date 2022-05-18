@@ -66,7 +66,7 @@ export const InputContainer = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: 200px;
+  width: 50%;
   height: 100px;
   margin: 50px 0 15px;
 `;

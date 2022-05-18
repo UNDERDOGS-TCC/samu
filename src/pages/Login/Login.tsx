@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {
   Container,
   Text,
@@ -25,13 +24,11 @@ import {
   ContainerInner,
 } from './styles';
 
-import logopreto from '../../../assets/LogoPreto.png';
-import logobranco from '../../../assets/LogoBranco.png';
+import logo from '../../../assets/logo.png';
 import {useAuth} from '../../contexts/AuthProvider';
 
 const Login: React.FC = () => {
   const navigation = useNavigation();
-  const {isDarkMode} = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {login} = useAuth();
@@ -57,13 +54,7 @@ const Login: React.FC = () => {
       >
         <ContainerInner>
           <InputsContainer>
-            <Image
-              source={
-                isDarkMode
-                  ? (logobranco as ImageSourcePropType)
-                  : (logopreto as ImageSourcePropType)
-              }
-            />
+            <Image resizeMode="contain" source={logo as ImageSourcePropType} />
             <InputContainer>
               <Input
                 title="E-mail"
@@ -106,8 +97,8 @@ const Login: React.FC = () => {
             <ButtonContainer>
               <Button
                 title="Criar Conta"
-                secondary
                 active
+                secondary
                 onPress={() => navigation.navigate('Signup' as never)}
               />
             </ButtonContainer>
