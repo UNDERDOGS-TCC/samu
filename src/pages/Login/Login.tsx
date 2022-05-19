@@ -47,7 +47,7 @@ const Login: React.FC = () => {
     <Container>
       <KeyboardAvoidingView
         style={{flex: 1}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={
           useHeaderHeight() + (StatusBar.currentHeight || 0)
         }
