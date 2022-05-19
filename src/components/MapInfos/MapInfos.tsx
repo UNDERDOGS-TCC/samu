@@ -2,19 +2,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Marker} from 'react-native-maps';
-import * as Location from 'expo-location';
-import {Alert, Animated, Platform} from 'react-native';
+import {Animated, Platform} from 'react-native';
 import {
   HandlerStateChangeEvent,
   PanGestureHandler,
   PanGestureHandlerEventPayload,
   State,
 } from 'react-native-gesture-handler';
-import Loader from '../Loader/Loader';
+import {LocationGeocodedAddress} from 'expo-location';
 import {
   Container,
-  Map,
   Card,
   CardContainer,
   ContainerTraco,
@@ -46,24 +43,17 @@ import location_icon from '../../../assets/location_icon.png';
 import seta from '../../../assets/seta.png';
 import traço from '../../../assets/traco.png';
 
-const MapInfos: React.FC = () => {
+interface MapInfosProps {
+  userAddress: LocationGeocodedAddress[];
+  samuLocation: {
+    kmsToYou: number;
+    minutesToYou: number;
+  };
+}
+
+const MapInfos: React.FC<MapInfosProps> = ({userAddress, samuLocation}) => {
   const navigation = useNavigation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [userAddress, setAddress] = useState('Aguardando localização...');
-  const [samuLocation, setSamuLocation] = useState({
-    location: {
-      kmToYou: '',
-      minutesToYou: '',
-    },
-  });
-  const [region, setRegion] = useState({
-    location: {
-      latitude: 0,
-      longitude: 0,
-      latitudeDelta: 0,
-      longitudeDelta: 0,
-    },
-  });
+  const [addressText, setAddressText] = useState('Aguardando localização...');
 
   let offset = 0;
   const translateY = new Animated.Value(0);
@@ -77,43 +67,6 @@ const MapInfos: React.FC = () => {
     ],
     {useNativeDriver: true},
   );
-
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      const {status} = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permissão para localização negada!', '', [{text: 'OK'}]);
-        setIsLoading(false);
-      }
-      const findLocation = await Location.getCurrentPositionAsync({});
-      setRegion({
-        location: {
-          latitude: findLocation.coords.latitude,
-          longitude: findLocation.coords.longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        },
-      });
-      const FindAddress = await Location.reverseGeocodeAsync({
-        latitude: findLocation.coords.latitude,
-        longitude: findLocation.coords.longitude,
-      });
-      setAddress(
-        `${String(FindAddress[0].street)}, ${String(FindAddress[0].name)}`,
-      );
-      setSamuLocation({
-        location: {
-          kmToYou: '4,7 Km',
-          minutesToYou: '5 min',
-        },
-      });
-      setIsLoading(false);
-    })();
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
 
   function onHandlerStateChanged(
     event: HandlerStateChangeEvent<PanGestureHandlerEventPayload>,
@@ -141,17 +94,18 @@ const MapInfos: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    console.log(userAddress);
+    if (!userAddress[0].street || !userAddress[0].streetNumber) {
+      setAddressText(userAddress[0].name!);
+      return;
+    }
+
+    setAddressText(`${userAddress[0].street}, ${userAddress[0].streetNumber}`);
+  }, [userAddress]);
+
   return (
     <Container>
-      <Loader isActive={isLoading} />
-      <Map region={region.location}>
-        <Marker
-          coordinate={{
-            latitude: region.location.latitude,
-            longitude: region.location.longitude,
-          }}
-        />
-      </Map>
       <PanGestureHandler
         onGestureEvent={animatedEvent}
         // eslint-disable-next-line react/jsx-no-bind
@@ -190,15 +144,15 @@ const MapInfos: React.FC = () => {
                 </ContainerUserLocationIcon>
                 <ContainerUserAddressInfo>
                   <TextLocationUserInfos>Seu local: </TextLocationUserInfos>
-                  <TextLocationUserInfos>{userAddress}</TextLocationUserInfos>
+                  <TextLocationUserInfos>{addressText}</TextLocationUserInfos>
                 </ContainerUserAddressInfo>
               </ContainerUserInfos>
               <ContainerSamuInfos>
                 <TextLocationSamuInfos>
-                  {samuLocation.location.kmToYou}
+                  {`${samuLocation.kmsToYou} km`}
                 </TextLocationSamuInfos>
                 <TextLocationSamuInfos>
-                  {samuLocation.location.minutesToYou}
+                  {`${samuLocation.minutesToYou} min`}
                 </TextLocationSamuInfos>
               </ContainerSamuInfos>
             </ContainerInfos>
