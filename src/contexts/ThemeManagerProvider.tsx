@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import {ThemeProvider} from 'styled-components/native';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
+import {Appearance} from 'react-native';
 import {darkMode, lightMode} from '../themes/theme';
 
 const isDarkMode = false;
@@ -31,7 +32,13 @@ const ThemeManagerProvider: React.FC = ({children}) => {
 
   const getIsDarkModeFromStorage = useCallback(async () => {
     const isDarkModeFromStorage = await getItem();
-    setThemeState(JSON.parse(isDarkModeFromStorage || 'false') as boolean);
+
+    if (!isDarkModeFromStorage) {
+      setThemeState(Appearance.getColorScheme() === 'dark');
+      return;
+    }
+
+    setThemeState(JSON.parse(isDarkModeFromStorage) as boolean);
   }, [getItem]);
 
   useEffect(() => {
