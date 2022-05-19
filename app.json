@@ -5,11 +5,6 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/new_splashscreen.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#FFFFFF"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,13 +12,34 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/new_splashscreen.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
+        "dark": {
+          "image": "./assets/new_splashscreen_dark.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#1A1A1A"
+        }
+      }
     },
     "android": {
+      "splash": {
+        "image": "./assets/new_splashscreen.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
+        "dark": {
+          "image": "./assets/new_splashscreen_dark.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#1A1A1A"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#18A0FB"
-      }
+      },
+      "package": "com.samuja.samuja"
     },
     "web": {
       "favicon": "./assets/favicon.png"
