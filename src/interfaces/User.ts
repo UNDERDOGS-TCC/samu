@@ -28,10 +28,10 @@ export interface UserLoginApiResponse extends UserGenericApiResponse {
   id?: string;
 }
 
-export interface UserUpdateApiResponse {
+export interface UserUpdateApiResponse extends UserGenericApiResponse {
   id?: string;
 }
 
-export interface UserRegisterApiResponse {
+export interface UserRegisterApiResponse extends UserGenericApiResponse {
   id?: string;
 }

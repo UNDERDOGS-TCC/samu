@@ -149,6 +149,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children, appIsReady}) => {
     if (appIsReady && !user) {
       loginFromStorage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appIsReady, user]);
 
   return (
