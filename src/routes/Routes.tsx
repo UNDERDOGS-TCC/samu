@@ -8,6 +8,7 @@ import Signup from '../pages/Signup/Signup';
 import Mapa from '../pages/Mapa/Mapa';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import Questionario from '../pages/Questionario/Questionario';
 import {useAuth} from '../contexts/AuthProvider';
 import RedefinePassword from '../pages/RedefinePassword/RedefinePassword';
 
@@ -45,6 +46,7 @@ const Routes: React.FC = () => {
               component={Sidebar}
               options={{headerShown: false}}
             />
+            <Stack.Screen name="Questionario" component={Questionario} />
             <Stack.Screen name="Mapa" component={Mapa} />
             <Stack.Screen
               name="RedefinePassword"
