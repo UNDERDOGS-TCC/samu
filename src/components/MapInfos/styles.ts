@@ -2,14 +2,17 @@ import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  flex: 1;
+  position: absolute;
+  bottom: 0;
+  height: 40%;
+  width: 100%;
 `;
 
 export const Card = styled(Animated.View)`
   border-radius: 10px;
   margin-bottom: 1%;
-  height: 40%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   padding: 0;
   background-color: ${(props) => props.theme.colors.background};
   border: solid 0.5px ${(props) => props.theme.main.colors.gray};

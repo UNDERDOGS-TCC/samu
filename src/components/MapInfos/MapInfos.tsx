@@ -95,7 +95,6 @@ const MapInfos: React.FC<MapInfosProps> = ({userAddress, samuLocation}) => {
   }
 
   useEffect(() => {
-    console.log(userAddress);
     if (!userAddress[0].street || !userAddress[0].streetNumber) {
       setAddressText(userAddress[0].name!);
       return;
