@@ -1,15 +1,11 @@
 {
   "expo": {
-    "name": "samu",
-    "slug": "samu",
+    "name": "Samu Já",
+    "slug": "samuja",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splashscreen.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#146478"
-    },
+    "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,13 +13,34 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/new_splashscreen.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
+        "dark": {
+          "image": "./assets/new_splashscreen_dark.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#1A1A1A"
+        }
+      }
     },
     "android": {
+      "splash": {
+        "image": "./assets/new_splashscreen.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
+        "dark": {
+          "image": "./assets/new_splashscreen_dark.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#1A1A1A"
+        }
+      },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#18A0FB"
+      },
+      "package": "com.samuja.samuja"
     },
     "web": {
       "favicon": "./assets/favicon.png"

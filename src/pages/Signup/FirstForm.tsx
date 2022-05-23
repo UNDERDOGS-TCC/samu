@@ -1,19 +1,22 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {TextInput} from 'react-native';
 import ChangeAvatarButton from '../../components/ChangeAvatarButton/ChangeAvatarButton';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import {ImageContainer, PageContainer} from './styles';
-import SignupFormProps from '../../interfaces/SignupForm';
+import {FirstFormProps} from '../../interfaces/SignupForm';
 
-const FirstForm: React.FC<SignupFormProps> = ({
+const FirstForm: React.FC<FirstFormProps> = ({
   handlePressNext,
   paddingBottom,
+  name,
+  setName,
+  password,
+  setPassword,
+  passwordConfirmation,
+  setPasswordConfirmation,
+  setImageUri,
 }) => {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-
   const passwordRef = useRef<TextInput>(null);
   const passwordConfirmationRef = useRef<TextInput>(null);
 
@@ -25,7 +28,7 @@ const FirstForm: React.FC<SignupFormProps> = ({
       key="1"
     >
       <ImageContainer>
-        <ChangeAvatarButton />
+        <ChangeAvatarButton sendImageUri={setImageUri} isEdit />
       </ImageContainer>
       <Input
         title="Nome"

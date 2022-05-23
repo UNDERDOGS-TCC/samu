@@ -4,7 +4,7 @@ import {Feather} from '@expo/vector-icons';
 import {View} from 'react-native';
 import Home from '../pages/Home/Home';
 import Config from '../pages/Config/Config';
-import {useTheme} from '../themes/ThemeManagerProvider';
+import {useTheme} from '../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
 import Profile from '../pages/Profile/Profile';
@@ -16,6 +16,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <Drawer.Navigator
+      useLegacyImplementation
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={({
         navigation,
@@ -29,6 +30,7 @@ const Sidebar: React.FC = () => {
           fontSize: isDarkMode
             ? darkMode.main.font.size.drawer
             : lightMode.main.font.size.drawer,
+          marginLeft: -20,
         },
         headerTitleAlign: 'center',
         headerTitleStyle: {
@@ -54,9 +56,35 @@ const Sidebar: React.FC = () => {
         ),
       })}
     >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Perfil" component={Profile} />
-      <Drawer.Screen name="Configurações" component={Config} />
+      <Drawer.Screen
+        name="Home"
+        component={Home}
+        options={{
+          unmountOnBlur: true,
+          drawerIcon: ({color}) => (
+            <Feather name="home" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Perfil"
+        component={Profile}
+        options={{
+          unmountOnBlur: true,
+          drawerIcon: ({color}) => (
+            <Feather name="user" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Configurações"
+        component={Config}
+        options={{
+          drawerIcon: ({color}) => (
+            <Feather name="settings" size={24} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };

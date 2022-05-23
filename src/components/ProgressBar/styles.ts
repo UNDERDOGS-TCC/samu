@@ -6,6 +6,9 @@ export const Container = styled.View`
   height: 50px;
   justify-content: center;
   padding: 30px 50px;
+  border-bottom-width: 0.5px;
+  border-style: solid;
+  border-color: ${(props) => props.theme.colors.border};
 `;
 
 interface BallProps {

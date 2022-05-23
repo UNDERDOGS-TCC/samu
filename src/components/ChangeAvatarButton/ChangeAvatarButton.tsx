@@ -1,11 +1,22 @@
 import React, {useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import {Avatar, Container} from './styles';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {manipulateAsync} from 'expo-image-manipulator';
+import {Avatar, AvatarEditOverlay, Container, EditIcon} from './styles';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../../themes/theme';
 
-const ChangeAvatarButton: React.FC = () => {
+interface ChangeAvatarButtonProps {
+  image?: string;
+  sendImageUri?: (uri: string) => void;
+  isEdit?: boolean;
+}
+
+const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
+  image,
+  sendImageUri,
+  isEdit,
+}) => {
   const {isDarkMode} = useTheme();
   const [imageUri, setImageUri] = useState('');
 
@@ -13,22 +24,48 @@ const ChangeAvatarButton: React.FC = () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 1,
+      quality: 0,
+      base64: true,
     });
 
     if (!result.cancelled) {
-      setImageUri(result.uri);
+      const compressedImage = await manipulateAsync(result.uri, [], {
+        compress: 0,
+        base64: true,
+      });
+
+      setImageUri(compressedImage.base64!);
+      if (sendImageUri) {
+        sendImageUri(compressedImage.base64!);
+      }
     }
   };
 
   return (
-    <Container activeOpacity={0.7} onPress={handleImagePicker}>
-      {imageUri ? (
-        <Avatar source={{uri: imageUri}} />
+    <Container
+      disabled={!isEdit || false}
+      activeOpacity={0.7}
+      onPress={handleImagePicker}
+    >
+      {image || imageUri ? (
+        <Avatar
+          imageStyle={{borderRadius: 100}}
+          source={{uri: `data:image/jpg;base64,${image || imageUri}`}}
+        >
+          {isEdit && (
+            <AvatarEditOverlay>
+              <EditIcon />
+            </AvatarEditOverlay>
+          )}
+        </Avatar>
+      ) : isEdit ? (
+        <AvatarEditOverlay>
+          <EditIcon />
+        </AvatarEditOverlay>
       ) : (
         <Feather
-          name="camera"
-          size={48}
+          name="user"
+          size={100}
           color={
             isDarkMode
               ? darkMode.main.colors.placeholder

@@ -1,17 +1,22 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useTheme} from '../themes/ThemeManagerProvider';
+import {useTheme} from '../contexts/ThemeManagerProvider';
 import {darkMode, lightMode} from '../themes/theme';
+import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
+import Mapa from '../pages/Mapa/Mapa';
 import Sidebar from './Sidebar';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import Questionario from '../pages/Questionario/Questionario';
+import {useAuth} from '../contexts/AuthProvider';
+import RedefinePassword from '../pages/RedefinePassword/RedefinePassword';
 
 const Stack = createStackNavigator();
 
 const Routes: React.FC = () => {
   const {isDarkMode} = useTheme();
+  const {user} = useAuth();
 
   return (
     <NavigationContainer theme={isDarkMode ? darkMode : lightMode}>
@@ -28,14 +33,27 @@ const Routes: React.FC = () => {
           },
         }}
       >
-        <Stack.Screen
-          name="Home"
-          component={Sidebar}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
-        <Stack.Screen name="Questionario" component={Questionario} /> 
+        {!user ? (
+          <Stack.Group>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            <Stack.Screen
+              name="Sidebar"
+              component={Sidebar}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen name="Questionario" component={Questionario} />
+            <Stack.Screen name="Mapa" component={Mapa} />
+            <Stack.Screen
+              name="RedefinePassword"
+              component={RedefinePassword}
+            />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

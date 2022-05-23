@@ -8,17 +8,34 @@ import {Container, FormContainer} from './styles';
 import FirstForm from './FirstForm';
 import SecondForm from './SecondForm';
 import ThirdForm from './ThirdForm';
+import {useAuth} from '../../contexts/AuthProvider';
 
 const Signup: React.FC = () => {
+  const {registerUser} = useAuth();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [step, setStep] = useState(0);
   const [action, setAction] = useState<'back' | 'next' | undefined>();
   const pagerRef = useRef<PagerView>(null);
 
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [cellphone, setCellphone] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [complement, setComplement] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [imageUri, setImageUri] = useState('');
+
   useEffect(() => {
     navigation.setOptions({
       title: 'Cadastro',
+      headerShadowVisible: false,
     });
   }, [navigation]);
 
@@ -41,7 +58,22 @@ const Signup: React.FC = () => {
   };
 
   const handleCreateAccount = () => {
-    navigation.navigate('Home' as never);
+    const newUser = {
+      name,
+      password,
+      passwordConfirmation,
+      cpf,
+      birthday,
+      cellphone,
+      email,
+      address,
+      complement,
+      cep: zipCode,
+      state,
+      city,
+      imageUri,
+    };
+    registerUser(newUser);
   };
 
   return (
@@ -54,6 +86,13 @@ const Signup: React.FC = () => {
           keyboardVerticalOffset={120}
         >
           <FirstForm
+            name={name}
+            setName={setName}
+            password={password}
+            setPassword={setPassword}
+            passwordConfirmation={passwordConfirmation}
+            setPasswordConfirmation={setPasswordConfirmation}
+            setImageUri={setImageUri}
             paddingBottom={insets.bottom}
             handlePressNext={handlePressNext}
             key="1"
@@ -65,6 +104,14 @@ const Signup: React.FC = () => {
           keyboardVerticalOffset={120}
         >
           <SecondForm
+            cpf={cpf}
+            setCpf={setCpf}
+            birthday={birthday}
+            setBirthday={setBirthday}
+            cellphone={cellphone}
+            setCellphone={setCellphone}
+            email={email}
+            setEmail={setEmail}
             paddingBottom={insets.bottom}
             handlePressNext={handlePressNext}
             handlePressBack={handlePressBack}
@@ -77,6 +124,16 @@ const Signup: React.FC = () => {
           keyboardVerticalOffset={120}
         >
           <ThirdForm
+            address={address}
+            setAddress={setAddress}
+            complement={complement}
+            setComplement={setComplement}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+            state={state}
+            setState={setState}
+            city={city}
+            setCity={setCity}
             paddingBottom={insets.bottom}
             handlePressNext={handleCreateAccount}
             handlePressBack={handlePressBack}

@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch} from 'react-native';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
 import {Container, OptionContainer, OptionText} from './styles';
-import {useTheme} from '../../themes/ThemeManagerProvider';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 
 const Config: React.FC = () => {
   const {isDarkMode, setIsDarkMode} = useTheme();

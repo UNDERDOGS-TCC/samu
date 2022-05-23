@@ -9,13 +9,16 @@ import React, {
 } from 'react';
 import {ThemeProvider} from 'styled-components/native';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
-import {darkMode, lightMode} from './theme';
+import {Appearance} from 'react-native';
+import {darkMode, lightMode} from '../themes/theme';
 
 const isDarkMode = false;
 
 const ThemeContext = createContext({
   isDarkMode,
   setIsDarkMode: () => console.log(isDarkMode),
+  darkMode,
+  lightMode,
 });
 
 export const useTheme = () => useContext(ThemeContext);
@@ -29,7 +32,13 @@ const ThemeManagerProvider: React.FC = ({children}) => {
 
   const getIsDarkModeFromStorage = useCallback(async () => {
     const isDarkModeFromStorage = await getItem();
-    setThemeState(JSON.parse(isDarkModeFromStorage || 'false') as boolean);
+
+    if (!isDarkModeFromStorage) {
+      setThemeState(Appearance.getColorScheme() === 'dark');
+      return;
+    }
+
+    setThemeState(JSON.parse(isDarkModeFromStorage) as boolean);
   }, [getItem]);
 
   useEffect(() => {
@@ -40,6 +49,8 @@ const ThemeManagerProvider: React.FC = ({children}) => {
     () => ({
       isDarkMode: themeState,
       setIsDarkMode,
+      darkMode,
+      lightMode,
     }),
     [themeState, setIsDarkMode],
   );

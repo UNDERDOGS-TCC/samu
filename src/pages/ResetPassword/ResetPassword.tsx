@@ -1,9 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {TextInput} from 'react-native';
+import {Alert, TextInput} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {resetPassword} from '../../api/user';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import Loader from '../../components/Loader/Loader';
 import {ButtonContainer, Container, InputsContainer} from './styles';
 
 const ResetPassword: React.FC = () => {
@@ -12,6 +14,7 @@ const ResetPassword: React.FC = () => {
   const [cpf, setCpf] = useState('');
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const birthdayRef = useRef<TextInput>(null);
   const emailRef = useRef<TextInput>(null);
@@ -22,8 +25,30 @@ const ResetPassword: React.FC = () => {
     });
   }, [navigation]);
 
+  const handleSubmitButton = async () => {
+    setIsLoading(true);
+    try {
+      const response = await resetPassword(cpf, email, birthday);
+      if (!response.success) {
+        setIsLoading(false);
+        Alert.alert('Ocorreu um erro', response.message, [{text: 'OK'}]);
+        return;
+      }
+      setIsLoading(false);
+      Alert.alert('Sucesso', response.message, [
+        {text: 'OK', onPress: () => navigation.goBack()},
+      ]);
+    } catch (error) {
+      setIsLoading(false);
+      Alert.alert('Ocorreu um erro', 'Tente novamente mais tarde', [
+        {text: 'OK'},
+      ]);
+    }
+  };
+
   return (
     <Container extraScrollHeight={20}>
+      <Loader isActive={isLoading} />
       <InputsContainer>
         <Input
           title="CPF"
@@ -60,7 +85,7 @@ const ResetPassword: React.FC = () => {
         <Button
           title="Redefinir senha"
           active={cpf !== '' && birthday !== '' && email !== ''}
-          onPress={() => navigation.navigate('Home' as never)}
+          onPress={handleSubmitButton}
           secondary
         />
       </ButtonContainer>

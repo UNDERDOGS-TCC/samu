@@ -61,9 +61,15 @@
          "operator-linebreak": "off",
          "semi": "off",
          "@typescript-eslint/no-non-null-assertion": "off",
+         "@typescript-eslint/no-explicit-any": "off",
          "react/jsx-props-no-spreading": "off",
          "react/no-unstable-nested-components": "off",
-         "no-use-before-define": "off"
+         "no-use-before-define": "off",
+         "react/jsx-curly-newline": "off",
+         "no-nested-ternary": "off",
+         "no-underscore-dangle": "off",
+         "no-useless-return": "off",
+         "global-require": "off"
     },
     "settings": {
         "import/resolver": {
