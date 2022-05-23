@@ -44,16 +44,19 @@ const Mapa: React.FC = () => {
       latitude: res.data.lat,
       longitude: res.data.lng,
     });
+  }, [region]);
+
+  const centerMap = () => {
     mapRef.current?.fitToSuppliedMarkers(['user', 'samu'], {
       animated: true,
       edgePadding: {
-        top: 0,
-        right: 20,
-        bottom: 0,
-        left: 20,
+        top: 50,
+        right: 50,
+        bottom: 50,
+        left: 50,
       },
     });
-  }, [region]);
+  };
 
   useEffect(() => {
     getSamuLocation();
@@ -82,7 +85,11 @@ const Mapa: React.FC = () => {
           }}
         />
         {samuLocation && (
-          <Marker identifier="samu" coordinate={samuLocation}>
+          <Marker
+            onLayout={centerMap}
+            identifier="samu"
+            coordinate={samuLocation}
+          >
             <Image
               style={{width: 60, height: 60}}
               resizeMode="contain"
