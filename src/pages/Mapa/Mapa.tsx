@@ -3,7 +3,7 @@ import {LocationGeocodedAddress, reverseGeocodeAsync} from 'expo-location';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import MapView, {LatLng, MapEvent, Marker} from 'react-native-maps';
 import {Image, ImageSourcePropType} from 'react-native';
-import MapInfos from '../../components/MapInfos/MapInfos';
+import MapInfos from '../../components/MapInfos2/MapInfos';
 import {Container, Map} from './styles';
 
 import samuImage from '../../../assets/carro-ambulancia.png';
@@ -50,9 +50,9 @@ const Mapa: React.FC = () => {
     mapRef.current?.fitToSuppliedMarkers(['user', 'samu'], {
       animated: true,
       edgePadding: {
-        top: 50,
+        top: 200,
         right: 50,
-        bottom: 50,
+        bottom: 200,
         left: 50,
       },
     });
@@ -99,8 +99,8 @@ const Mapa: React.FC = () => {
         )}
       </Map>
       <MapInfos
-        samuLocation={{kmsToYou: 12, minutesToYou: 13}}
         userAddress={address}
+        samuLocation={{kmsToYou: 12, minutesToYou: 12}}
       />
     </Container>
   );

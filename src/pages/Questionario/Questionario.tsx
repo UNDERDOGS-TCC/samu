@@ -1,8 +1,6 @@
-import Checkbox from 'expo-checkbox';
 import {View, Text, StyleSheet} from 'react-native';
 import React, {useRef, useState} from 'react';
 import PagerView from 'react-native-pager-view';
-import {useNavigation} from '@react-navigation/native';
 import {
   Titulo,
   Check,
@@ -15,7 +13,6 @@ import {
 } from './styles';
 
 const Questionario: React.FC = () => {
-  const navigation = useNavigation();
   const [isChecked1, setChecked1] = useState(false);
   const [isChecked2, setChecked2] = useState(false);
   const [isChecked3, setChecked3] = useState(false);

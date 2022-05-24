@@ -1,208 +1,117 @@
-import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
   position: absolute;
   bottom: 0;
+  width: 100%;
   height: 40%;
-  width: 100%;
+  background-color: white;
+  padding: 0 10px;
 `;
 
-export const Card = styled(Animated.View)`
-  border-radius: 10px;
-  margin-bottom: 1%;
-  height: 100%;
+export const GrayBarContainer = styled.View`
   width: 100%;
-  padding: 0;
-  background-color: ${(props) => props.theme.colors.background};
-  border: solid 0.5px ${(props) => props.theme.main.colors.gray};
-`;
-
-export const CardContainer = styled.View`
-  display: flex;
   align-items: center;
   justify-content: center;
+  height: 15px;
 `;
 
-export const ContainerTraco = styled.View`
-  align-items: center;
-  justify-content: center;
-  height: 10%;
-  width: 95%;
-`;
-
-export const Traco = styled.Image`
-  width: 18%;
+export const GrayBar = styled.Image`
+  width: 20%;
   height: 100%;
 `;
 
-export const ContainerSamu = styled.View`
-  display: flex;
+export const InfosContainer = styled.View`
+  height: 50%;
+  width: 100%;
+`;
+
+export const TopInfosContainer = styled.View`
+  height: 50%;
+  width: 100%;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  height: 20%;
-  width: 80%;
-  margin-bottom: 15px;
 `;
 
-export const ContainerTextSamu = styled.View`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+export const TopInfosLeftContainer = styled.View`
   height: 100%;
   width: 50%;
-`;
-
-export const TextSamu = styled.Text`
-  font-size: 18px;
-  font-weight: ${(props) => props.theme.main.font.weight.bold};
-  color: ${(props) => props.theme.main.colors.text};
-`;
-
-export const ImageAmbulance = styled.Image`
-  height: 120%;
-  width: auto;
-  aspect-ratio: 1;
-`;
-
-export const ContainerInfos = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 20%;
-  width: 95%;
-  margin-bottom: 10px;
-`;
-
-export const ContainerUserInfos = styled.View`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  height: 100%;
-  width: 60%;
-`;
-
-export const ContainerUserLocationIcon = styled.View`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-  width: 20%;
-`;
-
-export const ContainerUserAddressInfo = styled.View`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  width: 80%;
-`;
-
-export const LocationIcon = styled.Image`
-  width: auto;
-  height: 100%;
-  aspect-ratio: 1;
-`;
-
-export const ContainerSamuInfos = styled.View`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 40%;
-`;
-
-export const TextLocationSamuInfos = styled.Text`
-  font-size: 18px;
-  font-weight: ${(props) => props.theme.main.font.weight.bold};
-  color: ${(props) => props.theme.main.colors.text};
-`;
-
-export const TextLocationUserInfos = styled.Text`
-  font-size: 14px;
-  font-weight: ${(props) => props.theme.main.font.weight.bold};
-  color: ${(props) => props.theme.main.colors.text};
-  margin-left: 10px;
-`;
-
-export const ContainerButtons = styled.View`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 40%;
-  width: 95%;
-`;
-
-export const BtnHelp = styled.TouchableOpacity`
-  align-self: flex-start;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  height: 55%;
-  width: 100%;
-  background-color: ${(props) => props.theme.main.colors.lightblue};
-`;
-
-export const ContainerTextBtnHelp = styled.View`
-  display: flex;
-  padding: 0 10px 0 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  width: 80%;
-`;
-
-export const ContainerArrowBtnHelp = styled.View`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   padding-left: 10px;
-  height: 40%;
-  width: 100%;
-`;
-
-export const TextTitleBtnHelp = styled.Text`
-  font-size: 18px;
-  font-weight: ${(props) => props.theme.main.font.weight.bold};
-  color: ${(props) => props.theme.main.colors.white};
-`;
-
-export const TextBtnHelp = styled.Text`
-  font-size: 14px;
-  font-weight: ${(props) => props.theme.main.font.weight.bold};
-  color: ${(props) => props.theme.main.colors.white};
-`;
-
-export const ContainerArrow = styled.View`
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+`;
+
+export const TopInfosLeftText = styled.Text`
+  font-size: ${(props) => props.theme.main.font.size.regular};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
+  color: ${(props) => props.theme.main.colors.text};
+`;
+
+export const TopInfosRightContainer = styled.View`
   height: 100%;
-  width: 20%;
-`;
-
-export const ArrowIcon = styled.Image`
   width: 50%;
-  height: auto;
-  aspect-ratio: 1;
+  justify-content: center;
+  align-items: flex-end;
 `;
 
-export const BtnCancel = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  height: 40%;
+export const SamuImage = styled.Image.attrs({
+  resizeMode: 'stretch',
+})`
+  width: 50%;
+  height: 100%;
+`;
+
+export const BottomInfosContainer = styled.View`
+  height: 50%;
   width: 100%;
-  background-color: ${(props) => props.theme.main.colors.danger};
+  flex-direction: row;
+`;
+
+export const BottomInfosLeftContainer = styled.View`
+  height: 100%;
+  width: 50%;
+  flex-direction: row;
+`;
+
+export const BottomInfosLeftIconContainer = styled.View`
+  height: 100%;
+  width: 25%;
+`;
+
+export const BottomInfosLeftIcon = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  width: 100%;
+  height: 100%;
+`;
+
+export const BottomInfosLeftInfos = styled.View`
+  height: 100%;
+  width: 75%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const BottomInfosLeftText = styled.Text`
+  font-size: ${(props) => props.theme.main.font.size.small};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
+  color: ${(props) => props.theme.main.colors.text};
+`;
+
+export const BottomInfosRightContainer = styled.View`
+  height: 100%;
+  width: 50%;
+  padding-right: 5px;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
+export const BottomInfosRightText = styled.Text`
+  font-size: ${(props) => props.theme.main.font.size.regular};
+  font-family: ${(props) => props.theme.main.font.family.rubik.regular};
+  font-weight: ${(props) => props.theme.main.font.weight.bold};
+  color: ${(props) => props.theme.main.colors.text};
 `;

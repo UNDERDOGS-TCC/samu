@@ -10,7 +10,7 @@ const axios = Axios.create({
 export async function randomLocationApi(
   lat: number,
   lng: number,
-  radius = 3000,
+  radius = 2000,
 ): Promise<RandomLocationApiResponse> {
   const res = await axios.post('/randomLocation', {
     latitude: lat,
