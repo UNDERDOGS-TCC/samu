@@ -34,7 +34,7 @@ const Mapa: React.FC = () => {
   const [region, setRegion] = useState(userLocation);
   const [address, setAddress] = useState(currentAddress);
   const [samuLocation, setSamuLocation] = useState<LatLng>();
-  const {isDarkMode} = useTheme();
+  const {isDarkMode, lightMode, darkMode} = useTheme();
   const mapRef = useRef<MapView>(null);
 
   useEffect(() => {
@@ -108,7 +108,19 @@ const Mapa: React.FC = () => {
           </Marker>
         )}
       </Map>
-      <BottomSheet snapPoints={['25%', '50%']}>
+      <BottomSheet
+        handleIndicatorStyle={{
+          backgroundColor: isDarkMode
+            ? darkMode.main.colors.placeholder
+            : lightMode.main.colors.placeholder,
+        }}
+        backgroundStyle={{
+          backgroundColor: isDarkMode
+            ? darkMode.main.colors.background
+            : lightMode.main.colors.background,
+        }}
+        snapPoints={['25%', '50%']}
+      >
         <BottomSheetView style={{flex: 1}}>
           <MapInfos samuLocation={{km: 12, min: 12}} userAddress={address} />
         </BottomSheetView>
