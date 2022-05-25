@@ -4,7 +4,7 @@
     "slug": "samuja",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/IOS_Blue.png",
     "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -37,13 +37,13 @@
         }
       },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
+        "foregroundImage": "./assets/Android_Blue.png",
         "backgroundColor": "#18A0FB"
       },
       "package": "com.samuja.samuja"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/IOS_Blue.png"
     }
   }
 }
