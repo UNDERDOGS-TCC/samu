@@ -3,11 +3,16 @@ import {LocationGeocodedAddress, reverseGeocodeAsync} from 'expo-location';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import MapView, {LatLng, MapEvent, Marker} from 'react-native-maps';
 import {Image, ImageSourcePropType} from 'react-native';
-import MapInfos from '../../components/MapInfos2/MapInfos';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import MapInfos from '../../components/MapInfos/MapInfos';
 import {Container, Map} from './styles';
 
 import samuImage from '../../../assets/carro-ambulancia.png';
 import {randomLocationApi} from '../../api/map';
+
+import dark_map from '../../../assets/maps_darkmode';
+import light_map from '../../../assets/maps_lightmode';
+import {useTheme} from '../../contexts/ThemeManagerProvider';
 
 interface UserLocation {
   latitude: number;
@@ -29,6 +34,7 @@ const Mapa: React.FC = () => {
   const [region, setRegion] = useState(userLocation);
   const [address, setAddress] = useState(currentAddress);
   const [samuLocation, setSamuLocation] = useState<LatLng>();
+  const {isDarkMode} = useTheme();
   const mapRef = useRef<MapView>(null);
 
   useEffect(() => {
@@ -51,9 +57,9 @@ const Mapa: React.FC = () => {
       animated: true,
       edgePadding: {
         top: 200,
-        right: 50,
+        right: 200,
         bottom: 200,
-        left: 50,
+        left: 200,
       },
     });
   };
@@ -74,7 +80,11 @@ const Mapa: React.FC = () => {
 
   return (
     <Container>
-      <Map ref={mapRef} region={region}>
+      <Map
+        customMapStyle={isDarkMode ? dark_map : light_map}
+        ref={mapRef}
+        region={region}
+      >
         <Marker
           identifier="user"
           draggable
@@ -98,10 +108,12 @@ const Mapa: React.FC = () => {
           </Marker>
         )}
       </Map>
-      <MapInfos
-        userAddress={address}
-        samuLocation={{kmsToYou: 12, minutesToYou: 12}}
-      />
+      <BottomSheet snapPoints={['25%', '50%']}>
+        <BottomSheetView style={{flex: 1}}>
+          <MapInfos samuLocation={{km: 12, min: 12}} userAddress={address} />
+        </BottomSheetView>
+      </BottomSheet>
+      {/* <MapInfos userAddress={address} samuLocation={{km: 12, min: 12}} /> */}
     </Container>
   );
 };

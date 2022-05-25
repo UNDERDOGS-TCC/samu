@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import React from 'react';
 import {
   useFonts,
@@ -37,8 +37,7 @@ const App: React.FC = () => {
     require('./assets/chat.png'),
     require('./assets/formularioBranco.png'),
     require('./assets/location_icon.png'),
-    require('./assets/LogoBranco.png'),
-    require('./assets/LogoPreto.png'),
+    require('./assets/logo.png'),
     require('./assets/saude.png'),
     require('./assets/seguranca.png'),
     require('./assets/seta.png'),
@@ -50,11 +49,13 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeManagerProvider>
-      <AuthProvider appIsReady={isFontsLoaded && !!assets}>
-        <Routes />
-      </AuthProvider>
-    </ThemeManagerProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <ThemeManagerProvider>
+        <AuthProvider appIsReady={isFontsLoaded && !!assets}>
+          <Routes />
+        </AuthProvider>
+      </ThemeManagerProvider>
+    </GestureHandlerRootView>
   );
 };
 
