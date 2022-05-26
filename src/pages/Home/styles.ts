@@ -147,7 +147,9 @@ interface OtherServicesListItemProps {
   marginRight?: number;
 }
 
-export const OtherServicesListItem = styled.View<OtherServicesListItemProps>`
+export const OtherServicesListItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})<OtherServicesListItemProps>`
   height: 80%;
   width: 150px;
   margin-right: ${(props) => props.marginRight || 10}px;

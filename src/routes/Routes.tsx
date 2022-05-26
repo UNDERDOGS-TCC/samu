@@ -11,6 +11,7 @@ import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import Questionario from '../pages/Questionario/Questionario';
 import {useAuth} from '../contexts/AuthProvider';
 import RedefinePassword from '../pages/RedefinePassword/RedefinePassword';
+import ComingSoon from '../pages/ComingSoon/ComingSoon';
 
 const Stack = createStackNavigator();
 
@@ -52,6 +53,7 @@ const Routes: React.FC = () => {
               name="RedefinePassword"
               component={RedefinePassword}
             />
+            <Stack.Screen name="ComingSoon" component={ComingSoon} />
           </Stack.Group>
         )}
       </Stack.Navigator>

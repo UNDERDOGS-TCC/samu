@@ -60,6 +60,9 @@ const Home: React.FC = () => {
 
     return (
       <OtherServicesListItem
+        onPress={() =>
+          navigation.navigate('ComingSoon', {pageTitle: item.pageTitle})
+        }
         marginRight={isLastItem ? 20 : undefined}
         marginLeft={isFirstItem ? 20 : undefined}
       >
