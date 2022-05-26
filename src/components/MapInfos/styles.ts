@@ -57,13 +57,13 @@ export const BottomInfosContainer = styled.View`
 
 export const BottomInfosLeftContainer = styled.View`
   height: 100%;
-  width: 50%;
+  width: 75%;
   flex-direction: row;
 `;
 
 export const BottomInfosLeftIconContainer = styled.View`
   height: 100%;
-  width: 25%;
+  width: 20%;
 `;
 
 export const BottomInfosLeftIcon = styled.Image.attrs({
@@ -75,7 +75,7 @@ export const BottomInfosLeftIcon = styled.Image.attrs({
 
 export const BottomInfosLeftInfos = styled.View`
   height: 100%;
-  width: 75%;
+  width: 80%;
   justify-content: center;
   align-items: flex-start;
 `;
@@ -89,7 +89,7 @@ export const BottomInfosLeftText = styled.Text`
 
 export const BottomInfosRightContainer = styled.View`
   height: 100%;
-  width: 50%;
+  width: 25%;
   padding-right: 10px;
   justify-content: center;
   align-items: flex-end;

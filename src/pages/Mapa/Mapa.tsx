@@ -125,7 +125,6 @@ const Mapa: React.FC = () => {
           <MapInfos samuLocation={{km: 12, min: 12}} userAddress={address} />
         </BottomSheetView>
       </BottomSheet>
-      {/* <MapInfos userAddress={address} samuLocation={{km: 12, min: 12}} /> */}
     </Container>
   );
 };
