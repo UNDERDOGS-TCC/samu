@@ -24,13 +24,13 @@ const ChangeAvatarButton: React.FC<ChangeAvatarButtonProps> = ({
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 0,
+      quality: 1,
       base64: true,
     });
 
     if (!result.cancelled) {
       const compressedImage = await manipulateAsync(result.uri, [], {
-        compress: 0,
+        compress: 0.5,
         base64: true,
       });
 
