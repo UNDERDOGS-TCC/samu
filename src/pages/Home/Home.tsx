@@ -90,17 +90,16 @@ const Home: React.FC = () => {
   };
 
   const handleCallSamu = async () => {
-    setIsLoading(true);
-
     try {
       const {status} = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Ocorreu um erro', 'Permissão para localização negada!', [
           {text: 'OK'},
         ]);
-        setIsLoading(false);
         return;
       }
+
+      setIsLoading(true);
 
       const currentLocation = await Location.getCurrentPositionAsync({});
       const userLocation = {
