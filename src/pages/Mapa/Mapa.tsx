@@ -56,10 +56,10 @@ const Mapa: React.FC = () => {
     mapRef.current?.fitToSuppliedMarkers(['user', 'samu'], {
       animated: true,
       edgePadding: {
-        top: 200,
-        right: 200,
-        bottom: 200,
-        left: 200,
+        top: 100,
+        right: 50,
+        bottom: 50,
+        left: 50,
       },
     });
   };
@@ -81,6 +81,7 @@ const Mapa: React.FC = () => {
   return (
     <Container>
       <Map
+        mapPadding={{top: 0, right: 0, bottom: 200, left: 0}}
         customMapStyle={isDarkMode ? dark_map : light_map}
         ref={mapRef}
         region={region}
