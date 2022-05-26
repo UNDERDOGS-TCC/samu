@@ -13,6 +13,8 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.samuja.samuja",
+      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "splash": {
         "image": "./assets/new_splashscreen.png",
@@ -26,6 +28,8 @@
       }
     },
     "android": {
+      "package": "com.samuja.samuja",
+      "versionCode": 1,
       "splash": {
         "image": "./assets/new_splashscreen.png",
         "resizeMode": "contain",
@@ -39,8 +43,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/Android_Blue.png",
         "backgroundColor": "#18A0FB"
-      },
-      "package": "com.samuja.samuja"
+      }
     },
     "web": {
       "favicon": "./assets/IOS_Blue.png"
