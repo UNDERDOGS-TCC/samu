@@ -8,6 +8,6 @@ export interface MapGenericApiResponse {
   success: boolean;
 }
 
-export interface RandomLocationApiResponse extends MapGenericApiResponse {
+export interface LocationApiResponse extends MapGenericApiResponse {
   data: LatLng;
 }

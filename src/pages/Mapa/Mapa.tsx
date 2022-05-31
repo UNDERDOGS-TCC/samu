@@ -8,7 +8,7 @@ import MapInfos from '../../components/MapInfos/MapInfos';
 import {Container, Map} from './styles';
 
 import samuImage from '../../../assets/carro-ambulancia.png';
-import {randomLocationApi} from '../../api/map';
+import {closestSamuBaseApi} from '../../api/map';
 
 import dark_map from '../../../assets/maps_darkmode';
 import light_map from '../../../assets/maps_lightmode';
@@ -44,7 +44,7 @@ const Mapa: React.FC = () => {
   }, [navigation]);
 
   const getSamuLocation = useCallback(async () => {
-    const res = await randomLocationApi(region.latitude, region.longitude);
+    const res = await closestSamuBaseApi(region.latitude, region.longitude);
     console.log(res);
     setSamuLocation({
       latitude: res.data.lat,
