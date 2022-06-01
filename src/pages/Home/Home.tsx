@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {Alert, ImageSourcePropType, StyleSheet} from 'react-native';
-import * as Location from 'expo-location';
+import {ImageSourcePropType, StyleSheet} from 'react-native';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {useAuth} from '../../contexts/AuthProvider';
+import {questionario} from '../../interfaces/Questionario';
 import {
   Container,
   ClosedDrawerIcon,
@@ -36,9 +36,8 @@ import samuImage from '../../../assets/carro-ambulancia.png';
 import otherServicesList, {
   OtherServicesListInterface,
 } from '../../utils/otherServicesList';
-import Loader from '../../components/Loader/Loader';
 
-interface NavigationProps extends NavigationProp<any> {
+export interface NavigationProps extends NavigationProp<any> {
   openDrawer: () => void;
 }
 
@@ -46,7 +45,6 @@ const Home: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const {isDarkMode, lightMode, darkMode} = useTheme();
   const {user} = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
@@ -89,43 +87,8 @@ const Home: React.FC = () => {
     return 'Bem vindo,';
   };
 
-  const handleCallSamu = async () => {
-    try {
-      const {status} = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Ocorreu um erro', 'Permissão para localização negada!', [
-          {text: 'OK'},
-        ]);
-        return;
-      }
-
-      setIsLoading(true);
-
-      const currentLocation = await Location.getCurrentPositionAsync({});
-      const userLocation = {
-        latitude: currentLocation.coords.latitude,
-        longitude: currentLocation.coords.longitude,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      };
-      const currentAddress = await Location.reverseGeocodeAsync({
-        latitude: currentLocation.coords.latitude,
-        longitude: currentLocation.coords.longitude,
-      });
-
-      setIsLoading(false);
-      navigation.navigate('Mapa', {userLocation, currentAddress});
-    } catch (error) {
-      setIsLoading(false);
-      Alert.alert('Ocorreu um erro', 'Erro ao obter localização!', [
-        {text: 'OK'},
-      ]);
-    }
-  };
-
   return (
     <Container>
-      <Loader isActive={isLoading} />
       <DrawerIconContainer>
         <ClosedDrawerIcon
           onPress={() => navigation.openDrawer()}
@@ -150,7 +113,10 @@ const Home: React.FC = () => {
         </UserPictureContainer>
       </UserContainer>
       <SamuButtonContainer>
-        <SamuButton onPress={handleCallSamu} style={styles.shadow}>
+        <SamuButton
+          onPress={() => navigation.navigate('Questionario', {questionario})}
+          style={styles.shadow}
+        >
           <LeftButtonContainer>
             <LeftButtonTitle>SAMU</LeftButtonTitle>
             <LeftButtonDescription>

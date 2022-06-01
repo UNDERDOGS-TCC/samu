@@ -69,7 +69,9 @@
          "no-nested-ternary": "off",
          "no-underscore-dangle": "off",
          "no-useless-return": "off",
-         "global-require": "off"
+         "global-require": "off",
+         "no-plusplus": "off",
+         "react/no-array-index-key": "off"
     },
     "settings": {
         "import/resolver": {

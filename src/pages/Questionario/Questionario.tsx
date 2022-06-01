@@ -1,146 +1,147 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React, {useRef, useState} from 'react';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
 import PagerView from 'react-native-pager-view';
+import * as Location from 'expo-location';
+import {Alert} from 'react-native';
+import {NavigationProps} from '../Home/Home';
+import Loader from '../../components/Loader/Loader';
+import {Questionario as IQuestionario} from '../../interfaces/Questionario';
 import {
-  Titulo,
-  Check,
-  Texto,
+  AnswearsBlock,
+  AnswersContainer,
+  AnswersText,
+  AvisoContainer,
+  AvisoText,
   Container,
-  Textott,
-  BotaoAnterior,
-  BotaoProximo,
-  Input,
+  PageRefContainer,
+  QuestaoContainer,
+  QuestaoText,
+  PageRefBall,
 } from './styles';
 
+type RouteParams = RouteProp<{
+  params: {
+    questionario: IQuestionario;
+  };
+}>;
+
 const Questionario: React.FC = () => {
-  const [isChecked1, setChecked1] = useState(false);
-  const [isChecked2, setChecked2] = useState(false);
-  const [isChecked3, setChecked3] = useState(false);
-  const [isChecked4, setChecked4] = useState(false);
+  const {questionario} = useRoute<RouteParams>().params;
+  const [userRes, setUserRes] = useState<{question: string; answer: string}[]>(
+    [],
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation<NavigationProps>();
   const pagerRef = useRef<PagerView>(null);
-  const [pagSelect, setPagSelect] = useState(0);
-  const [text, onChangeText] = React.useState('');
-  const checkBox1 = () => {
-    setChecked1(!isChecked1);
-    setChecked2(false);
-    setChecked3(false);
-    setChecked4(false);
+
+  const handleAnswerPress = (
+    index: number,
+    question: string,
+    answer: string,
+  ) => {
+    const obj = {question, answer};
+    setUserRes((prevState) => [...prevState, obj]);
+    handlePageChange(index);
   };
-  const checkBox2 = () => {
-    setChecked1(false);
-    setChecked2(!isChecked2);
-    setChecked3(false);
-    setChecked4(false);
+
+  const handlePageChange = (index: number) => {
+    if (index + 1 === questionario.questions.length) {
+      handleCallSamu();
+    }
+    pagerRef.current?.setPage(index + 1);
   };
-  const checkBox3 = () => {
-    setChecked1(false);
-    setChecked2(false);
-    setChecked3(!isChecked3);
-    setChecked4(false);
-  };
-  const checkBox4 = () => {
-    setChecked1(false);
-    setChecked2(false);
-    setChecked3(false);
-    setChecked4(!isChecked4);
+
+  const handleCallSamu = async () => {
+    try {
+      const {status} = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Ocorreu um erro', 'Permissão para localização negada!', [
+          {text: 'OK'},
+        ]);
+        return;
+      }
+
+      setIsLoading(true);
+
+      const currentLocation = await Location.getCurrentPositionAsync({});
+      const userLocation = {
+        latitude: currentLocation.coords.latitude,
+        longitude: currentLocation.coords.longitude,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      };
+      const currentAddress = await Location.reverseGeocodeAsync({
+        latitude: currentLocation.coords.latitude,
+        longitude: currentLocation.coords.longitude,
+      });
+
+      setIsLoading(false);
+      navigation.navigate('Mapa', {userLocation, currentAddress});
+    } catch (error) {
+      setIsLoading(false);
+      Alert.alert('Ocorreu um erro', 'Erro ao obter localização!', [
+        {text: 'OK'},
+      ]);
+    }
   };
 
   return (
     <>
+      <Loader isActive={isLoading} />
       <PagerView
         ref={pagerRef}
-        style={styless.viewPager}
+        style={{flex: 1}}
         initialPage={0}
         scrollEnabled={false}
       >
-        <View key="1">
-          <Titulo>
-            <Text>Como você classificaria essa ocorrência?</Text>
-          </Titulo>
-
-          <Container>
-            <Check value={isChecked1} onValueChange={checkBox1} color="White" />
-            <Texto>Assalto</Texto>
+        {questionario.questions.map((question, index) => (
+          <Container key={index}>
+            <QuestaoContainer>
+              <QuestaoText>{question.question}</QuestaoText>
+            </QuestaoContainer>
+            <AvisoContainer>
+              <AvisoText>Selecione uma das opções!</AvisoText>
+            </AvisoContainer>
+            <AnswersContainer>
+              {question.objective ? (
+                <>
+                  <AnswearsBlock
+                    onPress={() =>
+                      handleAnswerPress(index, question.question, 'sim')
+                    }
+                  >
+                    <AnswersText>Sim</AnswersText>
+                  </AnswearsBlock>
+                  <AnswearsBlock
+                    onPress={() =>
+                      handleAnswerPress(index, question.question, 'não')
+                    }
+                  >
+                    <AnswersText>Não</AnswersText>
+                  </AnswearsBlock>
+                </>
+              ) : (
+                question.answers?.map((answer) => (
+                  <AnswearsBlock
+                    onPress={() =>
+                      handleAnswerPress(index, question.question, answer)
+                    }
+                  >
+                    <AnswersText>{answer}</AnswersText>
+                  </AnswearsBlock>
+                ))
+              )}
+            </AnswersContainer>
+            <PageRefContainer>
+              {questionario.questions.map((_page, ballIndex) => (
+                <PageRefBall isActive={ballIndex <= index} />
+              ))}
+            </PageRefContainer>
           </Container>
-
-          <Container>
-            <Check value={isChecked2} onValueChange={checkBox2} color="White" />
-            <Texto>Violência Doméstica</Texto>
-          </Container>
-
-          <Container>
-            <Check value={isChecked3} onValueChange={checkBox3} color="White" />
-            <Texto>Sequestro</Texto>
-          </Container>
-
-          <Container>
-            <Check value={isChecked4} onValueChange={checkBox4} color="White" />
-            <Texto>Outros</Texto>
-          </Container>
-
-          <View>
-            {isChecked4 === true && (
-              <Input
-                multiline
-                numberOfLines={4}
-                onChangeText={onChangeText}
-                value={text}
-              />
-            )}
-          </View>
-        </View>
-
-        <View key="2">
-          <Text>Second page</Text>
-        </View>
-
-        <View key="3">
-          <Text>Third page</Text>
-        </View>
+        ))}
       </PagerView>
-
-      <View style={{flexDirection: 'row', width: '100%'}}>
-        {pagSelect !== 0 && (
-          <BotaoAnterior
-            onPress={() => {
-              setPagSelect((value) => {
-                const newValue = value - 1;
-                pagerRef.current?.setPage(newValue);
-                return newValue;
-              });
-            }}
-          >
-            <Textott>Anterior</Textott>
-          </BotaoAnterior>
-        )}
-        {pagSelect !== 2 && (
-          <BotaoProximo
-            onPress={() => {
-              setPagSelect((value) => {
-                const newValue = value + 1;
-                pagerRef.current?.setPage(newValue);
-                return newValue;
-              });
-            }}
-            disabled={
-              isChecked1 === false &&
-              isChecked2 === false &&
-              isChecked3 === false &&
-              isChecked4 === false
-            }
-          >
-            <Textott>Próximo</Textott>
-          </BotaoProximo>
-        )}
-      </View>
     </>
   );
 };
-
-const styless = StyleSheet.create({
-  viewPager: {
-    flex: 1,
-  },
-});
 
 export default Questionario;

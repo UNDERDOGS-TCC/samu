@@ -1,5 +1,4 @@
 export interface Questionario {
-  pages: number;
   questions: Question[];
 }
 
@@ -11,13 +10,12 @@ export interface Question {
   correctAnswer?: string;
 }
 
-const questionario: Questionario = {
-  pages: 3,
+export const questionario: Questionario = {
   questions: [
     {
       page: 1,
       objective: true,
-      question: 'Eu sou gay?',
+      question: 'Isso é uma pergunta de verdade?',
     },
     {
       page: 2,
