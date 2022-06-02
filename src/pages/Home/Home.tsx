@@ -3,7 +3,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {ImageSourcePropType, StyleSheet} from 'react-native';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
 import {useAuth} from '../../contexts/AuthProvider';
-import {questionario} from '../../interfaces/Questionario';
+import {questionario2} from '../../interfaces/Questionario';
 import {
   Container,
   ClosedDrawerIcon,
@@ -114,7 +114,11 @@ const Home: React.FC = () => {
       </UserContainer>
       <SamuButtonContainer>
         <SamuButton
-          onPress={() => navigation.navigate('Questionario', {questionario})}
+          onPress={() =>
+            navigation.navigate('Questionario', {
+              questionario: questionario2,
+            })
+          }
           style={styles.shadow}
         >
           <LeftButtonContainer>

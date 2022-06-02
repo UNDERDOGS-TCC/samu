@@ -76,7 +76,7 @@ const Questionario: React.FC = () => {
       });
 
       setIsLoading(false);
-      navigation.navigate('Mapa', {userLocation, currentAddress});
+      navigation.navigate('Mapa', {userLocation, currentAddress, userRes});
     } catch (error) {
       setIsLoading(false);
       Alert.alert('Ocorreu um erro', 'Erro ao obter localização!', [
