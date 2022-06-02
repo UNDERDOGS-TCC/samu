@@ -10,6 +10,7 @@ import {Container, Map} from './styles';
 import samuImage from '../../../assets/carro-ambulancia.png';
 import {closestSamuBaseApi} from '../../api/map';
 
+import samu_base from '../../../assets/GPS_blue.png';
 import dark_map from '../../../assets/maps_darkmode';
 import light_map from '../../../assets/maps_lightmode';
 import {useTheme} from '../../contexts/ThemeManagerProvider';
@@ -34,6 +35,7 @@ const Mapa: React.FC = () => {
   const [region, setRegion] = useState(userLocation);
   const [address, setAddress] = useState(currentAddress);
   const [samuLocation, setSamuLocation] = useState<LatLng>();
+  const [samuBaseLocation, setSamuBaseLocation] = useState<LatLng>();
   const {isDarkMode, lightMode, darkMode} = useTheme();
   const mapRef = useRef<MapView>(null);
 
@@ -45,9 +47,12 @@ const Mapa: React.FC = () => {
 
   const getSamuLocation = useCallback(async () => {
     try {
-      console.log(region);
       const res = await closestSamuBaseApi(region.latitude, region.longitude);
       setSamuLocation({
+        latitude: res.data.lat,
+        longitude: res.data.lng,
+      });
+      setSamuBaseLocation({
         latitude: res.data.lat,
         longitude: res.data.lng,
       });
@@ -101,6 +106,15 @@ const Mapa: React.FC = () => {
             longitude: userLocation.longitude,
           }}
         />
+        {samuBaseLocation && (
+          <Marker identifier="samuBase" coordinate={samuBaseLocation}>
+            <Image
+              style={{width: 60, height: 60}}
+              resizeMode="contain"
+              source={samu_base as ImageSourcePropType}
+            />
+          </Marker>
+        )}
         {samuLocation && (
           <Marker
             onLayout={centerMap}

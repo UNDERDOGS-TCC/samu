@@ -42,6 +42,7 @@ const App: React.FC = () => {
     require('./assets/seguranca.png'),
     require('./assets/seta.png'),
     require('./assets/traco.png'),
+    require('./assets/GPS_blue.png'),
   ]);
 
   if (!isFontsLoaded || !assets) {
