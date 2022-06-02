@@ -2,13 +2,13 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {LocationGeocodedAddress, reverseGeocodeAsync} from 'expo-location';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import MapView, {LatLng, MapEvent, Marker} from 'react-native-maps';
-import {Image, ImageSourcePropType} from 'react-native';
+import {Alert, Image, ImageSourcePropType} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import MapInfos from '../../components/MapInfos/MapInfos';
 import {Container, Map} from './styles';
 
 import samuImage from '../../../assets/carro-ambulancia.png';
-import {randomLocationApi} from '../../api/map';
+import {closestSamuBaseApi} from '../../api/map';
 
 import dark_map from '../../../assets/maps_darkmode';
 import light_map from '../../../assets/maps_lightmode';
@@ -44,12 +44,18 @@ const Mapa: React.FC = () => {
   }, [navigation]);
 
   const getSamuLocation = useCallback(async () => {
-    const res = await randomLocationApi(region.latitude, region.longitude);
-    console.log(res);
-    setSamuLocation({
-      latitude: res.data.lat,
-      longitude: res.data.lng,
-    });
+    try {
+      console.log(region);
+      const res = await closestSamuBaseApi(region.latitude, region.longitude);
+      setSamuLocation({
+        latitude: res.data.lat,
+        longitude: res.data.lng,
+      });
+    } catch (error) {
+      Alert.alert('Ocorreu um erro', 'Erro ao buscar localização do SAMU', [
+        {text: 'OK'},
+      ]);
+    }
   }, [region]);
 
   const centerMap = () => {

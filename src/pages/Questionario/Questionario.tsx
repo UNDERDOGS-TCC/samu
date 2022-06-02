@@ -1,5 +1,5 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PagerView from 'react-native-pager-view';
 import * as Location from 'expo-location';
 import {Alert} from 'react-native';
@@ -121,8 +121,9 @@ const Questionario: React.FC = () => {
                   </AnswearsBlock>
                 </>
               ) : (
-                question.answers?.map((answer) => (
+                question.answers?.map((answer, answersIndex) => (
                   <AnswearsBlock
+                    key={answersIndex}
                     onPress={() =>
                       handleAnswerPress(index, question.question, answer)
                     }
@@ -134,7 +135,7 @@ const Questionario: React.FC = () => {
             </AnswersContainer>
             <PageRefContainer>
               {questionario.questions.map((_page, ballIndex) => (
-                <PageRefBall isActive={ballIndex <= index} />
+                <PageRefBall key={ballIndex} isActive={ballIndex <= index} />
               ))}
             </PageRefContainer>
           </Container>

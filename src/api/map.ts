@@ -23,7 +23,12 @@ export async function randomLocationApi(
 export async function closestSamuBaseApi(
   lat: number,
   lng: number,
+  radius = 5000,
 ): Promise<RandomLocationApiResponse> {
-  const res = await axios.post('/closestSamuBase', {lat, lng});
+  const res = await axios.post('/samuLocation', {
+    latitude: lat,
+    longitude: lng,
+    radius,
+  });
   return res.data as RandomLocationApiResponse;
 }

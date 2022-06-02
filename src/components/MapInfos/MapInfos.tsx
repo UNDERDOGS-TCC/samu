@@ -101,7 +101,7 @@ const MapInfos: React.FC<MapInfosProps> = ({userAddress, samuLocation}) => {
           title="Cancelar"
           danger
           onPress={() => {
-            navigation.goBack();
+            navigation.reset({index: 0, routes: [{name: 'Sidebar' as never}]});
           }}
         />
       </ButtonsContainer>
