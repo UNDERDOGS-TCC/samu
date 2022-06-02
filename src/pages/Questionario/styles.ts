@@ -53,7 +53,7 @@ export const AnswearsBlock = styled.TouchableOpacity.attrs({
   width: 100%;
   height: 15%;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.main.colors.secondary};
+  background-color: ${(props) => props.theme.main.colors.alternate};
   align-items: center;
   justify-content: center;
   margin: 5px;
@@ -76,7 +76,7 @@ export const PageRefBall = styled.View<PageRefBallProps>`
   border-radius: 50px;
   background-color: ${(props) =>
     props.isActive
-      ? props.theme.main.colors.secondary
+      ? props.theme.main.colors.alternate
       : props.theme.main.colors.gray};
   margin-right: 5px;
 `;
