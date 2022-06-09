@@ -94,6 +94,7 @@ const Mapa: React.FC = () => {
       <Map
         mapPadding={{top: 0, right: 0, bottom: 200, left: 0}}
         customMapStyle={isDarkMode ? dark_map : light_map}
+        userInterfaceStyle={isDarkMode ? 'dark' : 'light'}
         ref={mapRef}
         region={region}
       >
